@@ -1,3 +1,4 @@
+import { Produto } from './../model/produto.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,21 +8,23 @@ import { Observable } from 'rxjs';
 })
 export class ProdutoService {
 
-  private userUrl = 'http://localhost:8080/api/home/user';
-  private pmUrl = 'http://localhost:8080/api/home/pm';
-  private adminUrl = 'http://localhost:8080/api/home/admin';
+  private userUrl = 'http://localhost:8080/api/produto';
 
   constructor(private http: HttpClient) { }
 
   getUserBoard(): Observable<string> {
     return this.http.get(this.userUrl, { responseType: 'text' });
   }
- 
-  getPMBoard(): Observable<string> {
-    return this.http.get(this.pmUrl, { responseType: 'text' });
+
+  getListaProdutos(): Observable<any> {
+    return this.http.get<Produto[]>(this.userUrl + '/all');
   }
- 
-  getAdminBoard(): Observable<string> {
-    return this.http.get(this.adminUrl, { responseType: 'text' });
+
+  adicionarProduto(produto: Produto): Observable<any> {
+    return this.http.post<any>(this.userUrl, produto);
+  }
+
+  delete(produto: Produto){
+    return this.http.delete<Produto>(this.userUrl + "/" + produto.id);
   }
 }

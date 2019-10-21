@@ -9,7 +9,7 @@ import { TokenStorageService } from './auth/token-storage.service';
 export class AppComponent {
 
   private roles: string[];
-  private authority: string;
+  public authority: string;
   title = 'migsoft';
 
   constructor(private tokenStorage: TokenStorageService) { }
@@ -21,12 +21,10 @@ export class AppComponent {
         if (role === 'ROLE_ADMIN') {
           this.authority = 'admin';
           return false;
-        } else if (role === 'ROLE_PM') {
-          this.authority = 'pm';
-          return false;
-        }
+        } else {
         this.authority = 'user';
         return true;
+      }
       });
     }
   }

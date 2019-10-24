@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { map, shareReplay } from 'rxjs/operators';
+import { Component, Input } from '@angular/core';
 import { TokenStorageService } from './auth/token-storage.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
@@ -12,7 +16,14 @@ export class AppComponent {
   public authority: string;
   title = 'migsoft';
 
-  constructor(private tokenStorage: TokenStorageService) { }
+  constructor(private tokenStorage: TokenStorageService, private breakpointObserver: BreakpointObserver) { }
+
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {

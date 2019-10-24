@@ -37,7 +37,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -58,9 +57,10 @@ import { MenuComponent } from './menu/menu.component';
     OrcamentoComponent,
     DialogueComponent,
     DashboardComponent,
-    MenuComponent
   ],
   imports: [
+    MatCardModule,
+    MatSidenavModule,
     MatDialogModule,
     MatButtonModule,
     MatInputModule,

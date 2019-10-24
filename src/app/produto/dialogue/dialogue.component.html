@@ -1,0 +1,15 @@
+<h1 mat-dialog-title *ngIf="!data.element">Adicionar Produto</h1>
+<h1 mat-dialog-title *ngIf="data.element">Editar Produto</h1>
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <input [(ngModel)]="produto.nome" matInput placeholder="Nome" name="produto.nome">
+  </mat-form-field>
+  <mat-form-field class="produto-input-width">
+    <input [(ngModel)]="produto.preco" matInput placeholder="Preco" name="produto.preco">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="adicionar()" > Salvar </button>
+</div>

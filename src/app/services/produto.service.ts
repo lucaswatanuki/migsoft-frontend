@@ -24,6 +24,10 @@ export class ProdutoService {
     return this.http.post<any>(this.userUrl, produto);
   }
 
+  update(produto: Produto): Observable<any> {
+    return this.http.put<Produto>(this.userUrl, produto);
+  }
+
   delete(produto: Produto){
     return this.http.delete<Produto>(this.userUrl + "/" + produto.id);
   }

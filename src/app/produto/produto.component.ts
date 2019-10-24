@@ -1,9 +1,12 @@
+import { Produto } from './../model/produto.model';
+import { element } from 'protractor';
+import { DialogueComponent } from './dialogue/dialogue.component';
 import { Observable } from 'rxjs';
 import { ProdutoService } from './../services/produto.service';
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
-import { Produto } from '../model/produto.model';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-produto',
@@ -13,41 +16,29 @@ import { Produto } from '../model/produto.model';
 export class ProdutoComponent implements OnInit {
 
   produto: Produto = new Produto();
-  produtos: Produto = new Produto();
+  produtos: Produto[];
   errorMsg: String;
   displayedColumns: string[] = ['id', 'nome', 'preco', 'action'];
-  dataSource = new MatTableDataSource;
-  listaProdutos: Produto[] = [];
+  dataSource = new MatTableDataSource<Produto>();
 
-  constructor(private produtoService: ProdutoService) { }
+
+  constructor(private produtoService: ProdutoService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getProdutos();
   }
 
-  adicionar() {
-    this.produtoService.adicionarProduto(this.produto).subscribe(
-      data => {
-        this.getProdutos();
-      }
-    );
+
+  applyFilter(value: string) {
+    this.dataSource.filter = value.trim().toLowerCase();
   }
 
   deletar(produto: Produto) {
     this.produtoService.delete(produto).subscribe(
-        data => {
-          this.getProdutos();
-        }
+      data => {
+        this.getProdutos();
+      }
     );
-  }
-
-
-  public listarProdutos(): void {
-    this.produtoService.getListaProdutos().subscribe(
-      produto => {
-        this.listaProdutos = produto;
-        this.dataSource = new MatTableDataSource<Produto>(this.listaProdutos);
-      });
   }
 
   public getProdutos(): void {
@@ -57,6 +48,21 @@ export class ProdutoComponent implements OnInit {
       },
       error => {
         this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;
+      }
+    );
+  }
+
+  openDialog(element): void {
+    const dialogRef = this.dialog.open(DialogueComponent, {
+      width: '250px',
+      data: {
+        element
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.getProdutos();
       }
     );
   }

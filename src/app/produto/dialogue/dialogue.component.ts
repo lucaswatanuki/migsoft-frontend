@@ -1,5 +1,5 @@
 import { element } from 'protractor';
-import { ProdutoService } from './../../services/produto.service';
+import { ProdutoService } from '../../services/produto/produto.service';
 import { Produto } from './../../model/produto.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';

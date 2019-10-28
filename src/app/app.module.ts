@@ -1,4 +1,5 @@
-import { ProdutoService } from './services/produto.service';
+import { FornecedorService } from './services/fornecedor/fornecedor.service';
+import { ProdutoService } from './services/produto/produto.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -37,6 +38,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { FornecedorDialogueComponent } from './fornecedor/fornecedor-dialogue/fornecedor-dialogue.component';
 
 
 @NgModule({
@@ -57,6 +59,7 @@ import { MatMenuModule } from '@angular/material/menu';
     OrcamentoComponent,
     DialogueComponent,
     DashboardComponent,
+    FornecedorDialogueComponent,
   ],
   imports: [
     MatCardModule,
@@ -81,8 +84,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatCardModule,
     MatMenuModule
   ],
-  entryComponents: [DialogueComponent],
-  providers: [httpInterceptorProviders, ProdutoService],
+  entryComponents: [DialogueComponent, FornecedorDialogueComponent],
+  providers: [httpInterceptorProviders, ProdutoService, FornecedorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

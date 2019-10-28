@@ -2,7 +2,7 @@ import { Produto } from './../model/produto.model';
 import { element } from 'protractor';
 import { DialogueComponent } from './dialogue/dialogue.component';
 import { Observable } from 'rxjs';
-import { ProdutoService } from './../services/produto.service';
+import { ProdutoService } from '../services/produto/produto.service';
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,10 +16,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 export class ProdutoComponent implements OnInit {
 
   produto: Produto = new Produto();
-  produtos: Produto[];
+  produtos: MatTableDataSource<any>;
   errorMsg: String;
   displayedColumns: string[] = ['id', 'nome', 'preco', 'action'];
-  dataSource = new MatTableDataSource<Produto>();
 
 
   constructor(private produtoService: ProdutoService, public dialog: MatDialog) { }
@@ -30,7 +29,7 @@ export class ProdutoComponent implements OnInit {
 
 
   applyFilter(value: string) {
-    this.dataSource.filter = value.trim().toLowerCase();
+    this.produtos.filter = value.trim().toLowerCase();
   }
 
   deletar(produto: Produto) {
@@ -44,7 +43,7 @@ export class ProdutoComponent implements OnInit {
   public getProdutos(): void {
     this.produtoService.getListaProdutos().subscribe(
       data => {
-        this.produtos = data;
+        this.produtos = new MatTableDataSource(data);
       },
       error => {
         this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;

@@ -1,3 +1,9 @@
+import { EstoqueComponent } from './estoque/estoque.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import { OrcamentoComponent } from './orcamento/orcamento.component';
+import { VendaComponent } from './venda/venda.component';
+import { RelatorioComponent } from './relatorio/relatorio.component';
+import { FornecedorComponent } from './fornecedor/fornecedor.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -32,6 +38,26 @@ const routes: Routes = [
   {
     path: 'produto',
     component: ProdutoComponent
+  },
+  {
+    path: 'fornecedor',
+    component: FornecedorComponent
+  },
+  {
+    path: 'relatorio',
+    component: RelatorioComponent
+  },
+  {
+    path: 'venda',
+    component: VendaComponent
+  },
+  {
+    path: 'cliente',
+    component: ClienteComponent
+  },
+  {
+    path: 'estoque',
+    component: EstoqueComponent
   },
   {
     path: '',

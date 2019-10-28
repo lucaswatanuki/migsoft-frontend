@@ -1,4 +1,11 @@
+import { FornecedorDialogueComponent } from './fornecedor-dialogue/fornecedor-dialogue.component';
+import { DialogueComponent } from './../produto/dialogue/dialogue.component';
+import { MatDialog } from '@angular/material/dialog';
+import { FornecedorService } from './../services/fornecedor/fornecedor.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { Fornecedor } from './../model/fornecedor.model';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-fornecedor',
@@ -7,9 +14,55 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FornecedorComponent implements OnInit {
 
-  constructor() { }
+  fornecedor: Fornecedor = new Fornecedor();
+  fornecedorList: MatTableDataSource<any>;
+  errorMsg: String;
+  displayedColumns: string[] = ['id', 'nomeFantasia', 'cnpj', 'button'];
+
+  constructor(private fornecedorService: FornecedorService, public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getFornecedor();
+  }
+
+  applyFilter(filterValue: string) {
+    this.fornecedorList.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+
+  deletar(fornecedor: Fornecedor) {
+    this.fornecedorService.delete(fornecedor).subscribe(
+      data => {
+        this.getFornecedor();
+      }
+    );
+  }
+
+  public getFornecedor(): void {
+    this.fornecedorService.getListaFornecedor().subscribe(
+      data => {
+        this.fornecedorList = new MatTableDataSource(data);
+      },
+      error => {
+        this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;
+      }
+    );
+  }
+
+  openDialog(element): void {
+    const dialogRef = this.dialog.open(FornecedorDialogueComponent, {
+      width: 'auto',
+      height: 'auto',
+      data: {
+        element
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.getFornecedor();
+      }
+    );
   }
 
 }

@@ -16,7 +16,7 @@ $migsoft-primary: mat-palette($mat-indigo);
 $migsoft-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$migsoft-warn: mat-palette($mat-red);
+$migsoft-warn: mat-palette($mat-gray, A800);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $migsoft-theme: mat-light-theme($migsoft-primary, $migsoft-accent, $migsoft-warn);

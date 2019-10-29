@@ -1,5 +1,6 @@
 .sidenav-container {
   height: 100%;
+  
 }
 
 .sidenav {
@@ -11,5 +12,12 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.mat-toolbar.mat-warn {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: black;
 }
 

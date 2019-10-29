@@ -40,6 +40,12 @@ export class ProdutoComponent implements OnInit {
     );
   }
 
+  update(produto: Produto){
+    this.produtoService.update(produto).subscribe(
+      data => this.produto = data
+    );
+  }
+
   public getProdutos(): void {
     this.produtoService.getListaProdutos().subscribe(
       data => {

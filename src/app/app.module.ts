@@ -34,7 +34,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -58,7 +57,6 @@ import { FornecedorDialogueComponent } from './fornecedor/fornecedor-dialogue/fo
     CotacaoComponent,
     OrcamentoComponent,
     DialogueComponent,
-    DashboardComponent,
     FornecedorDialogueComponent,
   ],
   imports: [

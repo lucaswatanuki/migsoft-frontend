@@ -11,5 +11,6 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-raised-button color="primary" (click)="adicionar()" > Salvar </button>
+  <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
+  <button mat-raised-button color="primary" (click)="update(produto)" *ngIf="data.element"> Salvar </button>
 </div>

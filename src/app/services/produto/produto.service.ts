@@ -25,10 +25,10 @@ export class ProdutoService {
   }
 
   update(produto: Produto): Observable<any> {
-    return this.http.put<Produto>(this.userUrl, produto);
+    return this.http.put<Produto>(this.userUrl + "/" + produto.id, produto);
   }
 
-  delete(produto: Produto){
+  delete(produto: Produto) {
     return this.http.delete<Produto>(this.userUrl + "/" + produto.id);
   }
 }

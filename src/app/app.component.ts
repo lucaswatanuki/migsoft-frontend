@@ -37,6 +37,7 @@ export class AppComponent {
         return true;
       }
       });
+      img: new Image
     }
   }
 }

@@ -1,8 +1,8 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" >
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'push' : 'side'" [opened]="(isHandset$ | async) === false">
+    [mode]="(isHandset$ | async) ? 'push' : 'side'" [opened]="(isHandset$ | async) === false" >
 
-    <mat-toolbar color="primary">MIG-LOGO</mat-toolbar>
+    <mat-toolbar color="warn" style="justify-content: center;">MIG</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item class="nav-link" routerLink="home" *ngIf="authority === 'user'">Home </a>
       <a mat-list-item class="nav-link" routerLink="user" *ngIf="authority === 'user'">Usuário</a>

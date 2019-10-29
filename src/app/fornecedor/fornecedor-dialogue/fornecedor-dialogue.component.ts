@@ -1,3 +1,5 @@
+import { element } from 'protractor';
+import { Pessoa } from './../../model/pessoa.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FornecedorService } from './../../services/fornecedor/fornecedor.service';
 import { DialogueComponent } from './../../produto/dialogue/dialogue.component';
@@ -11,7 +13,8 @@ import { Fornecedor } from 'src/app/model/fornecedor.model';
 })
 export class FornecedorDialogueComponent implements OnInit {
 
-   fornecedor: Fornecedor = new Fornecedor();
+  fornecedor: Fornecedor = new Fornecedor();
+  pessoa: Pessoa = new Pessoa();
 
   constructor(public dialogRef: MatDialogRef<DialogueComponent>, private fornecedorService: FornecedorService,
     @Inject(MAT_DIALOG_DATA) public data) { }
@@ -20,6 +23,7 @@ export class FornecedorDialogueComponent implements OnInit {
     console.log(this.data);
     if (this.data.element) {
       this.fornecedor = this.data.element;
+      this.pessoa = this.data.element;
     }
   }
 

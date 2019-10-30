@@ -1,10 +1,9 @@
-<div *ngIf="info.token; else loggedOut">
+<div *ngIf="info.token">
   <h5 class="text-primary">Informações do usuario</h5>
   <p>
     <strong>Username:</strong> {{info.username}}<br />
     <strong>Acesso:</strong> {{info.authorities}}<br />
   </p>
-  <button class="btn btn-secondary" (click)="logout()">Logout</button>
 </div>
 
 <div class="grid-container">
@@ -31,8 +30,3 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div>
-
-
-<ng-template #loggedOut>
-  Pagina principal - Realizar login.
-</ng-template>

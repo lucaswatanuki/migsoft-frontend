@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { map, shareReplay } from 'rxjs/operators';
 import { Component, Input } from '@angular/core';
 import { TokenStorageService } from './auth/token-storage.service';
@@ -15,6 +16,7 @@ export class AppComponent {
   private roles: string[];
   public authority: string;
   title = 'migsoft';
+  info: any;
 
   constructor(private tokenStorage: TokenStorageService, private breakpointObserver: BreakpointObserver) { }
 
@@ -26,6 +28,13 @@ export class AppComponent {
     );
 
   ngOnInit() {
+
+    this.info = {
+      token: this.tokenStorage.getToken(),
+      username: this.tokenStorage.getUsername(),
+      authorities: this.tokenStorage.getAuthorities()
+    };
+
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
       this.roles.every(role => {
@@ -37,7 +46,12 @@ export class AppComponent {
         return true;
       }
       });
-      img: new Image
     }
+  }
+
+
+  logout() {
+    this.tokenStorage.signOut();
+    window.location.reload();
   }
 }

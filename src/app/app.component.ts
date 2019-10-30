@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
 import { TokenStorageService } from './auth/token-storage.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -52,6 +53,11 @@ export class AppComponent {
 
   logout() {
     this.tokenStorage.signOut();
+    window.location.replace("http://localhost:4200/auth/login");
+    this.reloadPage();
+  }
+
+  reloadPage() {
     window.location.reload();
   }
 }

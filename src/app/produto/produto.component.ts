@@ -19,7 +19,7 @@ export class ProdutoComponent implements OnInit {
   produto: Produto = new Produto();
   produtos: MatTableDataSource<any>;
   errorMsg: String;
-  displayedColumns: string[] = ['id', 'nome', 'preco', 'action'];
+  displayedColumns: string[] = ['id', 'nome', 'preco', 'qtdEstoque', 'action'];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -28,7 +28,6 @@ export class ProdutoComponent implements OnInit {
   ngOnInit() {
     this.getProdutos();
   }
-
 
   applyFilter(value: string) {
     this.produtos.filter = value.trim().toLowerCase();
@@ -42,7 +41,7 @@ export class ProdutoComponent implements OnInit {
     );
   }
 
-  update(produto: Produto){
+  update(produto: Produto) {
     this.produtoService.update(produto).subscribe(
       data => this.produto = data
     );

@@ -5,9 +5,13 @@
   <mat-form-field>
     <input [(ngModel)]="produto.nome" matInput placeholder="Nome" name="produto.nome">
   </mat-form-field>
-  <mat-form-field class="produto-input-width">
+  <mat-form-field>
     <input [(ngModel)]="produto.preco" matInput placeholder="Preco" name="produto.preco">
   </mat-form-field>
+  <mat-form-field style="width: 50px;">
+    <input [(ngModel)]="produto.qtdEstoque" matInput placeholder="Qtd" name="produto.qtdEstoque">
+  </mat-form-field>
+
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>

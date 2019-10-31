@@ -8,7 +8,6 @@
 </div>
 
 <div>
-
   <table mat-table [dataSource]="produtos">
 
     <!-- Position Column -->
@@ -27,6 +26,11 @@
     <ng-container matColumnDef="preco">
       <th mat-header-cell *matHeaderCellDef>Preco</th>
       <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="qtdEstoque">
+      <th mat-header-cell *matHeaderCellDef>Qtd Estoque</th>
+      <td mat-cell *matCellDef="let element"> {{element.qtdEstoque}} </td>
     </ng-container>
 
     <ng-container matColumnDef="action">

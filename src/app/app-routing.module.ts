@@ -1,6 +1,5 @@
-import { EstoqueComponent } from './estoque/estoque.component';
+import { PedidoComponent } from './pedido/pedido.component';
 import { ClienteComponent } from './cliente/cliente.component';
-import { OrcamentoComponent } from './orcamento/orcamento.component';
 import { VendaComponent } from './venda/venda.component';
 import { RelatorioComponent } from './relatorio/relatorio.component';
 import { FornecedorComponent } from './fornecedor/fornecedor.component';
@@ -18,6 +17,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'pedido',
+    component: PedidoComponent
   },
   {
     path: 'user',
@@ -55,10 +58,7 @@ const routes: Routes = [
     path: 'cliente',
     component: ClienteComponent
   },
-  {
-    path: 'estoque',
-    component: EstoqueComponent
-  },
+
   {
     path: '',
     redirectTo: 'auth/login',

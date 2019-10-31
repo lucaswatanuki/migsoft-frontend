@@ -16,7 +16,6 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProdutoComponent } from './produto/produto.component';
-import { EstoqueComponent } from './estoque/estoque.component';
 import { RelatorioComponent } from './relatorio/relatorio.component';
 import { FornecedorComponent } from './fornecedor/fornecedor.component';
 import { ClienteComponent } from './cliente/cliente.component';
@@ -39,6 +38,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { FornecedorDialogueComponent } from './fornecedor/fornecedor-dialogue/fornecedor-dialogue.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { PedidoComponent } from './pedido/pedido.component';
 
 
 @NgModule({
@@ -50,7 +50,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     UserComponent,
     AdminComponent,
     ProdutoComponent,
-    EstoqueComponent,
     RelatorioComponent,
     FornecedorComponent,
     ClienteComponent,
@@ -59,6 +58,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     OrcamentoComponent,
     DialogueComponent,
     FornecedorDialogueComponent,
+    PedidoComponent,
   ],
   imports: [
     MatPaginatorModule,

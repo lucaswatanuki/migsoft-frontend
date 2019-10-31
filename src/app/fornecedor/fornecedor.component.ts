@@ -4,7 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { FornecedorService } from './../services/fornecedor/fornecedor.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Fornecedor } from './../model/fornecedor.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -19,7 +20,10 @@ export class FornecedorComponent implements OnInit {
   errorMsg: String;
   displayedColumns: string[] = ['id', 'nomeFantasia', 'cnpj', 'button'];
 
-  constructor(private fornecedorService: FornecedorService, public dialog: MatDialog) { }
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+  constructor(private fornecedorService: FornecedorService, public dialog: MatDialog) {
+   }
 
   ngOnInit() {
     this.getFornecedor();
@@ -42,6 +46,7 @@ export class FornecedorComponent implements OnInit {
     this.fornecedorService.getListaFornecedor().subscribe(
       data => {
         this.fornecedorList = new MatTableDataSource(data);
+        this.fornecedorList.paginator = this.paginator;
       },
       error => {
         this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;

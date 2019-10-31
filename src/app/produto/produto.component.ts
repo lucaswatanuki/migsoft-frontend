@@ -3,10 +3,11 @@ import { element } from 'protractor';
 import { DialogueComponent } from './dialogue/dialogue.component';
 import { Observable } from 'rxjs';
 import { ProdutoService } from '../services/produto/produto.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-produto',
@@ -20,6 +21,7 @@ export class ProdutoComponent implements OnInit {
   errorMsg: String;
   displayedColumns: string[] = ['id', 'nome', 'preco', 'action'];
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private produtoService: ProdutoService, public dialog: MatDialog) { }
 
@@ -50,6 +52,7 @@ export class ProdutoComponent implements OnInit {
     this.produtoService.getListaProdutos().subscribe(
       data => {
         this.produtos = new MatTableDataSource(data);
+        this.produtos.paginator = this.paginator;
       },
       error => {
         this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;

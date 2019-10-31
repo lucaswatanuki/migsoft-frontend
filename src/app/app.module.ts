@@ -38,6 +38,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { FornecedorDialogueComponent } from './fornecedor/fornecedor-dialogue/fornecedor-dialogue.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { FornecedorDialogueComponent } from './fornecedor/fornecedor-dialogue/fo
     FornecedorDialogueComponent,
   ],
   imports: [
+    MatPaginatorModule,
     MatCardModule,
     MatSidenavModule,
     MatDialogModule,

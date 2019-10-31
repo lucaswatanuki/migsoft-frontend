@@ -58,6 +58,6 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage() {
-    window.location.reload();
+    window.location.replace('http://localhost:4200/home');
   }
 }

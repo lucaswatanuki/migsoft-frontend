@@ -73,4 +73,6 @@ export class ProdutoComponent implements OnInit {
       }
     );
   }
+
+  //pedido.produto.id
 }

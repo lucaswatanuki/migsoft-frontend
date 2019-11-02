@@ -12,7 +12,7 @@ export class FornecedorService {
 
   constructor(private http: HttpClient) { }
 
-    getListaFornecedor(): Observable<any> {
+  getListaFornecedor(): Observable<any> {
     return this.http.get<Fornecedor[]>(this.url + '/all');
   }
 

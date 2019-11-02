@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PedidoService } from '../services/pedido/pedido.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { Pedido } from '../model/pedido.model';
+import { PedidoDialogueComponent } from './pedido-dialogue/pedido-dialogue.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-pedido',
@@ -7,9 +13,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PedidoComponent implements OnInit {
 
-  constructor() { }
+  pedido: Pedido = new Pedido();
+  pedidoList: MatTableDataSource<any>;
+  errorMsg: String;
+
+  displayedColumns: string[] = ['id', 'fornecedor_id', 'produto_id', 'total', 'data', 'action'];
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  constructor(private pedidoService: PedidoService, public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getPedidos();
+  }
+
+  applyFilter(filterValue: string) {
+    this.pedidoList.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+  public getPedidos(){
+    this.pedidoService.getListaPedidos().subscribe(
+      data => {
+        this.pedidoList = new MatTableDataSource(data);
+        this.pedidoList.paginator = this.paginator;
+      }, 
+      error => {
+        this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;
+      });
+  }
+
+  openDialog(element): void {
+    const dialogRef = this.dialog.open(PedidoDialogueComponent, {
+      data: {
+        width: 'auto',
+        height: 'auto',
+        element
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.getPedidos();
+      }
+    );
+  }
+
+  deletar(pedido: Pedido) {
+    this.pedidoService.delete(pedido).subscribe(
+      data => {
+        this.getPedidos();
+      });
   }
 
 }

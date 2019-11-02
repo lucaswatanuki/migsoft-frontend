@@ -39,7 +39,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FornecedorDialogueComponent } from './fornecedor/fornecedor-dialogue/fornecedor-dialogue.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PedidoComponent } from './pedido/pedido.component';
-
+//import { BrowserModule } from '@angular/platform-browser';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
+//import { DemoMaterialModule } from './app/material-module';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { PedidoDialogueComponent } from './pedido/pedido-dialogue/pedido-dialogue.component';
+import { MatDatepickerModule, MatSelectModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -59,6 +65,7 @@ import { PedidoComponent } from './pedido/pedido.component';
     DialogueComponent,
     FornecedorDialogueComponent,
     PedidoComponent,
+    PedidoDialogueComponent,
   ],
   imports: [
     MatPaginatorModule,
@@ -82,9 +89,14 @@ import { PedidoComponent } from './pedido/pedido.component';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatSelectModule,
   ],
-  entryComponents: [DialogueComponent, FornecedorDialogueComponent],
+  entryComponents: [DialogueComponent, FornecedorDialogueComponent, PedidoDialogueComponent],
   providers: [httpInterceptorProviders, ProdutoService, FornecedorService],
   bootstrap: [AppComponent]
 })

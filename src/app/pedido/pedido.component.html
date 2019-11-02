@@ -1,1 +1,58 @@
-<p>pedido works!</p>
+<div>
+    <button mat-raised-button color="primary" (click)="openDialog()" style="margin-right: 20px">
+        <mat-icon aria-hidden="false" aria-label="ADD icon">add</mat-icon>
+    </button>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+    </mat-form-field>
+</div>
+
+<div>
+
+    <table mat-table [dataSource]="pedidoList">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="fornecedor_id">
+            <th mat-header-cell *matHeaderCellDef>FORNECEDOR</th>
+            <td mat-cell *matCellDef="let element"> {{element.fornecedor_id}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="produto_id">
+            <th mat-header-cell *matHeaderCellDef>PRODUTO</th>
+            <td mat-cell *matCellDef="let element"> {{element.produto_id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef>TOTAL</th>
+            <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="data">
+            <th mat-header-cell *matHeaderCellDef>DATA</th>
+            <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button color="primary">
+                    <mat-icon aria-hidden="false" aria-label="edit icon">edit</mat-icon>
+                </button>
+                <button mat-raised-button color="warn" style="margin-left: 10px">
+                    <mat-icon aria-hidden="false" aria-label="delete icon">delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

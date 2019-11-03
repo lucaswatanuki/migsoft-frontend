@@ -1,7 +1,7 @@
 export class Produto
 {
   id: number;
-  nome: String;
+  nome: string;
   preco: number;
   qtdEstoque: number;
 }

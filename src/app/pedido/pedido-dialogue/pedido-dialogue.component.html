@@ -1,52 +1,50 @@
 <h1 mat-dialog-title>Adicionar Pedido</h1>
 
 <div mat-dialog-content>
-    <div>
+  <div>
     <mat-form-field>
-        <input [(ngModel)]="pedido.data" matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+      <input [(ngModel)]="pedido.data" matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    </div>
+  </div>
 
-    <!--div>
+  <div>
     <mat-form-field>
-        <mat-select placeholder="Produto">
-            <mat-option *ngFor="let option of produtoList" value="option">{{option}}</mat-option>
-        </mat-select>
+      <mat-select placeholder="Produto" [(ngModel)]="pedido.produto">
+        <mat-option *ngFor="let option of produtoList" [value]="option">{{option.nome}}</mat-option>
+      </mat-select>
     </mat-form-field>
-    </div-->
-    <div>
-    <mat-form-field>
-        <input [(ngModel)]="pedido.produto_id" matInput placeholder="Produto ID" name="pedido.produto_id">
-    </mat-form-field>
-    </div>
+  </div>
 
-    <div>
+  <!-- <div>
     <mat-form-field>
-        <mat-select placeholder="Fornecedor" [(ngModel)]="pedido.fornecedor_id">
-            <mat-option *ngFor="let option of pedidoList" [value]="option"> 
-                {{option.nomeFantasia}} 
-            </mat-option>
-        </mat-select>
+        <input [(ngModel)]="pedido.produto" matInput placeholder="Produto" name="pedido.produto">
     </mat-form-field>
-    </div>
-    <!--div>
+    </div>-->
+
+
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Fornecedor" [(ngModel)]="pedido.fornecedor">
+        <mat-option *ngFor="let option of fornecedorList" [value]="option">
+          {{option.nomeFantasia}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <!--div>
     <mat-form-field>
         <input [(ngModel)]="pedido.fornecedor_id" matInput placeholder="Fornecedor ID" name="pedido.fornecedor_id">
     </mat-form-field>
     </div-->
 
-    <div>
-    <mat-form-field>
-        <input [(ngModel)]="pedido.total" matInput placeholder="Qtd TOTAL" name="pedido.total">
-    </mat-form-field>
-    </div>
+
 </div>
 
 
 
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancelar</button>
-    <button mat-raised-button color="primary" (click)="adicionar()"> Salvar </button>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="adicionar()"> Salvar </button>
 </div>

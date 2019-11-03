@@ -1,3 +1,4 @@
+import { ProdutoService } from './../../services/produto/produto.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { PedidoService } from '../../services/pedido/pedido.service';
 import { Pedido } from './../../model/pedido.model';
@@ -13,15 +14,18 @@ export class PedidoDialogueComponent implements OnInit {
 
   pedido: Pedido = new Pedido();
 
-  pedidoList: any[] = new Array();
+  fornecedorList: any[] = new Array();
 
-  fonecedorList: String[] = new Array();
+  produtoList: any[] = new Array();
 
-  constructor(private fornecedorService: FornecedorService, public dialogRef: MatDialogRef<PedidoDialogueComponent>, private pedidoService: PedidoService,
-    @Inject(MAT_DIALOG_DATA) public data) { }
+  constructor(private fornecedorService: FornecedorService,
+              private produtoService: ProdutoService,
+              public dialogRef: MatDialogRef<PedidoDialogueComponent>, private pedidoService: PedidoService,
+              @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
     this.loadFornecedores();
+    this.loadProdutos();
 
     if (this.data.element) {
       this.pedido = this.data.element;
@@ -33,6 +37,7 @@ export class PedidoDialogueComponent implements OnInit {
   }
 
   adicionar() {
+    console.log(this.pedido);
     this.pedidoService.adicionarPedido(this.pedido).subscribe(
       data => {
         this.dialogRef.close();
@@ -44,7 +49,17 @@ export class PedidoDialogueComponent implements OnInit {
     this.fornecedorService.getListaFornecedor().subscribe(
       data => {
         data.forEach(element => {
-          this.pedidoList.push(element);
+          this.fornecedorList.push(element);
+        });
+      }
+    );
+  }
+
+  loadProdutos() {
+    this.produtoService.getListaProdutos().subscribe(
+      data => {
+        data.forEach(element => {
+          this.produtoList.push(element);
         });
       }
     );

@@ -14,10 +14,10 @@ import { MatPaginator } from '@angular/material/paginator';
 export class PedidoComponent implements OnInit {
 
   pedido: Pedido = new Pedido();
-  pedidoList: MatTableDataSource<any>;
+  pedidoList: MatTableDataSource<Pedido>;
   errorMsg: String;
 
-  displayedColumns: string[] = ['id', 'fornecedor_id', 'produto_id', 'total', 'data', 'action'];
+  displayedColumns: string[] = ['id', 'fornecedor', 'produto', 'data', 'action'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -31,12 +31,13 @@ export class PedidoComponent implements OnInit {
     this.pedidoList.filter = filterValue.trim().toLocaleLowerCase();
   }
 
-  public getPedidos(){
+  public getPedidos() {
+    console.log();
     this.pedidoService.getListaPedidos().subscribe(
       data => {
         this.pedidoList = new MatTableDataSource(data);
         this.pedidoList.paginator = this.paginator;
-      }, 
+      },
       error => {
         this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;
       });
@@ -64,5 +65,4 @@ export class PedidoComponent implements OnInit {
         this.getPedidos();
       });
   }
-
 }

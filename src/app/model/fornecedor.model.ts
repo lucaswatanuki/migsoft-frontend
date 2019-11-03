@@ -1,8 +1,8 @@
 export class Fornecedor
 {
   id: number;
-  nomeFantasia: String;
-  cnpj: String;
+  nomeFantasia: string;
+  cnpj: string;
   pedido: number;
-  atividade: String;
+  atividade: boolean;
 }

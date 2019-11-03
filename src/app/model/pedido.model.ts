@@ -3,8 +3,9 @@ import { Produto } from '../model/produto.model';
 
 export class Pedido {
     id: number;
-    data: String;
+    data: string;
+    fornecedor: Fornecedor;
+    produto: Produto;
     total: number;
-    fornecedor_id: Fornecedor;
-    produto_id: Produto;
+    quantidade: number;
 }

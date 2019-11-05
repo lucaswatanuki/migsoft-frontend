@@ -11,17 +11,11 @@
 
   <div>
     <mat-form-field>
-      <mat-select placeholder="Produto" [(ngModel)]="pedido.produto">
-        <mat-option *ngFor="let option of produtoList" [value]="option">{{option.nome}}</mat-option>
-      </mat-select>
+      <input matInput (keyup)="findProdutoByName($event.target.value)" placeholder="Produto" required>
+      <mat-hint *ngIf="!foundProduto">Produto Não Encontrado</mat-hint>
+      <mat-hint *ngIf="foundProduto">Produto Encontrado</mat-hint>
     </mat-form-field>
   </div>
-
-  <!-- <div>
-    <mat-form-field>
-        <input [(ngModel)]="pedido.produto" matInput placeholder="Produto" name="pedido.produto">
-    </mat-form-field>
-    </div>-->
 
 
   <div>

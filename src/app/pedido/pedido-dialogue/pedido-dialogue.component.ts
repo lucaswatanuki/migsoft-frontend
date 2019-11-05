@@ -5,6 +5,8 @@ import { Pedido } from './../../model/pedido.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FornecedorService } from '../../services/fornecedor/fornecedor.service';
 
+//import { FormControl, Validators } from '@angular/forms'
+
 @Component({
   selector: 'app-pedido-dialogue',
   templateUrl: './pedido-dialogue.component.html',
@@ -13,19 +15,20 @@ import { FornecedorService } from '../../services/fornecedor/fornecedor.service'
 export class PedidoDialogueComponent implements OnInit {
 
   pedido: Pedido = new Pedido();
-
   fornecedorList: any[] = new Array();
 
-  produtoList: any[] = new Array();
+  foundProduto: boolean = false;
+
+  nomeProduto: String;
 
   constructor(private fornecedorService: FornecedorService,
               private produtoService: ProdutoService,
-              public dialogRef: MatDialogRef<PedidoDialogueComponent>, private pedidoService: PedidoService,
+              public dialogRef: MatDialogRef<PedidoDialogueComponent>, 
+              private pedidoService: PedidoService,
               @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
     this.loadFornecedores();
-    this.loadProdutos();
 
     if (this.data.element) {
       this.pedido = this.data.element;
@@ -37,7 +40,9 @@ export class PedidoDialogueComponent implements OnInit {
   }
 
   adicionar() {
-    console.log(this.pedido);
+
+    this.findProdutoByName(this.nomeProduto);
+
     this.pedidoService.adicionarPedido(this.pedido).subscribe(
       data => {
         this.dialogRef.close();
@@ -55,11 +60,17 @@ export class PedidoDialogueComponent implements OnInit {
     );
   }
 
-  loadProdutos() {
+  findProdutoByName(name: String) {
     this.produtoService.getListaProdutos().subscribe(
       data => {
         data.forEach(element => {
-          this.produtoList.push(element);
+            if (name == element["nome"]) {
+              this.foundProduto = true;
+              this.pedido.produto = element;
+              return;
+            } else {
+              this.foundProduto = false;
+            }
         });
       }
     );

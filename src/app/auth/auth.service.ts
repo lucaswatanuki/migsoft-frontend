@@ -16,8 +16,8 @@ const httpOptions = {
 
 export class AuthService {
 
-  private loginUrl = 'https://migsoft.herokuapp.com/api/auth/signin';
-  private signupUrl = 'https://migsoft.herokuapp.com/api/auth/signup';
+  private loginUrl = 'https://migsoftbd.herokuapp.com/api/auth/signin';
+  private signupUrl = 'https://migsoftbd.herokuapp.com/api/auth/signup';
 
   constructor(private http: HttpClient) { }
 

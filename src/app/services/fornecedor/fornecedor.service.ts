@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class FornecedorService {
 
-  private url = 'https://migsoft.herokuapp.com/api/fornecedor';
+  private url = 'https://migsoftbd.herokuapp.com/api/fornecedor';
 
   constructor(private http: HttpClient) { }
 

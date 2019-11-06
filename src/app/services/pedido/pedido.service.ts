@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 
 export class PedidoService {
 
-  private url = 'https://migsoft.herokuapp.com/api/pedido/';
+  private url = 'https://migsoftbd.herokuapp.com/api/pedido/';
 
   constructor(private http: HttpClient) { }
 

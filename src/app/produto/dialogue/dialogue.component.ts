@@ -33,8 +33,8 @@ export class DialogueComponent implements OnInit {
     });
   }
 
-  update() {
-    this.produtoService.update(this.produto).subscribe(
+  update(produto: Produto) {
+    this.produtoService.update(produto).subscribe(
       data => {
         this.dialogRef.close();
       }

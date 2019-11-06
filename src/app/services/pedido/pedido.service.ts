@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 
 export class PedidoService {
 
-  private url = 'http://localhost:8080/api/pedido/';
+  private url = 'https://migsoft.herokuapp.com/api/pedido/';
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +26,7 @@ export class PedidoService {
   update(pedido: Pedido): Observable<any> {
     return this.http.put<Pedido>(this.url, pedido);
   }
+
 
   delete(pedido: Pedido) {
     return this.http.delete<Pedido>(this.url + pedido.id);

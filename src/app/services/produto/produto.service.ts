@@ -8,27 +8,30 @@ import { Observable } from 'rxjs';
 })
 export class ProdutoService {
 
-  private userUrl = 'http://localhost:8080/api/produto';
+  private url = 'https://migsoft.herokuapp.com/api/produto/';
 
   constructor(private http: HttpClient) { }
 
   getUserBoard(): Observable<string> {
-    return this.http.get(this.userUrl, { responseType: 'text' });
+    return this.http.get(this.url, { responseType: 'text' });
   }
 
   getListaProdutos(): Observable<any> {
-    return this.http.get<Produto[]>(this.userUrl + '/all');
+    return this.http.get<Produto[]>(this.url + 'all');
   }
 
+  findProdutoByNome(nome: String): Observable<any> {
+    return this.http.get<Produto>(this.url + nome);
+  }
   adicionarProduto(produto: Produto): Observable<any> {
-    return this.http.post<any>(this.userUrl, produto);
+    return this.http.post<any>(this.url, produto);
   }
 
   update(produto: Produto): Observable<any> {
-    return this.http.put<Produto>(this.userUrl + "/" + produto.id, produto);
+    return this.http.put<Produto>(this.url + produto.id, produto);
   }
 
   delete(produto: Produto) {
-    return this.http.delete<Produto>(this.userUrl + "/" + produto.id);
+    return this.http.delete<Produto>(this.url + produto.id);
   }
 }

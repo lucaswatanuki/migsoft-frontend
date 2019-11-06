@@ -23,7 +23,7 @@ export class PedidoDialogueComponent implements OnInit {
 
   constructor(private fornecedorService: FornecedorService,
               private produtoService: ProdutoService,
-              public dialogRef: MatDialogRef<PedidoDialogueComponent>, 
+              public dialogRef: MatDialogRef<PedidoDialogueComponent>,
               private pedidoService: PedidoService,
               @Inject(MAT_DIALOG_DATA) public data) { }
 
@@ -64,7 +64,7 @@ export class PedidoDialogueComponent implements OnInit {
     this.produtoService.getListaProdutos().subscribe(
       data => {
         data.forEach(element => {
-            if (name == element["nome"]) {
+            if (name === element['nome']) {
               this.foundProduto = true;
               this.pedido.produto = element;
               return;

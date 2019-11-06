@@ -12,11 +12,7 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  getUserBoard(): Observable<string> {
-    return this.http.get(this.url, { responseType: 'text' });
-  }
-
-  getListaProdutos(): Observable<any> {
+   getListaProdutos(): Observable<any> {
     return this.http.get<Produto[]>(this.url + 'all');
   }
 

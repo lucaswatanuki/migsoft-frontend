@@ -5,10 +5,10 @@
     <mat-toolbar color="warn" style="justify-content: center;">MIG</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item class="nav-link" routerLink="home" *ngIf="authority === 'user'">Home </a>
-      <a mat-list-item class="nav-link" routerLink="user" *ngIf="authority === 'user'">Usuário</a>
-      <a mat-list-item class="nav-link" routerLink="produto" *ngIf="authority === 'user'">Produtos</a>
+      <a mat-list-item class="nav-link" routerLink="produto" *ngIf="authority === 'user'">Produto</a>
       <a mat-list-item class="nav-link" routerLink="fornecedor" *ngIf="authority === 'user'">Fornecedor</a>
-      <a mat-list-item class="nav-link" routerLink="pedido" *ngIf="authority === 'user'">Pedidos</a>
+      <a mat-list-item class="nav-link" routerLink="cliente" *ngIf="authority === 'user'">Cliente</a>
+      <a mat-list-item class="nav-link" routerLink="pedido" *ngIf="authority === 'user'">Pedido</a>
       <a mat-list-item class="nav-link" routerLink="venda" *ngIf="authority === 'user'">Venda</a>
       <a mat-list-item class="nav-link" routerLink="relatorio" *ngIf="authority === 'user'">Relatórios</a>
       <a mat-list-item class="nav-link" routerLink="auth/login" *ngIf="!authority" class="nav-item">Login</a>

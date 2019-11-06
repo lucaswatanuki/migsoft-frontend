@@ -1,20 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
-
-import { ProdutoService } from '../services/produto/produto.service';
-
-export interface StateGroup {
-  letter: string;
-  names: string[];
-}
-
-export const _filter = (opt: string[], value: string): string[] => {
-  const filterValue = value.toLowerCase();
-
-  return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
-};
+import { VendaDialogueComponent } from './venda-dialogue/venda-dialogue.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Venda } from './../model/venda.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { VendaService } from '../services/venda/venda.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-venda',
@@ -22,105 +12,53 @@ export const _filter = (opt: string[], value: string): string[] => {
   styleUrls: ['./venda.component.scss']
 })
 export class VendaComponent implements OnInit {
-  stateForm: FormGroup = this._formBuilder.group({
-    stateGroup: '',
-  });
 
-  products: String[] = new Array();
+  venda: Venda = new Venda();
+  vendaList: MatTableDataSource<Venda>;
+  errorMsg: string;
 
-  stateGroups: StateGroup[] = [{
-    letter: 'A',
-    names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas']
-  }, {
-    letter: 'C',
-    names: ['California', 'Colorado', 'Connecticut']
-  }, {
-    letter: 'D',
-    names: ['Delaware']
-  }, {
-    letter: 'F',
-    names: ['Florida']
-  }, {
-    letter: 'G',
-    names: ['Georgia']
-  }, {
-    letter: 'H',
-    names: ['Hawaii']
-  }, {
-    letter: 'I',
-    names: ['Idaho', 'Illinois', 'Indiana', 'Iowa']
-  }, {
-    letter: 'K',
-    names: ['Kansas', 'Kentucky']
-  }, {
-    letter: 'L',
-    names: ['Louisiana']
-  }, {
-    letter: 'M',
-    names: ['Maine', 'Maryland', 'Massachusetts', 'Michigan',
-      'Minnesota', 'Mississippi', 'Missouri', 'Montana']
-  }, {
-    letter: 'N',
-    names: ['Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
-      'New Mexico', 'New York', 'North Carolina', 'North Dakota']
-  }, {
-    letter: 'O',
-    names: ['Ohio', 'Oklahoma', 'Oregon']
-  }, {
-    letter: 'P',
-    names: ['Pennsylvania']
-  }, {
-    letter: 'R',
-    names: ['Rhode Island']
-  }, {
-    letter: 'S',
-    names: ['South Carolina', 'South Dakota']
-  }, {
-    letter: 'T',
-    names: ['Tennessee', 'Texas']
-  }, {
-    letter: 'U',
-    names: ['Utah']
-  }, {
-    letter: 'V',
-    names: ['Vermont', 'Virginia']
-  }, {
-    letter: 'W',
-    names: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
-  }];
+  displayedColumns: string[] = ['id', 'cliente', 'produto', 'quantidade', 'data', 'total'];
 
-  stateGroupOptions: Observable<StateGroup[]>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private produtoService: ProdutoService, private _formBuilder: FormBuilder) { }
+  constructor(private vendaService: VendaService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getProductList();
-    this.stateGroupOptions = this.stateForm.get('stateGroup')!.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filterGroup(value))
-      );
-
-    //console.log(this.stateGroupOptions);
+    this.getVendas();
   }
 
-  private _filterGroup(value: string): StateGroup[] {
-    if (value) {
-      return this.stateGroups
-        .map(group => ({ letter: group.letter, names: _filter(group.names, value) }))
-        .filter(group => group.names.length > 0);
-    }
-    return this.stateGroups;
+  applyFilter(filterValue: string) {
+    this.vendaList.filter = filterValue.trim().toLocaleLowerCase();
   }
 
-  private getProductList() {
+  public getVendas() {
+    console.log();
+    this.vendaService.getListaVendas().subscribe(
+      data => {
+        this.vendaList = new MatTableDataSource(data);
+        this.vendaList.paginator = this.paginator;
+      },
+      error => {
+        this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;
+      });
+  }
 
-    this.produtoService.getListaProdutos().forEach(element => {
-      //this.products.push(element);
-      console.log(element);
+  openDialog(element): void {
+    const dialogRef = this.dialog.open(VendaDialogueComponent, {
+      data: {
+        width: 'auto',
+        height: 'auto',
+        element
+      }
     });
 
-    //console.log(this.products);
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.getVendas();
+      }
+    );
   }
+
+
 
 }

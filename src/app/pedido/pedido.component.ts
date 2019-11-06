@@ -17,7 +17,7 @@ export class PedidoComponent implements OnInit {
   pedidoList: MatTableDataSource<Pedido>;
   errorMsg: String;
 
-  displayedColumns: string[] = ['id', 'fornecedor', 'produto', 'quantidade','data', 'action'];
+  displayedColumns: string[] = ['id', 'fornecedor', 'produto', 'quantidade', 'data', 'total', 'action'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 

@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class ClienteService {
 
-  private url = 'https://migsoftbd.herokuapp.com/api/cliente/';
+  private url = 'http://localhost:8080/api/cliente/';
 
   constructor(private http: HttpClient) { }
 

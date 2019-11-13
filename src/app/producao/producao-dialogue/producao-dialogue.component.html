@@ -1,0 +1,36 @@
+<h1 mat-dialog-title *ngIf="!data.element">Adicionar Formula</h1>
+<h1 mat-dialog-title *ngIf="data.element">Editar Formula</h1>
+
+<div mat-dialog-content>
+    <div>
+        <mat-form-field>
+          <input matInput (keyup)="findProdutoByName($event.target.value)" placeholder="Produto" required>
+          <mat-hint *ngIf="!foundProduto">Produto Não Encontrado</mat-hint>
+          <mat-hint *ngIf="foundProduto">Produto Encontrado</mat-hint>
+        </mat-form-field>
+      </div>
+
+  <div>
+    <mat-form-field>
+      <input [(ngModel)]="formula.material" matInput placeholder="Material" name="produto.material">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input [(ngModel)]="formula.descricao" matInput placeholder="Descrição" name="produto.descricao">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field style="width: 50px;">
+      <input [(ngModel)]="formula.quantidade" matInput placeholder="Qtd" name="produto.quantidade">
+    </mat-form-field>
+  </div>
+</div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
+    <button mat-raised-button color="primary" (click)="update(formula)" *ngIf="data.element"> Salvar </button>
+  </div>

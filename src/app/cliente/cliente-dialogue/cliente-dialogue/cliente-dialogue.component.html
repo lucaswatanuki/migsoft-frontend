@@ -1,1 +1,35 @@
+<h1 mat-dialog-title *ngIf="data.element">Editar Cliente</h1>
 
+<div mat-dialog-content>
+  <div>
+  <mat-form-field>
+    <input [(ngModel)]="cliente.nome" matInput placeholder="Nome" name="cliente.nome">
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <input [(ngModel)]="cliente.cpf" matInput placeholder="CPF" name="cliente.cpf">
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <input [(ngModel)]="cliente.telefone" matInput placeholder="Telefone" name="cliente.telefone">
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <input [(ngModel)]="cliente.endereco" matInput placeholder="Endereço" name="cliente.endereco">
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <input [(ngModel)]="cliente.email" matInput placeholder="Email" name="cliente.email">
+  </mat-form-field>
+</div>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="update(cliente)" *ngIf="data.element"> Salvar </button>
+</div>

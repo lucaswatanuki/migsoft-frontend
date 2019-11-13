@@ -29,6 +29,11 @@
       <td mat-cell *matCellDef="let element"> {{element.cnpj}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="atividade">
+        <th mat-header-cell *matHeaderCellDef>ATIVIDADE</th>
+        <td mat-cell *matCellDef="let element"> {{element.atividade}} </td>
+      </ng-container>
+
     <ng-container matColumnDef="button">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">

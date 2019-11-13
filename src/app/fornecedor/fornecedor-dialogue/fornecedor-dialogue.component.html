@@ -11,8 +11,12 @@
         <input [(ngModel)]="fornecedor.cnpj" matInput placeholder="CNPJ" name="fornecedor.cnpj">
       </mat-form-field>
       <mat-form-field>
-        <input [(ngModel)]="pessoa.endereco" matInput placeholder="Endereço" name="fornecedor.endereco">
+        <input [(ngModel)]="fornecedor.endereco" matInput placeholder="Endereço" name="fornecedor.endereco">
       </mat-form-field>
+      <mat-radio-group aria-label="Select an option" [(ngModel)]="fornecedor.atividade">
+        <mat-radio-button value="Ativo" style="margin-right: 10px;">Ativo</mat-radio-button>
+        <mat-radio-button value="Inativo">Inativo</mat-radio-button>
+      </mat-radio-group>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cancelar</button>
@@ -21,16 +25,16 @@
   </mat-tab>
   <mat-tab label="Contato">
     <mat-form-field>
-      <input [(ngModel)]="pessoa.nome" matInput placeholder="Nome" name="pessoa.nome">
+      <input [(ngModel)]="fornecedor.nome" matInput placeholder="Nome" name="fornecedor.nome">
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="pessoa.cpf" matInput placeholder="CPF" name="pessoa.telefone">
+      <input [(ngModel)]="fornecedor.cpf" matInput placeholder="CPF" name="fornecedor.telefone">
     </mat-form-field>
     <mat-form-field>
-        <input [(ngModel)]="pessoa.telefone" matInput placeholder="Telefone" name="pessoa.telefone">
-      </mat-form-field>
+      <input [(ngModel)]="fornecedor.telefone" matInput placeholder="Telefone" name="fornecedor.telefone">
+    </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="pessoa.email" matInput placeholder="Email" name="pessoa.email">
+      <input [(ngModel)]="fornecedor.email" matInput placeholder="Email" name="fornecedor.email">
     </mat-form-field>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cancelar</button>

@@ -1,3 +1,5 @@
+import { CotacaoService } from './../../services/cotacao/cotacao.service';
+import { Cotacao } from './../../model/cotacao.model';
 import { ProdutoService } from './../../services/produto/produto.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { PedidoService } from '../../services/pedido/pedido.service';
@@ -15,21 +17,23 @@ import { FornecedorService } from '../../services/fornecedor/fornecedor.service'
 export class PedidoDialogueComponent implements OnInit {
 
   pedido: Pedido = new Pedido();
+  cotacao: Cotacao = new Cotacao();
   fornecedorList: any[] = new Array();
+  cotacaoList: any[] = new Array();
 
-  foundProduto: boolean = false;
+  foundCotacao: boolean = false;
 
   nomeProduto: String;
 
   constructor(private fornecedorService: FornecedorService,
-              private produtoService: ProdutoService,
-              public dialogRef: MatDialogRef<PedidoDialogueComponent>,
-              private pedidoService: PedidoService,
-              @Inject(MAT_DIALOG_DATA) public data) { }
+    private produtoService: ProdutoService,
+    private cotacaoService: CotacaoService,
+    public dialogRef: MatDialogRef<PedidoDialogueComponent>,
+    private pedidoService: PedidoService,
+    @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
-    this.loadFornecedores();
-
+    this.getCotacao();
     if (this.data.element) {
       this.pedido = this.data.element;
     }
@@ -40,9 +44,7 @@ export class PedidoDialogueComponent implements OnInit {
   }
 
   adicionar() {
-
-    this.findProdutoByName(this.nomeProduto);
-
+    console.log(this.pedido);
     this.pedidoService.adicionarPedido(this.pedido).subscribe(
       data => {
         this.dialogRef.close();
@@ -50,30 +52,26 @@ export class PedidoDialogueComponent implements OnInit {
     );
   }
 
-  loadFornecedores() {
-    this.fornecedorService.getListaFornecedor().subscribe(
+  update(pedido: Pedido) {
+    console.log(this.pedido);
+    this.pedidoService.update(pedido).subscribe(
+      data => {
+        this.dialogRef.close();
+      }
+    );
+  }
+
+
+
+  getCotacao() {
+    this.cotacaoService.getListaCotacao().subscribe(
       data => {
         data.forEach(element => {
-          this.fornecedorList.push(element);
+          this.cotacaoList.push(element);
         });
       }
     );
   }
 
-  findProdutoByName(name: String) {
-    this.produtoService.getListaProdutos().subscribe(
-      data => {
-        data.forEach(element => {
-            if (name === element['nome']) {
-              this.foundProduto = true;
-              this.pedido.produto = element;
-              return;
-            } else {
-              this.foundProduto = false;
-            }
-        });
-      }
-    );
-  }
 
 }

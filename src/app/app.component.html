@@ -8,8 +8,11 @@
       <a mat-list-item class="nav-link" routerLink="produto" *ngIf="authority === 'user'">Produto</a>
       <a mat-list-item class="nav-link" routerLink="fornecedor" *ngIf="authority === 'user'">Fornecedor</a>
       <a mat-list-item class="nav-link" routerLink="cliente" *ngIf="authority === 'user'">Cliente</a>
+      <a mat-list-item class="nav-link" routerLink="cotacao" *ngIf="authority === 'user'">Cotação</a>
+      <a mat-list-item class="nav-link" routerLink="orcamento" *ngIf="authority === 'user'">Orçamento</a>
       <a mat-list-item class="nav-link" routerLink="pedido" *ngIf="authority === 'user'">Pedido</a>
       <a mat-list-item class="nav-link" routerLink="venda" *ngIf="authority === 'user'">Venda</a>
+      <a mat-list-item class="nav-link" routerLink="producao" *ngIf="authority === 'user'">Produção</a>
       <a mat-list-item class="nav-link" routerLink="relatorio" *ngIf="authority === 'user'">Relatórios</a>
       <a mat-list-item class="nav-link" routerLink="auth/login" *ngIf="!authority" class="nav-item">Login</a>
     </mat-nav-list>

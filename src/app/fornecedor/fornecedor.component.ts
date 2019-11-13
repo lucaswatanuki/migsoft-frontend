@@ -18,7 +18,7 @@ export class FornecedorComponent implements OnInit {
   fornecedor: Fornecedor = new Fornecedor();
   fornecedorList: MatTableDataSource<any>;
   errorMsg: String;
-  displayedColumns: string[] = ['id', 'nomeFantasia', 'cnpj', 'button'];
+  displayedColumns: string[] = ['id', 'nomeFantasia', 'cnpj', 'atividade', 'button'];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 

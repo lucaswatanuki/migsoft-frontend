@@ -43,9 +43,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PedidoDialogueComponent } from './pedido/pedido-dialogue/pedido-dialogue.component';
-import { MatDatepickerModule, MatSelectModule } from '@angular/material';
+import { MatDatepickerModule, MatSelectModule, MatRadioModule } from '@angular/material';
 import { ClienteDialogueComponent } from './cliente/cliente-dialogue/cliente-dialogue/cliente-dialogue.component';
 import { VendaDialogueComponent } from './venda/venda-dialogue/venda-dialogue.component';
+import { ProducaoComponent } from './producao/producao.component';
+import { ProducaoDialogueComponent } from './producao/producao-dialogue/producao-dialogue.component';
+import { CotacaoDialogueComponent } from './cotacao/cotacao-dialogue/cotacao-dialogue/cotacao-dialogue.component';
 
 @NgModule({
   declarations: [
@@ -68,8 +71,12 @@ import { VendaDialogueComponent } from './venda/venda-dialogue/venda-dialogue.co
     PedidoDialogueComponent,
     ClienteDialogueComponent,
     VendaDialogueComponent,
+    ProducaoComponent,
+    ProducaoDialogueComponent,
+    CotacaoDialogueComponent,
   ],
   imports: [
+    MatRadioModule,
     MatPaginatorModule,
     MatCardModule,
     MatSidenavModule,
@@ -98,7 +105,7 @@ import { VendaDialogueComponent } from './venda/venda-dialogue/venda-dialogue.co
     MatDatepickerModule,
     MatSelectModule,
   ],
-  entryComponents: [DialogueComponent, FornecedorDialogueComponent, PedidoDialogueComponent, ClienteDialogueComponent, VendaDialogueComponent],
+  entryComponents: [DialogueComponent, FornecedorDialogueComponent, PedidoDialogueComponent, ClienteDialogueComponent, VendaDialogueComponent, ProducaoDialogueComponent, CotacaoDialogueComponent],
   providers: [httpInterceptorProviders, ProdutoService, FornecedorService],
   bootstrap: [AppComponent]
 })

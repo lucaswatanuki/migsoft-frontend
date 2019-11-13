@@ -58,6 +58,6 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage() {
-    window.location.replace('https://migsoft.herokuapp.com//home');
+    window.location.replace('http://localhost:4200/home');
   }
 }

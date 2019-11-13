@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PedidoService } from '../services/pedido/pedido.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -17,7 +18,7 @@ export class PedidoComponent implements OnInit {
   pedidoList: MatTableDataSource<Pedido>;
   errorMsg: String;
 
-  displayedColumns: string[] = ['id', 'fornecedor', 'produto', 'quantidade', 'data', 'total', 'action'];
+  displayedColumns: string[] = ['id', 'cotacao', 'fornecedor', 'produto', 'quantidade', 'data', 'total', 'action'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -44,6 +45,7 @@ export class PedidoComponent implements OnInit {
   }
 
   openDialog(element): void {
+    console.log(element);
     const dialogRef = this.dialog.open(PedidoDialogueComponent, {
       data: {
         width: 'auto',

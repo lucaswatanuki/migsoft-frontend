@@ -51,6 +51,6 @@ export class AppComponent {
 
   logout() {
     this.tokenStorage.signOut();
-    window.location.replace('https://migsoft.herokuapp.com/auth/login');
+    window.location.replace('http://localhost:4200/auth/login');
   }
 }

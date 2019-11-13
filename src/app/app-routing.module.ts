@@ -1,3 +1,6 @@
+import { ProducaoComponent } from './producao/producao.component';
+import { CotacaoComponent } from './cotacao/cotacao.component';
+import { OrcamentoComponent } from './orcamento/orcamento.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { VendaComponent } from './venda/venda.component';
@@ -57,6 +60,18 @@ const routes: Routes = [
   {
     path: 'cliente',
     component: ClienteComponent
+  },
+  {
+    path: 'orcamento',
+    component: OrcamentoComponent
+  },
+  {
+    path: 'cotacao',
+    component: CotacaoComponent
+  },
+  {
+    path: 'producao',
+    component: ProducaoComponent
   },
 
   {

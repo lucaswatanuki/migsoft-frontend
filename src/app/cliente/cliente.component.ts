@@ -22,6 +22,7 @@ export class ClienteComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
+
   constructor(private clienteService: ClienteService, public dialog: MatDialog) { }
 
   ngOnInit() {

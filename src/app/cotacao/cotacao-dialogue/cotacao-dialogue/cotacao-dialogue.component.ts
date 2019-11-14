@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { Produto } from './../../../model/produto.model';
 import { FornecedorService } from './../../../services/fornecedor/fornecedor.service';
 import { ProdutoService } from './../../../services/produto/produto.service';
@@ -13,7 +14,6 @@ import { Component, OnInit, Inject } from '@angular/core';
   styleUrls: ['./cotacao-dialogue.component.scss']
 })
 export class CotacaoDialogueComponent implements OnInit {
-
   cotacao: Cotacao = new Cotacao();
   produto: Produto = new Produto();
   foundProduto: boolean = false;

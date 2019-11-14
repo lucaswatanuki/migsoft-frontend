@@ -64,7 +64,7 @@ export class PedidoDialogueComponent implements OnInit {
 
 
   getCotacao() {
-    this.cotacaoService.getListaCotacao().subscribe(
+    this.cotacaoService.getListaCotacaoApproved().subscribe(
       data => {
         data.forEach(element => {
           this.cotacaoList.push(element);

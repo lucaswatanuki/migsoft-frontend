@@ -19,12 +19,11 @@ export class PedidoService {
   }
 
   adicionarPedido(pedido: Pedido): Observable<any> {
-    //console.log(pedido); EventEmitter
     return this.http.post<any>(this.url, pedido);
   }
 
   update(pedido: Pedido): Observable<any> {
-    return this.http.put<Pedido>(this.url, pedido);
+    return this.http.put<Pedido>(this.url + pedido.id, pedido);
   }
 
 

@@ -37,7 +37,7 @@ export class FornecedorDialogueComponent implements OnInit {
     });
   }
 
-  update() {
+  update(fornecedor: Fornecedor) {
     this.fornecedorService.update(this.fornecedor).subscribe(
       data => {
         this.dialogRef.close();

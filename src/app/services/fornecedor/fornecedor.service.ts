@@ -8,24 +8,25 @@ import { Observable } from 'rxjs';
 })
 export class FornecedorService {
 
-  private url = 'http://localhost:8080/api/fornecedor';
+  private url = 'http://localhost:8080/api/fornecedor/';
 
   constructor(private http: HttpClient) { }
 
   getListaFornecedor(): Observable<any> {
-    return this.http.get<Fornecedor[]>(this.url + '/all');
+    return this.http.get<Fornecedor[]>(this.url + 'all');
   }
 
   adicionarFornecedor(fornecedor: Fornecedor): Observable<any> {
     return this.http.post<any>(this.url, fornecedor);
   }
 
+
   update(fornecedor: Fornecedor): Observable<any> {
-    return this.http.put<Fornecedor>(this.url, fornecedor);
+    return this.http.put<Fornecedor>(this.url + fornecedor.id, fornecedor);
   }
 
-  delete(fornecedor: Fornecedor){
-    return this.http.delete<Fornecedor>(this.url + "/" + fornecedor.id);
+  delete(fornecedor: Fornecedor) {
+    return this.http.delete<Fornecedor>(this.url + fornecedor.id);
   }
 
 }

@@ -1,44 +1,52 @@
 <h1 mat-dialog-title *ngIf="!data.element">Adicionar Fornecedor</h1>
 <h1 mat-dialog-title *ngIf="data.element">Editar Fornecedor</h1>
-<mat-tab-group dynamicHeight>
+<mat-tab-group>
   <mat-tab label="Fornecedor">
+      <div mat-dialog-content style="height: 250px;">
+      <br>
+      <div>
+        <mat-form-field>
+          <input [(ngModel)]="fornecedor.nomeFantasia" matInput placeholder="Nome Fantasia"
+            name="fornecedor.nomeFantasia">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input [(ngModel)]="fornecedor.cnpj" matInput placeholder="CNPJ" name="fornecedor.cnpj">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input [(ngModel)]="fornecedor.endereco" matInput placeholder="Endereço" name="fornecedor.endereco">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-radio-group aria-label="atividade" [(ngModel)]="fornecedor.atividade">
+          <mat-radio-button value="Ativo" style="margin-right: 10px;">Ativo</mat-radio-button>
+          <mat-radio-button value="Inativo">Inativo</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      </div>
+  </mat-tab>
+
+  <mat-tab label="Contato">
     <div mat-dialog-content>
       <mat-form-field>
-        <input [(ngModel)]="fornecedor.nomeFantasia" matInput placeholder="Nome Fantasia"
-          name="fornecedor.nomeFantasia">
+        <input [(ngModel)]="fornecedor.nome" matInput placeholder="Nome" name="fornecedor.nome">
       </mat-form-field>
       <mat-form-field>
-        <input [(ngModel)]="fornecedor.cnpj" matInput placeholder="CNPJ" name="fornecedor.cnpj">
+        <input [(ngModel)]="fornecedor.cpf" matInput placeholder="CPF" name="fornecedor.telefone">
       </mat-form-field>
       <mat-form-field>
-        <input [(ngModel)]="fornecedor.endereco" matInput placeholder="Endereço" name="fornecedor.endereco">
+        <input [(ngModel)]="fornecedor.telefone" matInput placeholder="Telefone" name="fornecedor.telefone">
       </mat-form-field>
-      <mat-radio-group aria-label="Select an option" [(ngModel)]="fornecedor.atividade">
-        <mat-radio-button value="Ativo" style="margin-right: 10px;">Ativo</mat-radio-button>
-        <mat-radio-button value="Inativo">Inativo</mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Cancelar</button>
-      <button mat-raised-button color="primary" (click)="adicionar()"> Salvar </button>
-    </div>
-  </mat-tab>
-  <mat-tab label="Contato">
-    <mat-form-field>
-      <input [(ngModel)]="fornecedor.nome" matInput placeholder="Nome" name="fornecedor.nome">
-    </mat-form-field>
-    <mat-form-field>
-      <input [(ngModel)]="fornecedor.cpf" matInput placeholder="CPF" name="fornecedor.telefone">
-    </mat-form-field>
-    <mat-form-field>
-      <input [(ngModel)]="fornecedor.telefone" matInput placeholder="Telefone" name="fornecedor.telefone">
-    </mat-form-field>
-    <mat-form-field>
-      <input [(ngModel)]="fornecedor.email" matInput placeholder="Email" name="fornecedor.email">
-    </mat-form-field>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Cancelar</button>
-      <button mat-raised-button color="primary" (click)="adicionar()"> Salvar </button>
+      <mat-form-field>
+        <input [(ngModel)]="fornecedor.email" matInput placeholder="Email" name="fornecedor.email">
+      </mat-form-field>
     </div>
   </mat-tab>
 </mat-tab-group>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
+  <button mat-raised-button color="primary" (click)="update(fornecedor)" *ngIf="data.element"> Salvar </button>
+</div>

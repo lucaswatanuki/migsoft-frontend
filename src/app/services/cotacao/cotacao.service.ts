@@ -16,8 +16,8 @@ export class CotacaoService {
     return this.http.get<Cotacao[]>(this.url + 'all');
   }
 
-  getListaCotacaoEntity(): Observable<any> {
-    return this.http.get<Cotacao[]>(this.url + 'all/entity');
+  getListaCotacaoApproved(): Observable<any> {
+    return this.http.get<Cotacao[]>(this.url + 'all/approved');
   }
 
   adicionarCotacao(cotacao: Cotacao): Observable<any> {
@@ -29,7 +29,7 @@ export class CotacaoService {
   }
 
   updateStatus(cotacao: Cotacao): Observable<any> {
-    return this.http.patch<Cotacao>(this.url + cotacao.id, cotacao);
+    return this.http.put<Cotacao>(this.url + 'status/' + cotacao.id, cotacao);
   }
 
   delete(cotacao: Cotacao) {

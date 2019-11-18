@@ -15,7 +15,7 @@
       <mat-form-field>
         <mat-select placeholder="Cotação" [(ngModel)]="pedido.cotacao">
           <mat-option *ngFor="let option of cotacaoList" [value]="option">
-            {{option.id}}
+            ID {{option.id}} - {{option.produto}} - {{option.quantidade}} Un
           </mat-option>
         </mat-select>
       </mat-form-field>

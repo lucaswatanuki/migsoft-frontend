@@ -16,6 +16,10 @@ export class FornecedorService {
     return this.http.get<Fornecedor[]>(this.url + 'all');
   }
 
+  getListaFornecedoresAtivos(): Observable<any> {
+    return this.http.get<Fornecedor[]>(this.url + 'all/active');
+  }
+
   adicionarFornecedor(fornecedor: Fornecedor): Observable<any> {
     return this.http.post<any>(this.url, fornecedor);
   }

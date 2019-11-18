@@ -17,7 +17,7 @@ export class VendaComponent implements OnInit {
   vendaList: MatTableDataSource<Venda>;
   errorMsg: string;
 
-  displayedColumns: string[] = ['id', 'cliente', 'produto', 'quantidade', 'data', 'total'];
+  displayedColumns: string[] = ['id', 'cliente', 'produto', 'quantidade', 'data', 'total', 'action'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 

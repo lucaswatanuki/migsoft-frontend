@@ -16,6 +16,9 @@ export class VendaService {
     return this.http.get<Venda[]>(this.url + 'all');
   }
 
+  updateVenda(venda: Venda): Observable<any> {
+    return this.http.put<any>(this.url + venda.id, venda);
+  }
 
   adicionarVenda(venda: Venda): Observable<any> {
     return this.http.post<any>(this.url, venda);

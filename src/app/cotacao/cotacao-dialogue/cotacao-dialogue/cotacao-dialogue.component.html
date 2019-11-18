@@ -12,15 +12,15 @@
   </div>
 
 
-  <div>
+  <div *ngIf="!data.element">
     <mat-form-field>
-      <input matInput (keyup)="findProdutoByName($event.target.value)" placeholder="Produto" required>
-      <mat-hint *ngIf="!foundProduto">Produto Não Encontrado</mat-hint>
-      <mat-hint *ngIf="foundProduto">Produto Encontrado</mat-hint>
+      <input matInput (keyup)="findProdutoByName($event.target.value)" placeholder="Produto" required >
+      <mat-hint *ngIf="!foundProduto && !data.element">Produto Não Encontrado</mat-hint>
+      <mat-hint *ngIf="foundProduto && !data.element">Produto Encontrado</mat-hint>
     </mat-form-field>
   </div>
 
-  <div>
+  <div *ngIf="!data.element">
     <mat-form-field>
       <mat-select placeholder="Fornecedor" [(ngModel)]="cotacao.fornecedor" name="cotacao.fornecedor">
         <mat-option *ngFor="let option of fornecedorList" [value]="option">
@@ -29,6 +29,15 @@
       </mat-select>
     </mat-form-field>
   </div>
+
+  <div>
+    <mat-radio-group aria-label="status" [(ngModel)]="cotacao.status">
+      <mat-radio-button value="Pendente" style="margin-right: 10px;">Pendente</mat-radio-button>
+      <mat-radio-button value="Aprovado">Aprovado</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <br>
 
   <div>
     <mat-form-field>
@@ -41,5 +50,6 @@
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-raised-button color="primary" (click)="adicionar()"> Salvar </button>
+  <button mat-raised-button color="primary" (click)="update(cotacao)" *ngIf="data.element"> Atualizar </button>
+  <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
 </div>

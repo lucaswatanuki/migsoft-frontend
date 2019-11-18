@@ -60,7 +60,7 @@ export class CotacaoDialogueComponent implements OnInit {
   }
 
   loadFornecedores() {
-    this.fornecedorService.getListaFornecedor().subscribe(
+    this.fornecedorService.getListaFornecedoresAtivos().subscribe(
       data => {
         data.forEach(element => {
           this.fornecedorList.push(element);

@@ -48,6 +48,15 @@ export class VendaDialogueComponent implements OnInit {
     );
   }
 
+  update(venda: Venda) {
+    console.log(venda.id);
+    this.vendaService.updateVenda(venda).subscribe(
+      data => {
+        this.dialogRef.close();
+      }
+    );
+  }
+
   loadClientes() {
     this.clienteService.getListaCliente().subscribe(
       data => {

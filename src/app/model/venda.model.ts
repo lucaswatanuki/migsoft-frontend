@@ -3,7 +3,7 @@ import { Produto } from './produto.model';
 export class Venda
 {
   id: number;
-  data: string;
+  data: Date;
   cliente: Cliente;
   produto: Produto;
   quantidade: number;

@@ -1,14 +1,10 @@
 <div *ngIf="info.token">
-  <h5 class="text-primary">Informações do usuario</h5>
-  <p>
-    <strong>Username:</strong> {{info.username}}<br />
-    <strong>Acesso:</strong> {{info.authorities}}<br />
-  </p>
+  <h2 style="margin-left: 20px;">Bem vindo, {{info.username}}!</h2>
 </div>
-
+<hr>
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
+  <h2 class="mat-h2">Dashboard</h2>
+  <mat-grid-list cols="2" rowHeight="200px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -23,8 +19,17 @@
             </mat-menu>
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Conteúdo aqui (gráficos, informações, sei la..)</div>
+        <mat-card-content class="dashboard-card-content" *ngIf="card.title=='Lucro'">
+          <div style="font-size: xxx-large; color: green;">{{relatorio.lucro | currency}}</div>
+        </mat-card-content>
+        <mat-card-content class="dashboard-card-content" *ngIf="card.title=='Prejuizo'">
+            <div style="font-size: xxx-large; color: red;">{{relatorio.prejuizo | currency}}</div>
+          </mat-card-content>
+        <mat-card-content class="dashboard-card-content" *ngIf="card.title=='Vendas'">
+          <div style="font-size: xxx-large;">{{relatorio.receita | currency}}</div>
+        </mat-card-content>
+        <mat-card-content class="dashboard-card-content" *ngIf="card.title=='Pedidos'">
+          <div style="font-size: xxx-large;">{{relatorio.despesa | currency}}</div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

@@ -51,8 +51,8 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error.message;
         this.isLoginFailed = true;
+        window.alert('Usuário ou senha incorretos');
       }
     );
   }

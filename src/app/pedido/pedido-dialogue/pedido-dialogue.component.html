@@ -11,7 +11,7 @@
     </mat-form-field>
   </div>
 
-   <div *ngIf="!data.element">
+   <div>
       <mat-form-field>
         <mat-select placeholder="Cotação" [(ngModel)]="pedido.cotacao">
           <mat-option *ngFor="let option of cotacaoList" [value]="option">

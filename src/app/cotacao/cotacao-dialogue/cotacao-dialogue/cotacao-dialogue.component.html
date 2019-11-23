@@ -1,27 +1,21 @@
 <h1 mat-dialog-title *ngIf="!data.element">Adicionar Cotação</h1>
 <h1 mat-dialog-title *ngIf="data.element">Editar Cotação</h1>
 
-<div mat-dialog-content>
   <div>
-    <mat-form-field>
-      <input [(ngModel)]="cotacao.data" matInput [matDatepicker]="picker" placeholder="Data Cotação"
+    <mat-form-field appearance="outline">
+      <input [(ngModel)]="cotacao.data" matInput [matDatepicker]="picker" placeholder="Data"
         name="cotacao.data">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </div>
-
-
   <div *ngIf="!data.element">
-    <mat-form-field>
-      <input matInput (keyup)="findProdutoByName($event.target.value)" placeholder="Produto" required >
-      <mat-hint *ngIf="!foundProduto && !data.element">Produto Não Encontrado</mat-hint>
-      <mat-hint *ngIf="foundProduto && !data.element">Produto Encontrado</mat-hint>
+    <mat-form-field appearance="outline">
+      <input matInput (keyup)="findProdutoByName($event.target.value)" placeholder="Produto" required>
     </mat-form-field>
   </div>
-
   <div *ngIf="!data.element">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-select placeholder="Fornecedor" [(ngModel)]="cotacao.fornecedor" name="cotacao.fornecedor">
         <mat-option *ngFor="let option of fornecedorList" [value]="option">
           {{option.nomeFantasia}}
@@ -29,24 +23,11 @@
       </mat-select>
     </mat-form-field>
   </div>
-
   <div>
-    <mat-radio-group aria-label="status" [(ngModel)]="cotacao.status">
-      <mat-radio-button value="Pendente" style="margin-right: 10px;">Pendente</mat-radio-button>
-      <mat-radio-button value="Aprovado">Aprovado</mat-radio-button>
-    </mat-radio-group>
-  </div>
-
-  <br>
-
-  <div>
-    <mat-form-field>
+    <mat-form-field appearance="outline" style="width: 100px;">
       <input [(ngModel)]="cotacao.quantidade" matInput placeholder="Qtd" name="cotacao.quantidade">
     </mat-form-field>
   </div>
-</div>
-
-
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>

@@ -16,7 +16,6 @@
             <mat-list-item>Prejuízo (-)</mat-list-item>
           </mat-list>
         </th>
-
         <th>
           <mat-list>
             <mat-list-item>TOTAL</mat-list-item>
@@ -32,56 +31,45 @@
         </th>
       </table>
     </div>
-
   </mat-tab>
-
   <mat-tab label="Vendas">
     <br>
-
     <div>
-        <mat-form-field style="margin-right: 20px;">
-          <input [(ngModel)]="request.dataInicial" matInput [matDatepicker]="dataInicial" placeholder="Início">
-          <mat-datepicker-toggle matSuffix [for]="dataInicial"></mat-datepicker-toggle>
-          <mat-datepicker #dataInicial></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field style="margin-right: 20px;">
-            <input [(ngModel)]="request.dataFinal" matInput [matDatepicker]="dataFinal" placeholder="Fim">
-            <mat-datepicker-toggle matSuffix [for]="dataFinal"></mat-datepicker-toggle>
-            <mat-datepicker #dataFinal></mat-datepicker>
-          </mat-form-field>
-
-          <button mat-raised-button color="primary" (click)="extrair(request)"> Gerar Relatório </button>
-
-      </div>
-
-
-      <br>
-
-      <div>
-
-          <table mat-table [dataSource]="relatorios">
-
-            <ng-container matColumnDef="produto">
-              <th mat-header-cell *matHeaderCellDef>PRODUTO</th>
-              <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="quantidadeTotal">
-              <th mat-header-cell *matHeaderCellDef>QTD VENDIDA</th>
-              <td mat-cell *matCellDef="let element"> {{element.quantidadeTotal}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="vendasTotal">
-                <th mat-header-cell *matHeaderCellDef> TOTAL </th>
-                <td mat-cell *matCellDef="let element"> {{element.vendasTotal | currency}} </td>
-              </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-        </div>
-
-
+      <mat-form-field style="margin-right: 20px;" appearance="outline">
+        <input [(ngModel)]="request.dataInicial" matInput [matDatepicker]="dataInicial" placeholder="Início">
+        <mat-datepicker-toggle matSuffix [for]="dataInicial"></mat-datepicker-toggle>
+        <mat-datepicker #dataInicial></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field style="margin-right: 20px;" appearance="outline">
+        <input [(ngModel)]="request.dataFinal" matInput [matDatepicker]="dataFinal" placeholder="Fim">
+        <mat-datepicker-toggle matSuffix [for]="dataFinal"></mat-datepicker-toggle>
+        <mat-datepicker #dataFinal></mat-datepicker>
+      </mat-form-field>
+        <mat-radio-group aria-label="status" [(ngModel)]="request.status" style="margin-right: 20px;">
+          Status:
+          <mat-radio-button value="OK" style="margin-right: 10px; margin-left: 10px;">Aprovado</mat-radio-button>
+          <mat-radio-button value="Cancelado">Cancelado</mat-radio-button>
+        </mat-radio-group>
+      <button mat-raised-button color="primary" (click)="extrair(request)"> Gerar Relatório </button>
+    </div>
+    <br>
+    <div>
+      <table mat-table [dataSource]="relatorios">
+        <ng-container matColumnDef="produto">
+          <th mat-header-cell *matHeaderCellDef>PRODUTO</th>
+          <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+        </ng-container>
+        <ng-container matColumnDef="quantidadeTotal">
+          <th mat-header-cell *matHeaderCellDef>QTD PEDIDOS</th>
+          <td mat-cell *matCellDef="let element"> {{element.quantidadeTotal}} </td>
+        </ng-container>
+        <ng-container matColumnDef="vendasTotal">
+          <th mat-header-cell *matHeaderCellDef> TOTAL </th>
+          <td mat-cell *matCellDef="let element"> {{element.vendasTotal | currency}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
   </mat-tab>
 </mat-tab-group>

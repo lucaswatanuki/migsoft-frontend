@@ -1,3 +1,6 @@
+import { PedidoService } from './services/pedido/pedido.service';
+import { CotacaoService } from './services/cotacao/cotacao.service';
+import { RelatorioService } from './services/relatorio/relatorio.service';
 import { FornecedorService } from './services/fornecedor/fornecedor.service';
 import { ProdutoService } from './services/produto/produto.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,10 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
-
 import { MatSliderModule } from '@angular/material/slider';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
@@ -45,10 +46,14 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PedidoDialogueComponent } from './pedido/pedido-dialogue/pedido-dialogue.component';
 import { MatDatepickerModule, MatSelectModule, MatRadioModule } from '@angular/material';
 import { ClienteDialogueComponent } from './cliente/cliente-dialogue/cliente-dialogue/cliente-dialogue.component';
-import { VendaDialogueComponent } from './venda/venda-dialogue/venda-dialogue.component';
+import { VendaDialogueComponent, ProdutoSearchDialogueComponent, ClienteSearchDialogueComponent } from './venda/venda-dialogue/venda-dialogue.component';
 import { ProducaoComponent } from './producao/producao.component';
 import { ProducaoDialogueComponent } from './producao/producao-dialogue/producao-dialogue.component';
 import { CotacaoDialogueComponent } from './cotacao/cotacao-dialogue/cotacao-dialogue/cotacao-dialogue.component';
+import { VendaService } from './services/venda/venda.service';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -74,8 +79,11 @@ import { CotacaoDialogueComponent } from './cotacao/cotacao-dialogue/cotacao-dia
     ProducaoComponent,
     ProducaoDialogueComponent,
     CotacaoDialogueComponent,
+    ProdutoSearchDialogueComponent,
+    ClienteSearchDialogueComponent
   ],
   imports: [
+    ReactiveFormsModule,
     MatRadioModule,
     MatPaginatorModule,
     MatCardModule,
@@ -104,9 +112,21 @@ import { CotacaoDialogueComponent } from './cotacao/cotacao-dialogue/cotacao-dia
     MatAutocompleteModule,
     MatDatepickerModule,
     MatSelectModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot()
   ],
-  entryComponents: [DialogueComponent, FornecedorDialogueComponent, PedidoDialogueComponent, ClienteDialogueComponent, VendaDialogueComponent, ProducaoDialogueComponent, CotacaoDialogueComponent],
-  providers: [httpInterceptorProviders, ProdutoService, FornecedorService],
-  bootstrap: [AppComponent]
+  entryComponents: [DialogueComponent,
+     FornecedorDialogueComponent,
+     PedidoDialogueComponent,
+     ClienteDialogueComponent,
+     VendaDialogueComponent,
+     ProducaoDialogueComponent,
+     CotacaoDialogueComponent,
+     ProdutoSearchDialogueComponent,
+     ClienteSearchDialogueComponent
+      ],
+  providers: [httpInterceptorProviders, ProdutoService, FornecedorService, RelatorioService, CotacaoService, PedidoService, VendaService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

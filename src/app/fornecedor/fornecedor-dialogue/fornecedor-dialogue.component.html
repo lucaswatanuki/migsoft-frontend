@@ -2,21 +2,20 @@
 <h1 mat-dialog-title *ngIf="data.element">Editar Fornecedor</h1>
 <mat-tab-group>
   <mat-tab label="Fornecedor">
-      <div mat-dialog-content style="height: 250px; width: auto">
       <br>
       <div>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input [(ngModel)]="fornecedor.nomeFantasia" matInput placeholder="Nome Fantasia"
             name="fornecedor.nomeFantasia">
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input [(ngModel)]="fornecedor.cnpj" matInput placeholder="CNPJ" name="fornecedor.cnpj">
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input [(ngModel)]="fornecedor.endereco" matInput placeholder="Endereço" name="fornecedor.endereco">
         </mat-form-field>
       </div>
@@ -26,24 +25,21 @@
           <mat-radio-button value="Inativo">Inativo</mat-radio-button>
         </mat-radio-group>
       </div>
-      </div>
   </mat-tab>
 
   <mat-tab label="Contato">
-    <div mat-dialog-content>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <input [(ngModel)]="fornecedor.nome" matInput placeholder="Nome" name="fornecedor.nome">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <input [(ngModel)]="fornecedor.cpf" matInput placeholder="CPF" name="fornecedor.telefone">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <input [(ngModel)]="fornecedor.telefone" matInput placeholder="Telefone" name="fornecedor.telefone">
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <input [(ngModel)]="fornecedor.email" matInput placeholder="Email" name="fornecedor.email">
       </mat-form-field>
-    </div>
   </mat-tab>
 </mat-tab-group>
 <div mat-dialog-actions>

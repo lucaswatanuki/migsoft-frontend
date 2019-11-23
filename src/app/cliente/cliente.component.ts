@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Pessoa } from './../model/pessoa.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ClienteDialogueComponent } from './cliente-dialogue/cliente-dialogue/cliente-dialogue.component';
@@ -32,6 +33,7 @@ export class ClienteComponent implements OnInit {
   adicionar() {
     console.log(this.cliente);
     this.clienteService.adicionarCliente(this.cliente).subscribe( data => {
+      window.alert("Cliente Adicionado com sucesso!");
       this.getCliente();
     });
   }

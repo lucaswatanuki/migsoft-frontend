@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     if (matches) {
       return [
         { title: 'Lucro', cols: 1, rows: 1 },
-        { title: 'Prejuizo', cols: 1, rows: 1 },
+        { title: 'Prejuízo', cols: 1, rows: 1 },
         { title: 'Vendas', cols: 1, rows: 1 },
         { title: 'Pedidos', cols: 1, rows: 1 },
       ];
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
     return [
       { title: 'Lucro', cols: 1, rows: 1 },
-      { title: 'Prejuizo', cols: 1, rows: 1 },
+      { title: 'Prejuízo', cols: 1, rows: 1 },
       { title: 'Vendas', cols: 1, rows: 1 },
       { title: 'Pedidos', cols: 1, rows: 1 },
     ];

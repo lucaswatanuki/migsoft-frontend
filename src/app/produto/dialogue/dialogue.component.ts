@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
 import { ProdutoService } from '../../services/produto/produto.service';
 import { Produto } from './../../model/produto.model';
@@ -13,7 +14,8 @@ export class DialogueComponent implements OnInit {
 
   produto: Produto = new Produto();
 
-  constructor(public dialogRef: MatDialogRef<DialogueComponent>, private produtoService: ProdutoService,
+  constructor(private toastr: ToastrService,
+    public dialogRef: MatDialogRef<DialogueComponent>, private produtoService: ProdutoService,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
@@ -27,16 +29,33 @@ export class DialogueComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  showSuccess(msg: string) {
+    this.toastr.success(msg);
+  }
+
+  showFail() {
+    this.toastr.error("Verificar dados inseridos", "Erro ao cadastrar produto");
+  }
+
   adicionar() {
     this.produtoService.adicionarProduto(this.produto).subscribe(data => {
+      this.showSuccess('Produto cadastrado com sucesso!');
       this.dialogRef.close();
-    });
+    },
+    error => {
+      this.showFail();
+    }
+    );
   }
 
   update(produto: Produto) {
     this.produtoService.update(produto).subscribe(
       data => {
+        this.showSuccess('Produto atualizado com sucesso!');
         this.dialogRef.close();
+      },
+      error => {
+        this.showFail();
       }
     );
   }

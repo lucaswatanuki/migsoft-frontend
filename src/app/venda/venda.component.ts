@@ -17,7 +17,7 @@ export class VendaComponent implements OnInit {
   vendaList: MatTableDataSource<Venda>;
   errorMsg: string;
 
-  displayedColumns: string[] = ['id', 'cliente', 'produto', 'quantidade', 'data', 'total', 'action'];
+  displayedColumns: string[] = ['id', 'cliente', 'produto', 'quantidade', 'data', 'total', 'status', 'action'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -40,6 +40,14 @@ export class VendaComponent implements OnInit {
       },
       error => {
         this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;
+      });
+  }
+
+  cancelar(venda: Venda) {
+    console.log(this.venda);
+    this.vendaService.cancelarVenda(venda).subscribe(
+      data => {
+        this.getVendas();
       });
   }
 

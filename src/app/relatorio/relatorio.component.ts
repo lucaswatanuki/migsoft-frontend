@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { RelatorioVendaProduto } from './../model/relatorioVenda.model';
 import { ReportRequest } from './../model/reportRequest.model';
 import { MatTableDataSource } from '@angular/material/table';
@@ -21,7 +22,7 @@ export class RelatorioComponent implements OnInit {
   errorMsg: String;
 
 
-  constructor(private relatorioService: RelatorioService) { }
+  constructor(private relatorioService: RelatorioService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getRelatorioFinanceiro();

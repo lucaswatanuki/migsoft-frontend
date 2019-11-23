@@ -1,47 +1,40 @@
 <h1 mat-dialog-title *ngIf="!data.element">Adicionar Venda</h1>
 <h1 mat-dialog-title *ngIf="data.element">Editar Venda</h1>
 
-
-<div mat-dialog-content>
+  <form [formGroup]='formularioVenda' #form="ngForm">
   <div>
-    <mat-form-field>
-      <input [(ngModel)]="venda.data" matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-form-field appearance="outline">
+      <input matInput [matDatepicker]="picker" placeholder="Data" formControlName="data">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </div>
 
   <div>
-    <mat-form-field>
-      <input [(ngModel)]="venda.produto" matInput placeholder="Produto" name="venda.produto" *ngIf="data.element" >
-      <input matInput (keyup)="findProdutoByName($event.target.value)" placeholder="Produto" required *ngIf="!data.element" >
-      <mat-hint *ngIf="!foundProduto && !data.element">Produto Não Encontrado</mat-hint>
-      <mat-hint *ngIf="foundProduto && !data.element">Produto Encontrado</mat-hint>
+    <mat-form-field appearance="outline">
+      <input matInput type="text" formControlName="produto" placeholder="Selecionar Produto" (click)="openDialogProduto()">
     </mat-form-field>
   </div>
 
 
   <div>
-    <mat-form-field>
-      <mat-select placeholder="Cliente" [(ngModel)]="venda.cliente" *ngIf="!data.element" >
-        <mat-option *ngFor="let option of clienteList" [value]="option">
-          {{option.nome}}
-        </mat-option>
-      </mat-select>
-      <input [(ngModel)]="venda.cliente" matInput placeholder="Cliente" name="venda.cliente">
-    </mat-form-field>
-  </div>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" formControlName="cliente" placeholder="Selecionar Cliente" (click)="openDialogCliente()">
+      </mat-form-field>
+    </div>
+
 
   <div>
-    <mat-form-field>
-      <input [(ngModel)]="venda.quantidade" matInput placeholder="Qtd" name="venda.quantidade">
+    <mat-form-field appearance="outline">
+      <input matInput type="text" placeholder="Qtd" formControlName="quantidade">
     </mat-form-field>
   </div>
-</div>
+</form>
+
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>
   <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
-  <button mat-raised-button color="primary" (click)="update(venda)" *ngIf="data.element"> Atualizar </button>
+  <button mat-raised-button color="primary" (click)="update()" *ngIf="data.element"> Atualizar </button>
 </div>
 

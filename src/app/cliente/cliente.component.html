@@ -1,27 +1,25 @@
 <mat-tab-group>
   <mat-tab label="Cadastro">
     <br>
-    <div mat-dialog-content>
-      <mat-form-field style="margin-right: 10%; width: 50%">
-        <input [(ngModel)]="cliente.nome" matInput placeholder="Nome Completo" name="cliente.nome">
-      </mat-form-field>
-
-      <mat-form-field style="width: 25%;">
-        <input [(ngModel)]="cliente.cpf" matInput placeholder="CPF" name="cliente.cpf">
-      </mat-form-field>
-      <br>
-      <mat-form-field style="width: 85%;">
-        <input [(ngModel)]="cliente.endereco" matInput placeholder="Endereço" name="cliente.endereco">
-      </mat-form-field>
-      <br>
-      <mat-form-field style="margin-right: 10%; width: 50%;">
-        <input [(ngModel)]="cliente.email" matInput placeholder="Email" name="cliente.email">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input [(ngModel)]="cliente.telefone" matInput placeholder="Telefone" name="cliente.telefone">
-      </mat-form-field>
-    </div>
+      <div>
+        <mat-form-field style="margin-right: 10%; width: 50%" appearance="outline">
+          <input [(ngModel)]="cliente.nome" matInput placeholder="Nome Completo" name="cliente.nome">
+        </mat-form-field>
+        <mat-form-field style="width: 25%;" appearance="outline">
+          <input [(ngModel)]="cliente.cpf" matInput placeholder="CPF" name="cliente.cpf">
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width: 85%;" appearance="outline">
+          <input [(ngModel)]="cliente.endereco" matInput placeholder="Endereço" name="cliente.endereco">
+        </mat-form-field>
+        <br>
+        <mat-form-field style="margin-right: 10%; width: 50%;" appearance="outline">
+          <input [(ngModel)]="cliente.email" matInput placeholder="Email" name="cliente.email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input [(ngModel)]="cliente.telefone" matInput placeholder="Telefone" name="cliente.telefone">
+        </mat-form-field>
+      </div>
 
     <br>
 
@@ -32,7 +30,7 @@
 
   <mat-tab label="Consultar">
     <div>
-      <mat-form-field>
+      <mat-form-field style="width: 30%;" appearance="outline">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
       </mat-form-field>
     </div>

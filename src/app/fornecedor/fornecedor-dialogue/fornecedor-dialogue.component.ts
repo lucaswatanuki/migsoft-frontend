@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
 import { Pessoa } from './../../model/pessoa.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -16,7 +17,8 @@ export class FornecedorDialogueComponent implements OnInit {
   fornecedor: Fornecedor = new Fornecedor();
   pessoa: Pessoa = new Pessoa();
 
-  constructor(public dialogRef: MatDialogRef<DialogueComponent>, private fornecedorService: FornecedorService,
+  constructor(private toastr: ToastrService,
+    public dialogRef: MatDialogRef<DialogueComponent>, private fornecedorService: FornecedorService,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
@@ -31,16 +33,33 @@ export class FornecedorDialogueComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  showSuccess(msg: string) {
+    this.toastr.success(msg);
+  }
+
+  showFail() {
+    this.toastr.error("Verificar dados inseridos", "Erro ao cadastrar fornecedor");
+  }
+
   adicionar() {
     this.fornecedorService.adicionarFornecedor(this.fornecedor).subscribe(data => {
+      this.showSuccess('Fornecedor cadastrado com sucesso!');
       this.dialogRef.close();
-    });
+    },
+      error => {
+        this.showFail();
+      }
+    );
   }
 
   update(fornecedor: Fornecedor) {
     this.fornecedorService.update(this.fornecedor).subscribe(
       data => {
+        this.showSuccess('Fornecedor atualizado!');
         this.dialogRef.close();
+      },
+      error => {
+        this.showFail();
       }
     );
   }

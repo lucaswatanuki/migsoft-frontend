@@ -3,7 +3,7 @@
 
 <div mat-dialog-content>
     <div>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input matInput (keyup)="findProdutoByName($event.target.value)" placeholder="Produto" required>
           <mat-hint *ngIf="!foundProduto">Produto Não Encontrado</mat-hint>
           <mat-hint *ngIf="foundProduto">Produto Encontrado</mat-hint>
@@ -11,19 +11,19 @@
       </div>
 
   <div>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <input [(ngModel)]="formula.material" matInput placeholder="Material" name="produto.material">
     </mat-form-field>
   </div>
 
   <div>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <input [(ngModel)]="formula.descricao" matInput placeholder="Descrição" name="produto.descricao">
     </mat-form-field>
   </div>
 
   <div>
-    <mat-form-field style="width: 50px;">
+    <mat-form-field style="width: 100px;" appearance="outline">
       <input [(ngModel)]="formula.quantidade" matInput placeholder="Qtd" name="produto.quantidade">
     </mat-form-field>
   </div>

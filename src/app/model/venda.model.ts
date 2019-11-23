@@ -8,4 +8,5 @@ export class Venda
   produto: Produto;
   quantidade: number;
   total: number;
+  status: string;
 }

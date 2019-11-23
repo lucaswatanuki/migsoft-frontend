@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { FormControl } from '@angular/forms';
 import { Produto } from './../../../model/produto.model';
 import { FornecedorService } from './../../../services/fornecedor/fornecedor.service';
@@ -21,6 +22,7 @@ export class CotacaoDialogueComponent implements OnInit {
   nomeProduto: String;
 
   constructor(private produtoService: ProdutoService,
+    private toastr: ToastrService,
     private fornecedorService: FornecedorService,
     public dialogRef: MatDialogRef<CotacaoDialogueComponent>,
     private cotacaoService: CotacaoService,
@@ -37,6 +39,14 @@ export class CotacaoDialogueComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  showSuccess(msg: string) {
+    this.toastr.success(msg);
+  }
+
+  showFail() {
+    this.toastr.error("Verificar dados e produto e fornecedor", "Erro ao cadastrar cotação");
+  }
+
   aprovar(cotacao: Cotacao) {
     console.log(this.cotacao);
     this.cotacao.status = 'Aprovado';
@@ -46,15 +56,25 @@ export class CotacaoDialogueComponent implements OnInit {
   adicionar() {
     console.log(this.cotacao);
     this.cotacaoService.adicionarCotacao(this.cotacao).subscribe(data => {
+      this.showSuccess('Cotação adicionada com sucesso');
       this.dialogRef.close();
-    });
+    },
+    error => {
+      this.showFail();
+    }
+    );
+
   }
 
 
   update(cotacao: Cotacao) {
     this.cotacaoService.update(cotacao).subscribe(
       data => {
+        this.showSuccess('Cotação atualizada com sucesso');
         this.dialogRef.close();
+      },
+      error => {
+        this.showFail();
       }
     );
   }

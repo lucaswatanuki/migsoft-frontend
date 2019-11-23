@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Pessoa } from './../../../model/pessoa.model';
 import { Cliente } from './../../../model/cliente.model';
 import { DialogueComponent } from './../../../produto/dialogue/dialogue.component';
@@ -16,7 +17,8 @@ export class ClienteDialogueComponent implements OnInit {
   pessoa: Pessoa = new Pessoa();
 
   constructor(public dialogRef: MatDialogRef<DialogueComponent>, private clienteService: ClienteService,
-    @Inject(MAT_DIALOG_DATA) public data) { }
+    @Inject(MAT_DIALOG_DATA) public data,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     console.log(this.data);
@@ -30,10 +32,22 @@ export class ClienteDialogueComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  showSuccess(msg: string) {
+    this.toastr.success(msg);
+  }
+
+  showFail() {
+    this.toastr.error("Verificar dados inseridos", "Erro ao cadastrar cliente");
+  }
+
   update(cliente: Cliente) {
     this.clienteService.update(cliente).subscribe(
       data => {
+        this.showSuccess('Cliente atualizado com sucesso!');
         this.dialogRef.close();
+      },
+      error => {
+        this.showFail();
       }
     );
   }

@@ -47,6 +47,7 @@ import { PedidoDialogueComponent } from './pedido/pedido-dialogue/pedido-dialogu
 import { MatDatepickerModule, MatSelectModule, MatRadioModule } from '@angular/material';
 import { ClienteDialogueComponent } from './cliente/cliente-dialogue/cliente-dialogue/cliente-dialogue.component';
 import { VendaDialogueComponent, ProdutoSearchDialogueComponent, ClienteSearchDialogueComponent } from './venda/venda-dialogue/venda-dialogue.component';
+import { OrcamentoProdutoSearchDialogueComponent, OrcamentoClienteSearchDialogueComponent } from './orcamento/orcamento-dialogue/orcamento-dialogue.component';
 import { ProducaoComponent } from './producao/producao.component';
 import { ProducaoDialogueComponent } from './producao/producao-dialogue/producao-dialogue.component';
 import { CotacaoDialogueComponent } from './cotacao/cotacao-dialogue/cotacao-dialogue/cotacao-dialogue.component';
@@ -54,6 +55,7 @@ import { VendaService } from './services/venda/venda.service';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { OrcamentoDialogueComponent } from './orcamento/orcamento-dialogue/orcamento-dialogue.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,10 @@ import { ToastrModule } from 'ngx-toastr';
     ProducaoDialogueComponent,
     CotacaoDialogueComponent,
     ProdutoSearchDialogueComponent,
-    ClienteSearchDialogueComponent
+    ClienteSearchDialogueComponent,
+    OrcamentoDialogueComponent,
+    OrcamentoProdutoSearchDialogueComponent,
+    OrcamentoClienteSearchDialogueComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -124,7 +129,10 @@ import { ToastrModule } from 'ngx-toastr';
      ProducaoDialogueComponent,
      CotacaoDialogueComponent,
      ProdutoSearchDialogueComponent,
-     ClienteSearchDialogueComponent
+    OrcamentoProdutoSearchDialogueComponent,
+    OrcamentoClienteSearchDialogueComponent,
+     ClienteSearchDialogueComponent,
+    OrcamentoDialogueComponent
       ],
   providers: [httpInterceptorProviders, ProdutoService, FornecedorService, RelatorioService, CotacaoService, PedidoService, VendaService],
   bootstrap: [AppComponent],

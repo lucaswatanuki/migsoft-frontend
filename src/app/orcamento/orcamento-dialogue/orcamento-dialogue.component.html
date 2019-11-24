@@ -1,0 +1,41 @@
+<h1 mat-dialog-title *ngIf="!data.element">Adicionar Venda</h1>
+<h1 mat-dialog-title *ngIf="data.element">Editar Venda</h1>
+
+<form [formGroup]='formularioOrcamento' #form="ngForm">
+    <div>
+        <mat-form-field appearance="outline">
+            <input matInput [matDatepicker]="picker" placeholder="Data" formControlName="data">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field appearance="outline">
+            <input matInput type="text" formControlName="produto" placeholder="Selecionar Produto"
+                (click)="openDialogProduto()">
+        </mat-form-field>
+    </div>
+
+
+    <div>
+        <mat-form-field appearance="outline">
+            <input matInput type="text" formControlName="cliente" placeholder="Selecionar Cliente"
+                (click)="openDialogCliente()">
+        </mat-form-field>
+    </div>
+
+
+    <div>
+        <mat-form-field appearance="outline">
+            <input matInput type="text" placeholder="Qtd" formControlName="quantidade">
+        </mat-form-field>
+    </div>
+</form>
+
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
+    <button mat-raised-button color="primary" (click)="update()" *ngIf="data.element"> Atualizar </button>
+</div>

@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Orcamento } from '../model/orcamento.model';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { OrcamentoService } from '../services/orcamento/orcamento.service';
+import { OrcamentoDialogueComponent } from './orcamento-dialogue/orcamento-dialogue.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-orcamento',
@@ -7,9 +13,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrcamentoComponent implements OnInit {
 
-  constructor() { }
+  orcamento: Orcamento = new Orcamento();
+  orcamentoList: MatTableDataSource<Orcamento>;
+  errorMsg: string;
+
+  displayedColumns: string[] = ['id', 'cliente', 'produto', 'quantidade', 'data', 'total'];
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  constructor(private orcamentoService: OrcamentoService, public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getOrcamentos();
+  }
+
+  applyFilter(filterValue: string) {
+    this.orcamentoList.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+  public getOrcamentos() {
+    this.orcamentoService.getListaOrcamentos().subscribe(
+      data => {
+        this.orcamentoList = new MatTableDataSource(data);
+        this.orcamentoList.paginator = this.paginator;
+      },
+      error => {
+        this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;
+      });
+  }
+
+  openDialog(element): void {
+    const dialogRef = this.dialog.open(OrcamentoDialogueComponent, {
+      data: {
+        width: 'auto',
+        height: 'auto',
+        element
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.getOrcamentos();
+      }
+    );
   }
 
 }

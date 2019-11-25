@@ -1,7 +1,8 @@
-<div *ngIf="info.token">
+<div class="card-head" *ngIf="info.token">
   <h2 style="margin-left: 20px;">Bem vindo, {{info.username}}!</h2>
+  <mat-divider></mat-divider>
 </div>
-<hr>
+<br>
 <div class="grid-container">
   <h2 class="mat-h2">Dashboard</h2>
   <mat-grid-list cols="2" rowHeight="200px">
@@ -23,8 +24,8 @@
           <div style="font-size: xxx-large; color: green;">{{relatorio.lucro | currency}}</div>
         </mat-card-content>
         <mat-card-content class="dashboard-card-content" *ngIf="card.title=='Prejuízo'">
-            <div style="font-size: xxx-large; color: red;">{{relatorio.prejuizo | currency}}</div>
-          </mat-card-content>
+          <div style="font-size: xxx-large; color: red;">{{relatorio.prejuizo | currency}}</div>
+        </mat-card-content>
         <mat-card-content class="dashboard-card-content" *ngIf="card.title=='Vendas'">
           <div style="font-size: xxx-large;">{{relatorio.receita | currency}}</div>
         </mat-card-content>

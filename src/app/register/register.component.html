@@ -1,49 +1,52 @@
-<div *ngIf="isSignedUp; else signupForm">
-    Conta criada com sucesso!
-</div>
+<div
+  style="width: 350px; position: absolute; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+  <mat-card style="width: 100%;" class="mat-elevation-z8">
+    <h1>Migsoft</h1>
+    <h3>Criar conta</h3>
+    <form name="form" [formGroup]='formularioCadastro' (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+      <div class="form-group">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <input [(ngModel)]="form.name" matInput type="text" formControlName="name" placeholder="Nome Completo">
+        </mat-form-field>
+      </div>
 
-<ng-template #signupForm>
-    <div class="row col-sm-6" style="max-width:350px;">
-        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-            <div class="form-group">
-                <label for="name">Nome Completo</label>
-                <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
-                <div *ngIf="f.submitted && name.invalid">
-                    <div *ngIf="name.errors.required">Name is required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
-                    required />
-                <div *ngIf="f.submitted && username.invalid">
-                    <div *ngIf="username.errors.required">Username is required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required
-                    email />
-                <div *ngIf="f.submitted && email.invalid">
-                    <div *ngIf="email.errors.required">Email is required</div>
-                    <div *ngIf="email.errors.email">Email must be a valid email address</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="form.password"
-                    #password="ngModel" required minlength="6" />
-                <div *ngIf="f.submitted && password.invalid">
-                    <div *ngIf="password.errors.required">Password is required</div>
-                    <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary">Registrar</button>
-                <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
-                    Erro ao criar conta!<br />{{errorMessage}}
-                </div>
-            </div>
-        </form>
-    </div>
-</ng-template>
+      <div class="form-group">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <input [(ngModel)]="form.username" matInput type="text" formControlName="username" placeholder="Username">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <input [(ngModel)]="form.email" matInput placeholder="Email" formControlName="email">
+          <mat-error
+            *ngIf="formularioCadastro.get('email').hasError('email') && !formularioCadastro.get('email').hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="formularioCadastro.get('email').hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <input [(ngModel)]="form.password" matInput type="text" placeholder="Senha" formControlName="password">
+          <mat-error
+            *ngIf="formularioCadastro.get('password').hasError('minLength') && !formularioCadastro.get('password').hasError('required')">
+            Please enter a valid password
+          </mat-error>
+          <mat-error *ngIf="formularioCadastro.get('password').hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <button mat-raised-button color="primary" (click)="onSubmit()" style="margin-right: 20px;"> Registrar </button>
+        <button mat-raised-button color="warn" (click)="login()"> Login </button>
+      </div>
+    </form>
+
+  </mat-card>
+</div>

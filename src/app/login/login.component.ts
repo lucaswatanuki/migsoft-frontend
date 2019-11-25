@@ -57,6 +57,10 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  loadSignUp(){
+    window.location.replace('http://localhost:4200/signup');
+  }
+
   reloadPage() {
     window.location.replace('http://localhost:4200/home');
   }

@@ -29,25 +29,26 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  showSuccess(){
+  showSuccess() {
     this.toast.show("Conta criada com sucesso");
   }
 
-  login(){
+  login() {
     window.location.replace('http://localhost:4200/auth/login');
   }
 
-  showFail(){
+  showFail() {
     this.toast.show("Erro ao cadastrar conta");
   }
   onSubmit() {
-    console.log(this.form);
-
+    console.log(this.formularioCadastro);
     this.signupInfo = new SignUpInfo(
-      this.form.name,
-      this.form.username,
-      this.form.email,
-      this.form.password);
+      this.formularioCadastro.get('name').value,
+      this.formularioCadastro.get('username').value,
+      this.formularioCadastro.get('email').value,
+      this.formularioCadastro.get('password').value
+    );
+
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
@@ -55,6 +56,7 @@ export class RegisterComponent implements OnInit {
         this.isSignedUp = true;
         this.isSignUpFailed = false;
         this.showSuccess();
+        this.formularioCadastro.reset();
       },
       error => {
         console.log(error);

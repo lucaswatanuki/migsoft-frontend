@@ -4,6 +4,7 @@ import { ProdutoService } from '../../services/produto/produto.service';
 import { Produto } from './../../model/produto.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dialogue',
@@ -13,9 +14,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 export class DialogueComponent implements OnInit {
 
   produto: Produto = new Produto();
+  formularioProduto: FormGroup;
 
-  constructor(private toastr: ToastrService,
-    public dialogRef: MatDialogRef<DialogueComponent>, private produtoService: ProdutoService,
+  constructor(private fbuilder: FormBuilder,
+    private toastr: ToastrService,
+    public dialogRef: MatDialogRef<DialogueComponent>,
+    private produtoService: ProdutoService,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
@@ -23,6 +27,11 @@ export class DialogueComponent implements OnInit {
     if (this.data.element) {
       this.produto = this.data.element;
     }
+    this.formularioProduto = this.fbuilder.group({
+      nome: new FormControl('', Validators.required),
+      quantidade: new FormControl('', Validators.required),
+      preco: new FormControl('', Validators.required)
+    });
   }
 
   onNoClick(): void {

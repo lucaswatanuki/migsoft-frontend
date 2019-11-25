@@ -7,10 +7,10 @@
   <mat-card style="width: 100%;" class="mat-elevation-z20">
     <h1>Migsoft</h1>
     <h3>Criar conta</h3>
-    <form name="form" [formGroup]='formularioCadastro' (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+    <form name="form" [formGroup]='formularioCadastro'  #f="ngForm">
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
-          <input [(ngModel)]="form.name" matInput type="text" formControlName="name" placeholder="Nome Completo">
+          <input matInput type="text" formControlName="name" placeholder="Nome Completo">
           <mat-error *ngIf="formularioCadastro.get('email').hasError('required')">
             Nome <strong>obrigatório</strong>
           </mat-error>
@@ -19,7 +19,7 @@
 
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
-          <input [(ngModel)]="form.username" matInput type="text" formControlName="username" placeholder="Username">
+          <input  matInput type="text" formControlName="username" placeholder="Username">
           <mat-error *ngIf="formularioCadastro.get('email').hasError('required')">
             Username <strong>obrigatório</strong>
           </mat-error>
@@ -28,7 +28,7 @@
 
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
-          <input [(ngModel)]="form.email" matInput placeholder="Email" formControlName="email">
+          <input matInput placeholder="Email" formControlName="email">
           <mat-error
             *ngIf="formularioCadastro.get('email').hasError('email') && !formularioCadastro.get('email').hasError('required')">
             Inserir um email válido
@@ -41,7 +41,7 @@
 
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
-          <input [(ngModel)]="form.password" matInput type="password" placeholder="Senha" formControlName="password">
+          <input matInput type="password" placeholder="Senha" formControlName="password">
           <mat-error
             *ngIf="formularioCadastro.get('password').hasError('minLength') && !formularioCadastro.get('password').hasError('required')">
             Please enter a valid password

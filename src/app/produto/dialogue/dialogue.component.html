@@ -1,15 +1,26 @@
 <h1 mat-dialog-title *ngIf="!data.element">Adicionar Produto</h1>
 <h1 mat-dialog-title *ngIf="data.element">Editar Produto</h1>
-
+<form name="form" [formGroup]='formularioProduto'>
   <mat-form-field appearance="outline">
-    <input [(ngModel)]="produto.nome" matInput placeholder="Nome" name="produto.nome">
+    <input [(ngModel)]="produto.nome" formControlName="nome" matInput placeholder="Nome">
+    <mat-error *ngIf="formularioProduto.get('nome').hasError('required')">
+        Nome do produto<strong> obrigatório</strong>
+      </mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <input [(ngModel)]="produto.preco" matInput placeholder="Preco" name="produto.preco">
+    <input [(ngModel)]="produto.preco" formControlName="preco" matInput placeholder="Preco">
+    <mat-error *ngIf="formularioProduto.get('preco').hasError('required')">
+        Preço<strong> obrigatório</strong>
+      </mat-error>
   </mat-form-field>
   <mat-form-field style="width: 100px;" appearance="outline">
-    <input [(ngModel)]="produto.qtdEstoque" matInput placeholder="Qtd" name="produto.qtdEstoque">
+    <input [(ngModel)]="produto.qtdEstoque"  formControlName="quantidade" matInput placeholder="Qtd" name="produto.qtdEstoque">
+    <mat-error *ngIf="formularioProduto.get('quantidade').hasError('required')">
+        Quantidade <strong> obrigatória</strong>
+      </mat-error>
   </mat-form-field>
+</form>
+
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>
   <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>

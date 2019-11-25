@@ -1,18 +1,28 @@
+<mat-toolbar color="primary">
+  Migsoft <span class="toolbar-spacer"> </span>
+</mat-toolbar>
+
 <div
   style="width: 350px; position: absolute; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-  <mat-card style="width: 100%;" class="mat-elevation-z8">
+  <mat-card style="width: 100%;" class="mat-elevation-z20">
     <h1>Migsoft</h1>
     <h3>Criar conta</h3>
     <form name="form" [formGroup]='formularioCadastro' (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
           <input [(ngModel)]="form.name" matInput type="text" formControlName="name" placeholder="Nome Completo">
+          <mat-error *ngIf="formularioCadastro.get('email').hasError('required')">
+            Nome <strong>obrigatório</strong>
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
           <input [(ngModel)]="form.username" matInput type="text" formControlName="username" placeholder="Username">
+          <mat-error *ngIf="formularioCadastro.get('email').hasError('required')">
+            Username <strong>obrigatório</strong>
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -21,27 +31,27 @@
           <input [(ngModel)]="form.email" matInput placeholder="Email" formControlName="email">
           <mat-error
             *ngIf="formularioCadastro.get('email').hasError('email') && !formularioCadastro.get('email').hasError('required')">
-            Please enter a valid email address
+            Inserir um email válido
           </mat-error>
           <mat-error *ngIf="formularioCadastro.get('email').hasError('required')">
-            Email is <strong>required</strong>
+            Email <strong>obrigatório</strong>
           </mat-error>
         </mat-form-field>
       </div>
 
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
-          <input [(ngModel)]="form.password" matInput type="text" placeholder="Senha" formControlName="password">
+          <input [(ngModel)]="form.password" matInput type="password" placeholder="Senha" formControlName="password">
           <mat-error
             *ngIf="formularioCadastro.get('password').hasError('minLength') && !formularioCadastro.get('password').hasError('required')">
             Please enter a valid password
           </mat-error>
           <mat-error *ngIf="formularioCadastro.get('password').hasError('required')">
-            Password is <strong>required</strong>
+            Senha <strong>obrigatória</strong>
           </mat-error>
         </mat-form-field>
       </div>
-
+      <br>
       <div class="form-group">
         <button mat-raised-button color="primary" (click)="onSubmit()" style="margin-right: 20px;"> Registrar </button>
         <button mat-raised-button color="warn" (click)="login()"> Login </button>

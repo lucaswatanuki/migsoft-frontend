@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { HomeComponent } from './../home/home.component';
 import { Component, OnInit } from '@angular/core';
 
@@ -21,7 +22,9 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, public router: Router) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
+    public router: Router,
+    private toast: ToastrService) { }
 
 
   ngOnInit() {
@@ -30,6 +33,12 @@ export class LoginComponent implements OnInit {
       this.roles = this.tokenStorage.getAuthorities();
     }
   }
+
+
+  showFail() {
+    this.toast.show('Verificar usuário e senha', 'Erro ao realizar login');
+  }
+
 
   onSubmit() {
     console.log(this.form);
@@ -52,12 +61,12 @@ export class LoginComponent implements OnInit {
       error => {
         console.log(error);
         this.isLoginFailed = true;
-        window.alert('Usuário ou senha incorretos');
+        this.showFail();
       }
     );
   }
 
-  loadSignUp(){
+  loadSignUp() {
     window.location.replace('http://localhost:4200/signup');
   }
 

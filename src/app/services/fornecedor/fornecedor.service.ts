@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Fornecedor } from './../../model/fornecedor.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class FornecedorService {
 
-  private url = 'http://localhost:8080/api/fornecedor/';
+  private url = environment.api + 'api/fornecedor/';
 
   constructor(private http: HttpClient) { }
 

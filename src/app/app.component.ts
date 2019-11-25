@@ -1,3 +1,5 @@
+import { environment } from './../environments/environment';
+import { Router } from '@angular/router';
 import { map, shareReplay } from 'rxjs/operators';
 import { Component, Input } from '@angular/core';
 import { TokenStorageService } from './auth/token-storage.service';
@@ -17,7 +19,7 @@ export class AppComponent {
   title = 'migsoft';
   info: any;
 
-  constructor(private tokenStorage: TokenStorageService, private breakpointObserver: BreakpointObserver) { }
+  constructor(private tokenStorage: TokenStorageService, private breakpointObserver: BreakpointObserver, private router: Router) { }
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -51,6 +53,6 @@ export class AppComponent {
 
   logout() {
     this.tokenStorage.signOut();
-    window.location.replace('http://localhost:4200/auth/login');
+    window.location.replace(environment.localhost + 'auth/login');
   }
 }

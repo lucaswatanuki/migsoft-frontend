@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Formula } from './../../model/formula.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class ProducaoService {
 
-  private url = 'http://localhost:8080/api/formula/';
+  private url = environment.api + 'api/formula/';
 
   constructor(private http: HttpClient) { }
 

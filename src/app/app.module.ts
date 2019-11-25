@@ -1,3 +1,5 @@
+import { AuthGuardService } from './auth/auth-guard.service';
+import { RouterModule } from '@angular/router';
 import { PedidoService } from './services/pedido/pedido.service';
 import { CotacaoService } from './services/cotacao/cotacao.service';
 import { RelatorioService } from './services/relatorio/relatorio.service';
@@ -119,7 +121,7 @@ import { OrcamentoDialogueComponent } from './orcamento/orcamento-dialogue/orcam
     MatSelectModule,
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   entryComponents: [DialogueComponent,
      FornecedorDialogueComponent,
@@ -134,7 +136,12 @@ import { OrcamentoDialogueComponent } from './orcamento/orcamento-dialogue/orcam
      ClienteSearchDialogueComponent,
     OrcamentoDialogueComponent
       ],
-  providers: [httpInterceptorProviders, ProdutoService, FornecedorService, RelatorioService, CotacaoService, PedidoService, VendaService],
+  providers: [AuthGuardService,
+    httpInterceptorProviders,
+    ProdutoService, FornecedorService,
+    RelatorioService, CotacaoService,
+    PedidoService,
+    VendaService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

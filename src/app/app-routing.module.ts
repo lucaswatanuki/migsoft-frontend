@@ -1,3 +1,4 @@
+import { AuthGuardService } from './auth/auth-guard.service';
 import { ProducaoComponent } from './producao/producao.component';
 import { CotacaoComponent } from './cotacao/cotacao.component';
 import { OrcamentoComponent } from './orcamento/orcamento.component';
@@ -19,59 +20,71 @@ import { AdminComponent } from './admin/admin.component';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'pedido',
-    component: PedidoComponent
+    component: PedidoComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'user',
-    component: UserComponent
+    component: UserComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'auth/login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'signup',
-    component: RegisterComponent
+    component: RegisterComponent,
   },
   {
     path: 'produto',
-    component: ProdutoComponent
+    component: ProdutoComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'fornecedor',
-    component: FornecedorComponent
+    component: FornecedorComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'relatorio',
-    component: RelatorioComponent
+    component: RelatorioComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'venda',
-    component: VendaComponent
+    component: VendaComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'cliente',
-    component: ClienteComponent
+    component: ClienteComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'orcamento',
-    component: OrcamentoComponent
+    component: OrcamentoComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'cotacao',
-    component: CotacaoComponent
+    component: CotacaoComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'producao',
-    component: ProducaoComponent
+    component: ProducaoComponent,
+    canActivate: [AuthGuardService]
   },
 
   {

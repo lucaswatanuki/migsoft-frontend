@@ -5,7 +5,7 @@
   <mat-card style="width: 100%;" class="mat-elevation-z20">
       <h1>Migsoft</h1>
       <h3>Login</h3>
-   <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+   <form name="form" (ngSubmit)="f.form.valid" #f="ngForm">
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
           <input matInput type="text" placeholder="Username" [(ngModel)]="form.username" name="username"

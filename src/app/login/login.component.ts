@@ -1,11 +1,9 @@
+import { environment } from './../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
-import { HomeComponent } from './../home/home.component';
 import { Component, OnInit } from '@angular/core';
-
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { AuthLoginInfo } from '../auth/login-info';
-import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,6 +19,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
+
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
     public router: Router,
@@ -56,6 +55,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
+
         this.reloadPage();
       },
       error => {
@@ -67,10 +67,11 @@ export class LoginComponent implements OnInit {
   }
 
   loadSignUp() {
-    window.location.replace('http://localhost:4200/signup');
+    this.router.navigate(['/signup']);
+    //window.location.replace('http://localhost:4200/signup');
   }
 
   reloadPage() {
-    window.location.replace('http://localhost:4200/home');
+    window.location.replace(environment.localhost + 'home');
   }
 }

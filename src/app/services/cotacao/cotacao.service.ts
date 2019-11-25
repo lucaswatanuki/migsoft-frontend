@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Cotacao } from './../../model/cotacao.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class CotacaoService {
 
-  private url = 'http://localhost:8080/api/cotacao/';
+  private url = environment.api + 'api/cotacao/';
 
   constructor(private http: HttpClient) { }
 

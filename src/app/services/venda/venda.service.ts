@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Venda } from './../../model/venda.model';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -9,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class VendaService {
 
-  private url = 'http://localhost:8080/api/venda/';
+  private url = environment.api + 'api/venda/';
 
   constructor(private http: HttpClient) { }
 

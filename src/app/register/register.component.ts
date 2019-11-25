@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SignUpInfo } from './../auth/signup-info';
 import { AuthService } from './../auth/auth.service';
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
   formularioCadastro: FormGroup;
 
-  constructor(private authService: AuthService, private fbuilder: FormBuilder, private toast: ToastrService) { }
+  constructor(private authService: AuthService, private fbuilder: FormBuilder, private toast: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.formularioCadastro = this.fbuilder.group({
@@ -34,7 +35,7 @@ export class RegisterComponent implements OnInit {
   }
 
   login() {
-    window.location.replace('http://localhost:4200/auth/login');
+    this.router.navigate(['/auth/login']);
   }
 
   showFail() {

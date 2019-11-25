@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Pedido } from './../../model/pedido.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 
 export class PedidoService {
 
-  private url = 'http://localhost:8080/api/pedido/';
+  private url = environment.api + 'api/pedido/';
 
   constructor(private http: HttpClient) { }
 

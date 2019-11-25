@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { ReportRequest } from './../../model/reportRequest.model';
 import { RelatorioVendaProduto } from './../../model/relatorioVenda.model';
 import { Relatorio } from './../../model/relatorio.model';
@@ -10,7 +11,7 @@ import { Injectable } from '@angular/core';
 })
 export class RelatorioService {
 
-  private url = 'http://localhost:8080/api/relatorio/';
+  private url = environment.api + 'api/relatorio/';
 
   constructor(private http: HttpClient) { }
 

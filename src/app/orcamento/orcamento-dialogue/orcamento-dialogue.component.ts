@@ -54,7 +54,7 @@ export class OrcamentoDialogueComponent implements OnInit {
   }
 
   showFail() {
-    this.toastr.error("Verificar dados e produto e cliente", "Erro ao cadastrar orçamento");
+    this.toastr.error("Verificar dados de produto e cliente", "Erro ao cadastrar orçamento");
   }
 
   adicionar() {
@@ -108,7 +108,7 @@ export class OrcamentoDialogueComponent implements OnInit {
   styleUrls: ['./orcamento-dialogue.component.scss']
 })
 
-export class OrcamentoProdutoSearchDialogueComponent { 
+export class OrcamentoProdutoSearchDialogueComponent {
 
   produto: Produto = new Produto();
   listaProduto: Produto[] = [];

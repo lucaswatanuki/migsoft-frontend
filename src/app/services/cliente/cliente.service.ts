@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Cliente } from './../../model/cliente.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class ClienteService {
 
-  private url = 'http://localhost:8080/api/cliente/';
+  private url = environment.api + 'api/cliente/';
 
   constructor(private http: HttpClient) { }
 

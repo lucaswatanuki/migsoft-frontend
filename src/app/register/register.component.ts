@@ -2,8 +2,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SignUpInfo } from './../auth/signup-info';
 import { AuthService } from './../auth/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -12,12 +12,14 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
 
-  form: any = {};
+
   signupInfo: SignUpInfo;
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
   formularioCadastro: FormGroup;
+
+  @ViewChild(FormGroupDirective, { static: true }) form: FormGroupDirective;
 
   constructor(private authService: AuthService, private fbuilder: FormBuilder, private toast: ToastrService, private router: Router) { }
 
@@ -31,7 +33,7 @@ export class RegisterComponent implements OnInit {
   }
 
   showSuccess() {
-    this.toast.show("Conta criada com sucesso");
+    this.toast.success('Conta criada com sucesso');
   }
 
   login() {
@@ -39,7 +41,7 @@ export class RegisterComponent implements OnInit {
   }
 
   showFail() {
-    this.toast.show("Erro ao cadastrar conta");
+    this.toast.error('Erro ao cadastrar conta');
   }
   onSubmit() {
     console.log(this.formularioCadastro);
@@ -57,7 +59,7 @@ export class RegisterComponent implements OnInit {
         this.isSignedUp = true;
         this.isSignUpFailed = false;
         this.showSuccess();
-        this.formularioCadastro.reset();
+        this.form.resetForm();
       },
       error => {
         console.log(error);

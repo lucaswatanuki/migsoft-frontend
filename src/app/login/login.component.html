@@ -8,14 +8,16 @@
    <form name="form" (ngSubmit)="f.form.valid" #f="ngForm">
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Username</mat-label>
           <input matInput type="text" placeholder="Username" [(ngModel)]="form.username" name="username"
             #username="ngModel" required>
         </mat-form-field>
       </div>
       <div class="form-group">
         <mat-form-field  appearance="outline" style="width: 100%;">
+            <mat-label>Password</mat-label>
             <input matInput type="password" placeholder="Password" [(ngModel)]="form.password" name="password"
-              #password="ngModel" required minlength="6">
+              #password="ngModel" required minlength="6" required>
           </mat-form-field>
       </div>
       <div class="form-group">

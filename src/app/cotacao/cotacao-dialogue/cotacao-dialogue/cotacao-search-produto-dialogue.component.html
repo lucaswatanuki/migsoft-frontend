@@ -1,5 +1,5 @@
 <div>
-  <h3>Selecionar Cliente</h3>
+  <h3>Selecionar Produto</h3>
 
   <mat-form-field style="width: 100%;" appearance="outline">
     <mat-label>Filtrar</mat-label>
@@ -8,21 +8,31 @@
 
   <table mat-table [dataSource]="dataSource">
 
+    <!-- SeatId Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let row"> {{row.id}} </td>
     </ng-container>
 
+    <!-- Requester Column -->
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef> NOME </th>
       <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="cpf">
-      <th mat-header-cell *matHeaderCellDef> CPF </th>
-      <td mat-cell *matCellDef="let row"> {{row.cpf}} </td>
+    <!-- Location Column -->
+    <ng-container matColumnDef="preco">
+      <th mat-header-cell *matHeaderCellDef> PREÇO </th>
+      <td mat-cell *matCellDef="let row"> {{row.preco | currency}} </td>
     </ng-container>
 
+    <!-- Project name Column -->
+    <ng-container matColumnDef="qtdEstoque">
+      <th mat-header-cell *matHeaderCellDef> QTD ESTOQUE </th>
+      <td mat-cell *matCellDef="let row"> {{row.qtdEstoque}} </td>
+    </ng-container>
+
+    <!-- Select Column -->
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> SELECT </th>
       <td mat-cell *matCellDef="let row">

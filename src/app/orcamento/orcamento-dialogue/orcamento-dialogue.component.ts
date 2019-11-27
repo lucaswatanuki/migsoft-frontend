@@ -168,7 +168,7 @@ export class OrcamentoClienteSearchDialogueComponent {
 
   nextpage = true;
 
-  displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'select'];
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'select'];
   dataSource: MatTableDataSource<Request>;
   selection = new SelectionModel<Request>(true, []);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

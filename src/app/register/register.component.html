@@ -10,7 +10,8 @@
     <form name="form" [formGroup]='formularioCadastro'  #f="ngForm">
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput type="text" formControlName="name" placeholder="Nome Completo">
+            <mat-label>Nome Completo</mat-label>
+          <input matInput type="text" formControlName="name" placeholder="Nome Completo" required>
           <mat-error *ngIf="formularioCadastro.get('email').hasError('required')">
             Nome <strong>obrigatório</strong>
           </mat-error>
@@ -19,7 +20,8 @@
 
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
-          <input  matInput type="text" formControlName="username" placeholder="Username">
+            <mat-label>Username</mat-label>
+          <input  matInput type="text" formControlName="username" placeholder="Username" required>
           <mat-error *ngIf="formularioCadastro.get('email').hasError('required')">
             Username <strong>obrigatório</strong>
           </mat-error>
@@ -28,6 +30,7 @@
 
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Email</mat-label>
           <input matInput placeholder="Email" formControlName="email">
           <mat-error
             *ngIf="formularioCadastro.get('email').hasError('email') && !formularioCadastro.get('email').hasError('required')">
@@ -41,7 +44,8 @@
 
       <div class="form-group">
         <mat-form-field appearance="outline" style="width: 100%;">
-          <input matInput type="password" placeholder="Senha" formControlName="password">
+            <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Password" formControlName="password">
           <mat-error
             *ngIf="formularioCadastro.get('password').hasError('minLength') && !formularioCadastro.get('password').hasError('required')">
             Please enter a valid password
@@ -53,7 +57,7 @@
       </div>
       <br>
       <div class="form-group">
-        <button mat-raised-button color="primary" (click)="onSubmit()" style="margin-right: 20px;"> Registrar </button>
+        <button mat-raised-button color="primary" (click)="onSubmit(form)" style="margin-right: 20px;"> Registrar </button>
         <button mat-raised-button color="warn" (click)="login()"> Login </button>
       </div>
     </form>

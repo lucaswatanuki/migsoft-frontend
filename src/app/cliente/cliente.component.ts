@@ -7,6 +7,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Cliente } from './../model/cliente.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, FormControl, FormGroupDirective } from '@angular/forms';
+import { ValidateBrService } from 'angular-validate-br';
 
 @Component({
   selector: 'app-cliente',
@@ -15,6 +17,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class ClienteComponent implements OnInit {
 
+  formCliente: FormGroup;
   cliente: Cliente = new Cliente();
   clienteList: MatTableDataSource<any>;
   pessoa: Pessoa = new Pessoa();
@@ -22,20 +25,33 @@ export class ClienteComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nome', 'cpf', 'endereco', 'email', 'button'];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(FormGroupDirective, {static: true}) form: FormGroupDirective;
 
 
-  constructor(private clienteService: ClienteService, public dialog: MatDialog) { }
+  constructor(private validaBR: ValidateBrService, private fbuilder: FormBuilder, private clienteService: ClienteService, public dialog: MatDialog, private toast: ToastrService) { }
 
   ngOnInit() {
+    this.formCliente = this.fbuilder.group({
+      nome: new FormControl('', [Validators.required]),
+      cpf: new FormControl('', [Validators.required, this.validaBR.cpf, Validators.maxLength(14)]),
+      telefone: new FormControl('', [Validators.required, Validators.maxLength(11)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      endereco: new FormControl('', [Validators.required])
+    });
     this.getCliente();
   }
 
   adicionar() {
     console.log(this.cliente);
     this.clienteService.adicionarCliente(this.cliente).subscribe( data => {
-      window.alert("Cliente Adicionado com sucesso!");
+      this.toast.success('Cliente Adicionado com sucesso!');
+      this.form.resetForm();
       this.getCliente();
-    });
+    },
+      error => {
+        this.toast.error('Verificar dados inseridos', 'Erro');
+      }
+    );
   }
 
 
@@ -48,6 +64,9 @@ export class ClienteComponent implements OnInit {
     this.clienteService.delete(cliente).subscribe(
       data => {
         this.getCliente();
+      },
+      error => {
+        this.toast.error('Impossível excluir cliente vinculado a pelo menos uma venda', 'Erro');
       }
     );
   }

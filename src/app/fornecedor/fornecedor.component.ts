@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { FornecedorDialogueComponent } from './fornecedor-dialogue/fornecedor-dialogue.component';
 import { DialogueComponent } from './../produto/dialogue/dialogue.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,7 +23,7 @@ export class FornecedorComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(private fornecedorService: FornecedorService, public dialog: MatDialog) {
+  constructor(private fornecedorService: FornecedorService, public dialog: MatDialog, private toast: ToastrService) {
    }
 
   ngOnInit() {
@@ -37,7 +38,11 @@ export class FornecedorComponent implements OnInit {
   deletar(fornecedor: Fornecedor) {
     this.fornecedorService.delete(fornecedor).subscribe(
       data => {
+        this.toast.success('Fornecedor excluído');
         this.getFornecedor();
+      },
+      error => {
+        this.toast.error('Fornecedor já vinculado a cotação/pedido', 'Erro');
       }
     );
   }

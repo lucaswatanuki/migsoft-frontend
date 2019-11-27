@@ -1,35 +1,38 @@
 <h1 mat-dialog-title *ngIf="data.element">Editar Cliente</h1>
 
-<div mat-dialog-content>
+<form [formGroup]='formCliente'>
   <div>
   <mat-form-field appearance="outline">
-    <input [(ngModel)]="cliente.nome" matInput placeholder="Nome" name="cliente.nome">
+      <mat-label>Nome Completo</mat-label>
+    <input [(ngModel)]="cliente.nome" matInput placeholder="Nome" formControlName="nome" required>
   </mat-form-field>
 </div>
 <div>
   <mat-form-field appearance="outline">
-    <input [(ngModel)]="cliente.cpf" matInput placeholder="CPF" name="cliente.cpf">
+      <mat-label>CPF</mat-label>
+    <input [(ngModel)]="cliente.cpf" matInput placeholder="CPF" formControlName="cpf" required>
   </mat-form-field>
 </div>
 <div>
   <mat-form-field appearance="outline">
-    <input [(ngModel)]="cliente.telefone" matInput placeholder="Telefone" name="cliente.telefone">
+      <mat-label>Telefone</mat-label>
+    <input [(ngModel)]="cliente.telefone" matInput placeholder="Telefone" formControlName="telefone" required>
   </mat-form-field>
 </div>
 <div>
   <mat-form-field appearance="outline">
-    <input [(ngModel)]="cliente.endereco" matInput placeholder="Endereço" name="cliente.endereco">
+      <mat-label>Endereço</mat-label>
+    <input [(ngModel)]="cliente.endereco" matInput placeholder="Endereço" formControlName="endereco">
   </mat-form-field>
 </div>
 <div>
   <mat-form-field appearance="outline">
-    <input [(ngModel)]="cliente.email" matInput placeholder="Email" name="cliente.email">
+      <mat-label>Email</mat-label>
+    <input [(ngModel)]="cliente.email" matInput placeholder="Email" formControlName="email">
   </mat-form-field>
 </div>
-
-
-</div>
+</form>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-raised-button color="primary" (click)="update(cliente)" *ngIf="data.element"> Salvar </button>
+  <button [disabled]="!formCliente.valid" mat-raised-button color="primary" (click)="update(cliente)"> Salvar </button>
 </div>

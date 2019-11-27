@@ -8,6 +8,7 @@
     <mat-icon aria-hidden="false" aria-label="ADD icon">add</mat-icon>
   </button>
   <mat-form-field style="width: 30%;" appearance="outline" >
+    <mat-label>Filtrar</mat-label>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
   </mat-form-field>
 </div>
@@ -57,7 +58,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-          <button mat-raised-button style="background-color: greenyellow;" (click)="aprovar(element)">Aprovar</button>
+          <button mat-raised-button style="background-color: greenyellow;" (click)="aprovar(element)" >Aprovar</button>
         <button mat-raised-button color="primary" (click)="openDialog(element)" style="margin-left: 10px">
           <mat-icon aria-hidden="false" aria-label="edit icon">edit</mat-icon>
         </button>

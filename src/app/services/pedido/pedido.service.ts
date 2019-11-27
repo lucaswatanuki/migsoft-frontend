@@ -27,6 +27,13 @@ export class PedidoService {
     return this.http.put<Pedido>(this.url + pedido.id, pedido);
   }
 
+  updateStatus(pedido: Pedido): Observable<any> {
+    return this.http.put<Pedido>(this.url + 'status/update/' + pedido.id, pedido);
+  }
+
+  cancelarPedido(pedido: Pedido): Observable<any> {
+    return this.http.put<Pedido>(this.url + 'status/cancel/' + pedido.id, pedido);
+  }
 
   delete(pedido: Pedido) {
     return this.http.delete<Pedido>(this.url + pedido.id);

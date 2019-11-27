@@ -1,13 +1,17 @@
+import { Fornecedor } from './../../../model/fornecedor.model';
+import { MatPaginator } from '@angular/material/paginator';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Produto } from './../../../model/produto.model';
 import { FornecedorService } from './../../../services/fornecedor/fornecedor.service';
 import { ProdutoService } from './../../../services/produto/produto.service';
 import { CotacaoService } from './../../../services/cotacao/cotacao.service';
 import { DialogueComponent } from './../../../produto/dialogue/dialogue.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Cotacao } from './../../../model/cotacao.model';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-cotacao-dialogue',
@@ -15,20 +19,30 @@ import { Component, OnInit, Inject } from '@angular/core';
   styleUrls: ['./cotacao-dialogue.component.scss']
 })
 export class CotacaoDialogueComponent implements OnInit {
+
+  formCotacao: FormGroup;
   cotacao: Cotacao = new Cotacao();
   produto: Produto = new Produto();
-  foundProduto: boolean = false;
   fornecedorList: any[] = new Array();
-  nomeProduto: String;
+
 
   constructor(private produtoService: ProdutoService,
     private toastr: ToastrService,
     private fornecedorService: FornecedorService,
     public dialogRef: MatDialogRef<CotacaoDialogueComponent>,
     private cotacaoService: CotacaoService,
-    @Inject(MAT_DIALOG_DATA) public data) { }
+    @Inject(MAT_DIALOG_DATA) public data,
+    public dialog: MatDialog,
+    private fbuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.formCotacao = this.fbuilder.group({
+      data: new FormControl('', [Validators.required]),
+      produto: new FormControl('', [Validators.required]),
+      fornecedor: new FormControl('', [Validators.required]),
+      quantidade: new FormControl('', [Validators.required])
+    });
+
     this.loadFornecedores();
     if (this.data.element) {
       this.cotacao = this.data.element;
@@ -59,9 +73,9 @@ export class CotacaoDialogueComponent implements OnInit {
       this.showSuccess('Cotação adicionada com sucesso');
       this.dialogRef.close();
     },
-    error => {
-      this.showFail();
-    }
+      error => {
+        this.showFail();
+      }
     );
 
   }
@@ -89,20 +103,142 @@ export class CotacaoDialogueComponent implements OnInit {
     );
   }
 
-  findProdutoByName(name: String) {
+  openDialogProduto(): void {
+    const dialogRef = this.dialog.open(CotacaoProdutoSearchDialogueComponent, {
+      data: {
+        width: 'auto',
+        height: 'auto',
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.formCotacao.get('produto').setValue(result.nome);
+    });
+  }
+
+  openDialogFornecedor(): void {
+    const dialogRef = this.dialog.open(CotacaoFornecedorSearchDialogueComponent, {
+      data: {
+        width: 'auto',
+        height: 'auto',
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.formCotacao.get('fornecedor').setValue(result.nomeFantasia);
+    });
+  }
+}
+
+
+//SUBCOMPONENT SEARCHING TABLE
+@Component({
+  selector: 'cotacao-search-produto-dialogue',
+  templateUrl: './cotacao-search-produto-dialogue.component.html',
+  styleUrls: ['./cotacao-dialogue.component.scss']
+})
+
+export class CotacaoProdutoSearchDialogueComponent {
+
+  produto: Produto = new Produto();
+  listaProduto: Produto[] = [];
+
+  nextpage = true;
+
+  displayedColumns: string[] = ['id', 'nome', 'preco', 'qtdEstoque', 'select'];
+  dataSource: MatTableDataSource<Request>;
+  selection = new SelectionModel<Request>(true, []);
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  dataGrid: Request[];
+  selection3 = new SelectionModel<Request>(false, []);
+  errorMsg: string;
+
+  constructor(
+    public dialogRef: MatDialogRef<CotacaoProdutoSearchDialogueComponent>,
+    private produtoService: ProdutoService,
+    public dialog: MatDialog) {
+    this.dataSource = new MatTableDataSource(this.dataGrid);
+  }
+
+  ngOnInit() {
+    this.getProdutos();
+  }
+
+  applyFilter(value: string) {
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
+
+  public getProdutos(): void {
     this.produtoService.getListaProdutos().subscribe(
       data => {
-        data.forEach(element => {
-          if (name === element['nome']) {
-            this.foundProduto = true;
-            this.cotacao.produto = element;
-            return;
-          } else {
-            this.foundProduto = false;
-          }
-        });
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+      },
+      error => {
+        this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;
       }
     );
   }
 
+  selectRow(row) {
+    console.log(row);
+    this.dialogRef.close(row);
+  }
+}
+
+//SUBCOMPONENT SEARCHING TABLE
+@Component({
+  selector: 'cotacao-search-fornecedor-dialogue',
+  templateUrl: './cotacao-search-fornecedor-dialogue.component.html',
+  styleUrls: ['./cotacao-dialogue.component.scss']
+})
+
+export class CotacaoFornecedorSearchDialogueComponent {
+
+  fornecedor: Fornecedor = new Fornecedor();
+  fornecedorList: Fornecedor[] = [];
+
+  nextpage = true;
+
+  displayedColumns: string[] = ['id', 'nomeFantasia', 'cnpj', 'select'];
+  dataSource: MatTableDataSource<Request>;
+  selection = new SelectionModel<Request>(true, []);
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  dataGrid: Request[];
+  selection3 = new SelectionModel<Request>(false, []);
+  errorMsg: string;
+
+  constructor(
+    public dialogRef: MatDialogRef<CotacaoFornecedorSearchDialogueComponent>,
+    private fornecedorService: FornecedorService,
+    public dialog: MatDialog) {
+    this.dataSource = new MatTableDataSource(this.dataGrid);
+  }
+
+  ngOnInit() {
+    this.getFornecedor();
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+  public getFornecedor(): void {
+    this.fornecedorService.getListaFornecedor().subscribe(
+      data => {
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+      },
+      error => {
+        this.errorMsg = `${error.status}: ${JSON.parse(error.error).message}`;
+      }
+    );
+  }
+
+  selectRow(row) {
+    console.log(row);
+    this.dialogRef.close(row);
+  }
 }

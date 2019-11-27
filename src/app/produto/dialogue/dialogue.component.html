@@ -2,22 +2,17 @@
 <h1 mat-dialog-title *ngIf="data.element">Editar Produto</h1>
 <form name="form" [formGroup]='formularioProduto'>
   <mat-form-field appearance="outline">
-    <input [(ngModel)]="produto.nome" formControlName="nome" matInput placeholder="Nome">
-    <mat-error *ngIf="formularioProduto.get('nome').hasError('required')">
-        Nome do produto<strong> obrigatório</strong>
-      </mat-error>
+    <mat-label>Nome do produto</mat-label>
+    <input [(ngModel)]="produto.nome" formControlName="nome" matInput placeholder="Nome" required>
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <input [(ngModel)]="produto.preco" formControlName="preco" matInput placeholder="Preco">
-    <mat-error *ngIf="formularioProduto.get('preco').hasError('required')">
-        Preço<strong> obrigatório</strong>
-      </mat-error>
+    <mat-label>Preço</mat-label>
+    <input [(ngModel)]="produto.preco" formControlName="preco" matInput placeholder="Preco" required>
   </mat-form-field>
   <mat-form-field style="width: 100px;" appearance="outline">
-    <input [(ngModel)]="produto.qtdEstoque"  formControlName="quantidade" matInput placeholder="Qtd" name="produto.qtdEstoque">
-    <mat-error *ngIf="formularioProduto.get('quantidade').hasError('required')">
-        Quantidade <strong> obrigatória</strong>
-      </mat-error>
+    <mat-label>Qtd</mat-label>
+    <input [(ngModel)]="produto.qtdEstoque" formControlName="quantidade" matInput placeholder="Qtd"
+      name="produto.qtdEstoque" required>
   </mat-form-field>
 </form>
 

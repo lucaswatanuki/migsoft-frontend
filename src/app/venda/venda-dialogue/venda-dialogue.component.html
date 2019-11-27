@@ -4,7 +4,8 @@
   <form [formGroup]='formularioVenda' #form="ngForm">
   <div>
     <mat-form-field appearance="outline">
-      <input matInput [matDatepicker]="picker" placeholder="Data" formControlName="data">
+        <mat-label>Data</mat-label>
+      <input [(ngModel)]="venda.data" matInput [matDatepicker]="picker" placeholder="Data" formControlName="data" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -12,21 +13,24 @@
 
   <div>
     <mat-form-field appearance="outline">
-      <input matInput type="text" formControlName="produto" placeholder="Selecionar Produto" (click)="openDialogProduto()">
+        <mat-label>Produto</mat-label>
+      <input [(ngModel)]="venda.produto" matInput type="text" formControlName="produto" placeholder="Selecionar Produto" (click)="openDialogProduto()" required>
     </mat-form-field>
   </div>
 
 
   <div>
       <mat-form-field appearance="outline">
-        <input matInput type="text" formControlName="cliente" placeholder="Selecionar Cliente" (click)="openDialogCliente()">
+          <mat-label>Cliente</mat-label>
+        <input [(ngModel)]="venda.cliente" matInput type="text" formControlName="cliente" placeholder="Selecionar Cliente" (click)="openDialogCliente()" required>
       </mat-form-field>
     </div>
 
 
   <div>
     <mat-form-field appearance="outline">
-      <input matInput type="text" placeholder="Qtd" formControlName="quantidade">
+        <mat-label>Quantidade</mat-label>
+      <input [(ngModel)]="venda.quantidade" matInput type="text" placeholder="Qtd" formControlName="quantidade" required>
     </mat-form-field>
   </div>
 </form>

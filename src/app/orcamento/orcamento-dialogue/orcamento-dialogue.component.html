@@ -4,7 +4,8 @@
 <form [formGroup]='formularioOrcamento' #form="ngForm">
     <div>
         <mat-form-field appearance="outline">
-            <input matInput [matDatepicker]="picker" placeholder="Data" formControlName="data">
+            <mat-label>Data</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="Data" formControlName="data" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -12,22 +13,25 @@
 
     <div>
         <mat-form-field appearance="outline">
+            <mat-label>Produto</mat-label>
             <input matInput type="text" formControlName="produto" placeholder="Selecionar Produto"
-                (click)="openDialogProduto()">
+                (click)="openDialogProduto()" required>
         </mat-form-field>
     </div>
 
 
     <div>
         <mat-form-field appearance="outline">
+            <mat-label>Cliente</mat-label>
             <input matInput type="text" formControlName="cliente" placeholder="Selecionar Cliente"
-                (click)="openDialogCliente()">
+                (click)="openDialogCliente()" required>
         </mat-form-field>
     </div>
 
 
     <div>
         <mat-form-field appearance="outline">
+            <mat-label>Quantidade</mat-label>
             <input matInput type="text" placeholder="Qtd" formControlName="quantidade">
         </mat-form-field>
     </div>

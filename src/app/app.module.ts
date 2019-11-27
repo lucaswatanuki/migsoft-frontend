@@ -46,18 +46,20 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PedidoDialogueComponent } from './pedido/pedido-dialogue/pedido-dialogue.component';
-import { MatDatepickerModule, MatSelectModule, MatRadioModule } from '@angular/material';
+import { MatDatepickerModule, MatSelectModule, MatRadioModule, MatAccordion, MatExpansionModule } from '@angular/material';
 import { ClienteDialogueComponent } from './cliente/cliente-dialogue/cliente-dialogue/cliente-dialogue.component';
 import { VendaDialogueComponent, ProdutoSearchDialogueComponent, ClienteSearchDialogueComponent } from './venda/venda-dialogue/venda-dialogue.component';
 import { OrcamentoProdutoSearchDialogueComponent, OrcamentoClienteSearchDialogueComponent } from './orcamento/orcamento-dialogue/orcamento-dialogue.component';
 import { ProducaoComponent } from './producao/producao.component';
 import { ProducaoDialogueComponent } from './producao/producao-dialogue/producao-dialogue.component';
-import { CotacaoDialogueComponent } from './cotacao/cotacao-dialogue/cotacao-dialogue/cotacao-dialogue.component';
+import { CotacaoDialogueComponent, CotacaoProdutoSearchDialogueComponent, CotacaoFornecedorSearchDialogueComponent } from './cotacao/cotacao-dialogue/cotacao-dialogue/cotacao-dialogue.component';
 import { VendaService } from './services/venda/venda.service';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { OrcamentoDialogueComponent } from './orcamento/orcamento-dialogue/orcamento-dialogue.component';
+import { AngularValidateBrLibModule } from 'angular-validate-br';
+
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import { OrcamentoDialogueComponent } from './orcamento/orcamento-dialogue/orcam
     ClienteSearchDialogueComponent,
     OrcamentoDialogueComponent,
     OrcamentoProdutoSearchDialogueComponent,
-    OrcamentoClienteSearchDialogueComponent
+    OrcamentoClienteSearchDialogueComponent,
+    CotacaoProdutoSearchDialogueComponent,
+    CotacaoFornecedorSearchDialogueComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -114,7 +118,6 @@ import { OrcamentoDialogueComponent } from './orcamento/orcamento-dialogue/orcam
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    ReactiveFormsModule,
     MatNativeDateModule,
     MatAutocompleteModule,
     MatDatepickerModule,
@@ -122,6 +125,7 @@ import { OrcamentoDialogueComponent } from './orcamento/orcamento-dialogue/orcam
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
+    AngularValidateBrLibModule
   ],
   entryComponents: [DialogueComponent,
      FornecedorDialogueComponent,
@@ -134,7 +138,9 @@ import { OrcamentoDialogueComponent } from './orcamento/orcamento-dialogue/orcam
     OrcamentoProdutoSearchDialogueComponent,
     OrcamentoClienteSearchDialogueComponent,
      ClienteSearchDialogueComponent,
-    OrcamentoDialogueComponent
+    OrcamentoDialogueComponent,
+    CotacaoProdutoSearchDialogueComponent,
+    CotacaoFornecedorSearchDialogueComponent
       ],
   providers: [AuthGuardService,
     httpInterceptorProviders,

@@ -2,46 +2,69 @@
 <h1 mat-dialog-title *ngIf="data.element">Editar Fornecedor</h1>
 <mat-tab-group>
   <mat-tab label="Fornecedor">
-      <br>
+    <br>
       <div style="height: 290px;">
-      <div>
-        <mat-form-field appearance="outline">
-          <input [(ngModel)]="fornecedor.nomeFantasia" matInput placeholder="Nome Fantasia"
-            name="fornecedor.nomeFantasia">
-        </mat-form-field>
+        <form [formGroup]="formFornecedor">
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Nome Fantasia</mat-label>
+            <input [(ngModel)]="fornecedor.nomeFantasia" matInput placeholder="Nome Fantasia"
+              formControlName="nomeFantasia" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>CNPJ</mat-label>
+            <input [(ngModel)]="fornecedor.cnpj" matInput placeholder="CNPJ" formControlName="cnpj" required>
+            <mat-hint>XX.XXX.XXX/XXXX-XX</mat-hint>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Endereço</mat-label>
+            <input [(ngModel)]="fornecedor.endereco" matInput placeholder="Endereço" formControlName="endereco">
+          </mat-form-field>
+        </div>
+      </form>
+        <div>
+          <mat-radio-group aria-label="atividade"  aria-required="mat-radio-button">
+            <mat-radio-button [(ngModel)]="fornecedor.atividade" value="Ativo" checked style="margin-right: 10px;">Ativo</mat-radio-button>
+            <mat-radio-button [(ngModel)]="fornecedor.atividade" value="Inativo">Inativo</mat-radio-button>
+          </mat-radio-group>
+        </div>
       </div>
-      <div>
-        <mat-form-field appearance="outline">
-          <input [(ngModel)]="fornecedor.cnpj" matInput placeholder="CNPJ" name="fornecedor.cnpj">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="outline">
-          <input [(ngModel)]="fornecedor.endereco" matInput placeholder="Endereço" name="fornecedor.endereco">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-radio-group aria-label="atividade" [(ngModel)]="fornecedor.atividade">
-          <mat-radio-button value="Ativo" style="margin-right: 10px;">Ativo</mat-radio-button>
-          <mat-radio-button value="Inativo">Inativo</mat-radio-button>
-        </mat-radio-group>
-      </div>
-    </div>
   </mat-tab>
 
   <mat-tab label="Contato">
+    <br>
+    <form [formGroup]="formFornecedor">
+    <div>
       <mat-form-field appearance="outline">
-        <input [(ngModel)]="fornecedor.nome" matInput placeholder="Nome" name="fornecedor.nome">
+        <mat-label>Nome</mat-label>
+        <input [(ngModel)]="fornecedor.nome" matInput placeholder="Nome" formControlName="nome" required>
       </mat-form-field>
+    </div>
+    <div>
       <mat-form-field appearance="outline">
-        <input [(ngModel)]="fornecedor.cpf" matInput placeholder="CPF" name="fornecedor.telefone">
+        <mat-label>CPF</mat-label>
+        <input [(ngModel)]="fornecedor.cpf" matInput placeholder="CPF" formControlName="cpf" required>
+        <mat-hint>XXX.XXX.XXX-XX</mat-hint>
       </mat-form-field>
+    </div>
+    <div>
       <mat-form-field appearance="outline">
-        <input [(ngModel)]="fornecedor.telefone" matInput placeholder="Telefone" name="fornecedor.telefone">
+        <mat-label>Telefone</mat-label>
+        <input [(ngModel)]="fornecedor.telefone" matInput placeholder="Telefone" formControlName="contatoTelefone"
+          required>
       </mat-form-field>
+    </div>
+    <div>
       <mat-form-field appearance="outline">
-        <input [(ngModel)]="fornecedor.email" matInput placeholder="Email" name="fornecedor.email">
+        <mat-label>Email</mat-label>
+        <input [(ngModel)]="fornecedor.email" matInput placeholder="Email" formControlName="email">
       </mat-form-field>
+    </div>
+    </form>
   </mat-tab>
 </mat-tab-group>
 <div mat-dialog-actions>

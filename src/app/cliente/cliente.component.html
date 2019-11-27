@@ -6,30 +6,38 @@
 <mat-tab-group>
   <mat-tab label="Cadastro">
     <br>
-    <div>
+    <form [formGroup]='formCliente'>
       <mat-form-field style="margin-right: 10%; width: 50%" appearance="outline">
-        <input [(ngModel)]="cliente.nome" matInput placeholder="Nome Completo" name="cliente.nome">
+        <mat-label>Nome Completo</mat-label>
+        <input [(ngModel)]="cliente.nome" matInput formControlName="nome" required>
       </mat-form-field>
       <mat-form-field style="width: 25%;" appearance="outline">
-        <input [(ngModel)]="cliente.cpf" matInput placeholder="CPF" name="cliente.cpf">
+          <mat-label>CPF</mat-label>
+        <input [(ngModel)]="cliente.cpf" matInput placeholder="CPF" formControlName="cpf" class="form-control" required>
+        <mat-hint>xxx.xxx.xxx-xx</mat-hint>
+        <mat-error *ngIf="formCliente.get('cpf').hasError('required')">
+            CPF <strong>obrigatório</strong>
+          </mat-error>
       </mat-form-field>
       <br>
+
       <mat-form-field style="width: 85%;" appearance="outline">
-        <input [(ngModel)]="cliente.endereco" matInput placeholder="Endereço" name="cliente.endereco">
+          <mat-label>Endereço</mat-label>
+        <input [(ngModel)]="cliente.endereco" matInput placeholder="Endereço" formControlName="endereco">
       </mat-form-field>
       <br>
       <mat-form-field style="margin-right: 10%; width: 50%;" appearance="outline">
-        <input [(ngModel)]="cliente.email" matInput placeholder="Email" name="cliente.email">
+          <mat-label>Email</mat-label>
+        <input [(ngModel)]="cliente.email" matInput placeholder="Email" formControlName="email">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <input [(ngModel)]="cliente.telefone" matInput placeholder="Telefone" name="cliente.telefone">
+          <mat-label>Telefone</mat-label>
+        <input [(ngModel)]="cliente.telefone" matInput placeholder="Telefone" formControlName="telefone" required>
       </mat-form-field>
-    </div>
-
-    <br>
-
+    </form>
+  
     <div mat-dialog-actions>
-      <button mat-raised-button color="primary" (click)="adicionar()"> Salvar </button>
+      <button [disabled]="!formCliente.valid" mat-raised-button color="primary" (click)="adicionar(form)"> Salvar </button>
     </div>
   </mat-tab>
 
@@ -37,6 +45,7 @@
     <br>
     <div>
       <mat-form-field style="width: 30%;" appearance="outline">
+          <mat-label>Filtrar</mat-label>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
       </mat-form-field>
     </div>

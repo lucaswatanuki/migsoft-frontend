@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate {
     if (this.authService.getToken()) {
       return true;
     }
-    this.toast.show('Usuário não autenticado! Realizar login.');
+    this.toast.error('Usuário não autenticado! Realizar login.', 'Erro');
     this.router.navigate(['/auth/login']);
     return false;
   }

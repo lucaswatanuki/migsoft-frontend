@@ -1,33 +1,30 @@
 <h1 mat-dialog-title *ngIf="!data.element">Adicionar Cotação</h1>
 <h1 mat-dialog-title *ngIf="data.element">Editar Cotação</h1>
 
+<form [formGroup]="formCotacao">
   <div>
     <mat-form-field appearance="outline">
-      <input [(ngModel)]="cotacao.data" matInput [matDatepicker]="picker" placeholder="Data"
-        name="cotacao.data">
+      <input [(ngModel)]="cotacao.data" matInput [matDatepicker]="picker" placeholder="Data" formControlName="data">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </div>
   <div *ngIf="!data.element">
     <mat-form-field appearance="outline">
-      <input matInput (keyup)="findProdutoByName($event.target.value)" placeholder="Produto" required>
+        <input [(ngModel)]="cotacao.produto" matInput type="text" formControlName="produto" placeholder="Selecionar Produto" (click)="openDialogProduto()" required>
     </mat-form-field>
   </div>
   <div *ngIf="!data.element">
-    <mat-form-field appearance="outline">
-      <mat-select placeholder="Fornecedor" [(ngModel)]="cotacao.fornecedor" name="cotacao.fornecedor">
-        <mat-option *ngFor="let option of fornecedorList" [value]="option">
-          {{option.nomeFantasia}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+      <mat-form-field appearance="outline">
+          <input [(ngModel)]="cotacao.fornecedor" matInput type="text" formControlName="fornecedor" placeholder="Selecionar Fornecedor" (click)="openDialogFornecedor()" required>
+      </mat-form-field>
+    </div>
   <div>
     <mat-form-field appearance="outline" style="width: 100px;">
-      <input [(ngModel)]="cotacao.quantidade" matInput placeholder="Qtd" name="cotacao.quantidade">
+      <input [(ngModel)]="cotacao.quantidade" matInput placeholder="Qtd" formControlName="quantidade">
     </mat-form-field>
   </div>
+</form>
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>

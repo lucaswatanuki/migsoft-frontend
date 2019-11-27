@@ -1,10 +1,8 @@
+import { ToastrService } from 'ngx-toastr';
 import { Produto } from './../model/produto.model';
-import { element } from 'protractor';
 import { DialogueComponent } from './dialogue/dialogue.component';
-import { Observable } from 'rxjs';
 import { ProdutoService } from '../services/produto/produto.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -23,7 +21,7 @@ export class ProdutoComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(private produtoService: ProdutoService, public dialog: MatDialog) { }
+  constructor(private produtoService: ProdutoService, public dialog: MatDialog, private toast: ToastrService) { }
 
   ngOnInit() {
     this.getProdutos();
@@ -36,7 +34,11 @@ export class ProdutoComponent implements OnInit {
   deletar(produto: Produto) {
     this.produtoService.delete(produto).subscribe(
       data => {
+        this.toast.success('Produto excluído');
         this.getProdutos();
+      },
+      error => {
+        this.toast.error('Produto vinculado a cotação/venda', 'Erro');
       }
     );
   }
@@ -74,6 +76,4 @@ export class ProdutoComponent implements OnInit {
       }
     );
   }
-
-  //pedido.produto.id
 }

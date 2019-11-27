@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
 import { CotacaoDialogueComponent } from './cotacao-dialogue/cotacao-dialogue/cotacao-dialogue.component';
 import { MatTableDataSource } from '@angular/material/table';
@@ -23,7 +24,7 @@ export class CotacaoComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private cotacaoService: CotacaoService, public dialog: MatDialog) { }
+  constructor(private cotacaoService: CotacaoService, public dialog: MatDialog, private toast: ToastrService) { }
 
   ngOnInit() {
     this.getCotacao();
@@ -62,22 +63,32 @@ export class CotacaoComponent implements OnInit {
       );
     }
     else {
-      window.alert('Cotação já aprovada');
+      this.toast.show('Cotação já aprovada');
     }
   }
 
   aprovar(cotacao: Cotacao) {
     console.log(this.cotacao);
-    this.cotacaoService.updateStatus(cotacao).subscribe(
-      data => {
-        this.getCotacao();
-      });
+    if (cotacao.status === 'Aprovado') {
+      this.toast.show('Cotação já aprovada');
+    } else {
+      this.cotacaoService.updateStatus(cotacao).subscribe(
+        data => {
+          this.toast.success('Cotação aprovada com sucesso');
+          this.getCotacao();
+        });
+    }
   }
 
   deletar(cotacao: Cotacao) {
-    this.cotacaoService.delete(cotacao).subscribe(
-      data => {
-        this.getCotacao();
-      });
+    if (cotacao.status === 'Aprovado') {
+      this.toast.error('Não é possível excluir cotações aprovadas', 'Erro');
+    } else {
+      this.cotacaoService.delete(cotacao).subscribe(
+        data => {
+          this.getCotacao();
+          this.toast.success('Cotação excluída');
+        });
+    }
   }
 }

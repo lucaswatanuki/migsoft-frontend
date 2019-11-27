@@ -9,15 +9,25 @@
     <mat-toolbar color="warn" style="justify-content: center;">MIG</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item class="nav-link" routerLink="home" *ngIf="authority === 'user'">Home </a>
+      <mat-divider></mat-divider>
       <a mat-list-item class="nav-link" routerLink="produto" *ngIf="authority === 'user'">Produto</a>
+      <mat-divider></mat-divider>
       <a mat-list-item class="nav-link" routerLink="fornecedor" *ngIf="authority === 'user'">Fornecedor</a>
+      <mat-divider></mat-divider>
       <a mat-list-item class="nav-link" routerLink="cliente" *ngIf="authority === 'user'">Cliente</a>
+      <mat-divider></mat-divider>
       <a mat-list-item class="nav-link" routerLink="cotacao" *ngIf="authority === 'user'">Cotação</a>
+      <mat-divider></mat-divider>
       <a mat-list-item class="nav-link" routerLink="orcamento" *ngIf="authority === 'user'">Orçamento</a>
+      <mat-divider></mat-divider>
       <a mat-list-item class="nav-link" routerLink="pedido" *ngIf="authority === 'user'">Pedido</a>
+      <mat-divider></mat-divider>
       <a mat-list-item class="nav-link" routerLink="venda" *ngIf="authority === 'user'">Venda</a>
+      <mat-divider></mat-divider>
       <a mat-list-item class="nav-link" routerLink="producao" *ngIf="authority === 'user'">Produção</a>
+      <mat-divider></mat-divider>
       <a mat-list-item class="nav-link" routerLink="relatorio" *ngIf="authority === 'user'">Relatórios</a>
+      <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

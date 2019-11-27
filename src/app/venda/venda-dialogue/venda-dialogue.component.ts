@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Cliente } from './../../model/cliente.model';
 import { Produto } from './../../model/produto.model';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -19,9 +20,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./venda-dialogue.component.scss']
 })
 export class VendaDialogueComponent implements OnInit {
-
+  erro: HttpErrorResponse;
   formularioVenda: FormGroup;
   venda: Venda = new Venda();
+  produto: Produto = new Produto();
   clienteList: any[] = new Array();
   foundProduto: boolean = false;
   errorMsg: string;
@@ -44,7 +46,7 @@ export class VendaDialogueComponent implements OnInit {
       produto: ['', Validators.required],
       cliente: ['', Validators.required],
       quantidade: ['', Validators.required]
-    })
+    });
   }
 
   onNoClick(): void {
@@ -61,18 +63,14 @@ export class VendaDialogueComponent implements OnInit {
   }
 
   adicionar() {
-    this.venda = new Venda();
-    this.venda.data = this.formularioVenda.get('data').value;
-    this.venda.produto = this.formularioVenda.get('produto').value;
-    this.venda.cliente = this.formularioVenda.get('cliente').value;
-    this.venda.quantidade = this.formularioVenda.get('quantidade').value;
+    console.log(this.produto);
     this.vendaService.adicionarVenda(this.venda).subscribe(
       data => {
         this.showSuccess();
         this.dialogRef.close();
       },
       error => {
-        this.showFail();
+        this.toastr.error('Estoque insuficiente', 'Erro');
       }
     );
   }
@@ -84,10 +82,11 @@ export class VendaDialogueComponent implements OnInit {
     this.venda.quantidade = this.formularioVenda.get('quantidade').value;
     this.vendaService.updateVenda(this.venda).subscribe(
       data => {
+        this.showSuccess();
         this.dialogRef.close();
       },
       error => {
-        this.showFail();
+        this.toastr.error('Estoque insuficiente', 'Erro');
       }
     );
   }
@@ -191,7 +190,7 @@ export class ClienteSearchDialogueComponent {
 
   nextpage = true;
 
-  displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'select'];
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'select'];
   dataSource: MatTableDataSource<Request>;
   selection = new SelectionModel<Request>(true, []);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -210,7 +209,7 @@ export class ClienteSearchDialogueComponent {
     this.getCliente();
   }
 
-    applyFilter(value: string) {
+  applyFilter(value: string) {
     this.dataSource.filter = value.trim().toLowerCase();
   }
 

@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
 import { Pessoa } from './../../model/pessoa.model';
@@ -6,6 +7,7 @@ import { FornecedorService } from './../../services/fornecedor/fornecedor.servic
 import { DialogueComponent } from './../../produto/dialogue/dialogue.component';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Fornecedor } from 'src/app/model/fornecedor.model';
+import { ValidateBrService } from 'angular-validate-br';
 
 @Component({
   selector: 'app-fornecedor-dialogue',
@@ -14,15 +16,28 @@ import { Fornecedor } from 'src/app/model/fornecedor.model';
 })
 export class FornecedorDialogueComponent implements OnInit {
 
+  formFornecedor: FormGroup;
   fornecedor: Fornecedor = new Fornecedor();
   pessoa: Pessoa = new Pessoa();
 
   constructor(private toastr: ToastrService,
     public dialogRef: MatDialogRef<DialogueComponent>, private fornecedorService: FornecedorService,
-    @Inject(MAT_DIALOG_DATA) public data) { }
+    @Inject(MAT_DIALOG_DATA) public data,
+    private fbuilder: FormBuilder,
+    private validaBR: ValidateBrService) { }
 
   ngOnInit() {
-    console.log(this.data);
+    this.formFornecedor = this.fbuilder.group({
+      nomeFantasia: new FormControl('', [Validators.required]),
+      nome: new FormControl('', [Validators.required]),
+      cnpj: new FormControl('', [Validators.required, this.validaBR.cnpj]),
+      telefone: new FormControl('', [Validators.required, Validators.maxLength(18)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      cpf: new FormControl('', [Validators.required, this.validaBR.cpf]),
+      contatoTelefone: new FormControl('', [Validators.required, Validators.maxLength(14)]),
+      endereco: new FormControl('', [Validators.required])
+    });
+
     if (this.data.element) {
       this.fornecedor = this.data.element;
       this.pessoa = this.data.element;

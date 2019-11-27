@@ -46,10 +46,6 @@
         <mat-form-field appearance="outline" style="width: 100%;">
             <mat-label>Password</mat-label>
           <input matInput type="password" placeholder="Password" formControlName="password">
-          <mat-error
-            *ngIf="formularioCadastro.get('password').hasError('minLength') && !formularioCadastro.get('password').hasError('required')">
-            Please enter a valid password
-          </mat-error>
           <mat-error *ngIf="formularioCadastro.get('password').hasError('required')">
             Senha <strong>obrigatória</strong>
           </mat-error>
@@ -61,6 +57,5 @@
         <button mat-raised-button color="warn" (click)="login()"> Login </button>
       </div>
     </form>
-
   </mat-card>
 </div>

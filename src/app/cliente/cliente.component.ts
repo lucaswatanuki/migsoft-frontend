@@ -41,7 +41,7 @@ export class ClienteComponent implements OnInit {
     this.getCliente();
   }
 
-  adicionar() {
+  adicionar(form: FormGroupDirective) {
     console.log(this.cliente);
     this.clienteService.adicionarCliente(this.cliente).subscribe( data => {
       this.toast.success('Cliente Adicionado com sucesso!');

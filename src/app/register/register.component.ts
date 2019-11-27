@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
   showFail() {
     this.toast.error('Erro ao cadastrar conta');
   }
-  onSubmit() {
+  onSubmit(form: FormGroupDirective) {
     console.log(this.formularioCadastro);
     this.signupInfo = new SignUpInfo(
       this.formularioCadastro.get('name').value,

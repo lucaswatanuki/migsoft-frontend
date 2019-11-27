@@ -11,17 +11,20 @@
   </div>
   <div *ngIf="!data.element">
     <mat-form-field appearance="outline">
+      <mat-label>Produto</mat-label>
         <input [(ngModel)]="cotacao.produto" matInput type="text" formControlName="produto" placeholder="Selecionar Produto" (click)="openDialogProduto()" required>
     </mat-form-field>
   </div>
   <div *ngIf="!data.element">
       <mat-form-field appearance="outline">
+        <mat-label>Fornecedor</mat-label>
           <input [(ngModel)]="cotacao.fornecedor" matInput type="text" formControlName="fornecedor" placeholder="Selecionar Fornecedor" (click)="openDialogFornecedor()" required>
       </mat-form-field>
     </div>
   <div>
     <mat-form-field appearance="outline" style="width: 100px;">
-      <input [(ngModel)]="cotacao.quantidade" matInput placeholder="Qtd" formControlName="quantidade">
+      <mat-label>Qtd</mat-label>
+      <input type='number' min="1" [(ngModel)]="cotacao.quantidade" matInput placeholder="Qtd" formControlName="quantidade">
     </mat-form-field>
   </div>
 </form>

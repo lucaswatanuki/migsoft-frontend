@@ -28,9 +28,9 @@
 
 
   <div>
-    <mat-form-field appearance="outline">
-        <mat-label>Quantidade</mat-label>
-      <input [(ngModel)]="venda.quantidade" matInput type="text" placeholder="Qtd" formControlName="quantidade" required>
+    <mat-form-field style="width: 100px;" appearance="outline">
+        <mat-label>Qtd</mat-label>
+      <input type='number' min="1" [(ngModel)]="venda.quantidade" matInput  placeholder="Qtd" formControlName="quantidade" required>
     </mat-form-field>
   </div>
 </form>

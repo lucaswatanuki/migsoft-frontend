@@ -6,8 +6,11 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'push' : 'side'" [opened]="(isHandset$ | async) === false">
 
-    <mat-toolbar color="warn" style="justify-content: center;">MIG</mat-toolbar>
+    <mat-toolbar color="secondary" style="justify-content: center; height: 20%;">
+      <img src="/assets/logo5.png" style="width: 100%; height: 100%; margin-top: 20px;">
+    </mat-toolbar>
     <mat-nav-list>
+        <hr>
       <a mat-list-item class="nav-link" routerLink="home" *ngIf="authority === 'user'">Home </a>
       <mat-divider></mat-divider>
       <a mat-list-item class="nav-link" routerLink="produto" *ngIf="authority === 'user'">Produto</a>
@@ -35,9 +38,10 @@
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      Migsoft <span class="toolbar-spacer"> </span>
-      <button mat-raised-button color="warn" (click)="logout()"> Logout </button>
+      </button>Migsoft
+ <span class="toolbar-spacer"> </span>
+      <div style="margin-right: 30px;"> {{info.username}}</div>
+      <button mat-raised-button color="warn" (click)="logout()"> <mat-icon> logout </mat-icon> </button>
     </mat-toolbar>
     <mat-card style="margin: 20px;" class="mat-elevation-z8">
       <mat-card-content>

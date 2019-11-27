@@ -1,40 +1,38 @@
 <h1 mat-dialog-title *ngIf="!data.element">Adicionar Formula</h1>
 <h1 mat-dialog-title *ngIf="data.element">Editar Formula</h1>
-
-<div mat-dialog-content>
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Produto</mat-label>
-          <input matInput (keyup)="findProdutoByName($event.target.value)" placeholder="Produto" required>
-          <mat-hint *ngIf="!foundProduto">Produto Não Encontrado</mat-hint>
-          <mat-hint *ngIf="foundProduto">Produto Encontrado</mat-hint>
-        </mat-form-field>
-      </div>
-
+<form [formGroup]="formProducao">
   <div>
     <mat-form-field appearance="outline">
-        <mat-label>Material</mat-label>
-      <input [(ngModel)]="formula.material" matInput placeholder="Material" name="produto.material">
+      <mat-label>Produto</mat-label>
+      <input [(ngModel)]="formula.produto" matInput placeholder="Produto" formControlName="produto" (click)="openDialogProduto()">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field appearance="outline">
-        <mat-label>Descrição</mat-label>
-      <input [(ngModel)]="formula.descricao" matInput placeholder="Descrição" name="produto.descricao">
+      <mat-label>Material</mat-label>
+      <input [(ngModel)]="formula.material" matInput placeholder="Material" formControlName="material">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Descrição</mat-label>
+      <input [(ngModel)]="formula.descricao" matInput placeholder="Descrição" formControlName="descricao">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field style="width: 100px;" appearance="outline">
-        <mat-label>Quantidade</mat-label>
-      <input [(ngModel)]="formula.quantidade" matInput placeholder="Qtd" name="produto.quantidade">
+      <mat-label>Qtd</mat-label>
+      <input type='number' min="1" [(ngModel)]="formula.quantidade" matInput placeholder="Qtd"
+      formControlName="quantidade">
     </mat-form-field>
   </div>
-</div>
+</form>
 
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancelar</button>
-    <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
-    <button mat-raised-button color="primary" (click)="update(formula)" *ngIf="data.element"> Salvar </button>
-  </div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button [disabled]="!formProducao.valid" mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
+  <button [disabled]="!formProducao.valid" mat-raised-button color="primary" (click)="update(formula)" *ngIf="data.element"> Salvar </button>
+</div>

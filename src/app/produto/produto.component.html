@@ -31,7 +31,7 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="preco">
       <th mat-header-cell *matHeaderCellDef>Preco</th>
-      <td mat-cell *matCellDef="let element"> {{element.preco | currency}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.preco | currency: 'BRL':true }} </td>
     </ng-container>
 
     <ng-container matColumnDef="qtdEstoque">

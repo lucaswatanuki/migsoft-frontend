@@ -69,8 +69,8 @@ export class PedidoComponent implements OnInit {
   }
 
   updateStatus(pedido: Pedido) {
-    if (pedido.status === 'Entregue') {
-      this.toast.show('Pedido já foi entregue');
+    if (pedido.status === 'Entregue' || pedido.status === 'Cancelado') {
+      this.toast.error('Pedido já foi ' + pedido.status);
     } else {
       this.pedidoService.updateStatus(pedido).subscribe(
         data => {

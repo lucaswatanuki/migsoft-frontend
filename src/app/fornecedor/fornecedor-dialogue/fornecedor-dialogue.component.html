@@ -26,10 +26,10 @@
           </mat-form-field>
         </div>
       </form>
-        <div>
-          <mat-radio-group aria-label="atividade"  aria-required="mat-radio-button">
-            <mat-radio-button [(ngModel)]="fornecedor.atividade" value="Ativo" checked style="margin-right: 10px;">Ativo</mat-radio-button>
-            <mat-radio-button [(ngModel)]="fornecedor.atividade" value="Inativo">Inativo</mat-radio-button>
+        <div >
+          <mat-radio-group aria-label="atividade" [(ngModel)]="fornecedor.atividade">
+            <mat-radio-button value="Ativo" style="margin-right: 10px;">Ativo</mat-radio-button>
+            <mat-radio-button value="Inativo" >Inativo</mat-radio-button>
           </mat-radio-group>
         </div>
       </div>
@@ -54,20 +54,20 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Telefone</mat-label>
-        <input [(ngModel)]="fornecedor.telefone" matInput placeholder="Telefone" formControlName="contatoTelefone"
+        <input type="tel" [(ngModel)]="fornecedor.telefone" matInput placeholder="Telefone" formControlName="contatoTelefone"
           required>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input [(ngModel)]="fornecedor.email" matInput placeholder="Email" formControlName="email">
+        <input type="email" [(ngModel)]="fornecedor.email" matInput placeholder="Email" formControlName="email">
       </mat-form-field>
     </div>
     </form>
   </mat-tab>
 </mat-tab-group>
 <div mat-dialog-actions>
-  <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
-  <button mat-raised-button color="primary" (click)="update(fornecedor)" *ngIf="data.element"> Salvar </button>
+  <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element" [disabled]="!formFornecedor.valid"> Salvar </button>
+  <button mat-raised-button color="primary" (click)="update(fornecedor)" *ngIf="data.element" [disabled]="!formFornecedor.valid"> Salvar </button>
 </div>

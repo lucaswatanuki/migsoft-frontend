@@ -24,7 +24,7 @@ export class FornecedorDialogueComponent implements OnInit {
     public dialogRef: MatDialogRef<DialogueComponent>, private fornecedorService: FornecedorService,
     @Inject(MAT_DIALOG_DATA) public data,
     private fbuilder: FormBuilder,
-    private validaBR: ValidateBrService) { }
+    private validaBR: ValidateBrService) { this.fornecedor.atividade='Ativo'; }
 
   ngOnInit() {
     this.formFornecedor = this.fbuilder.group({
@@ -33,8 +33,8 @@ export class FornecedorDialogueComponent implements OnInit {
       cnpj: new FormControl('', [Validators.required, this.validaBR.cnpj]),
       telefone: new FormControl('', [Validators.required, Validators.maxLength(18)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      cpf: new FormControl('', [Validators.required, this.validaBR.cpf]),
-      contatoTelefone: new FormControl('', [Validators.required, Validators.maxLength(14)]),
+      cpf: new FormControl('', [Validators.required, this.validaBR.cpf, Validators.maxLength(14)]),
+      contatoTelefone: new FormControl('', [Validators.required, Validators.maxLength(11)]),
       endereco: new FormControl('', [Validators.required])
     });
 

@@ -22,7 +22,7 @@ export class ProducaoService {
   }
 
   update(formula: Formula): Observable<any> {
-    return this.http.put<Formula>(this.url, formula);
+    return this.http.put<Formula>(this.url + formula.id, formula);
   }
 
 

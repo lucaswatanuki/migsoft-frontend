@@ -25,13 +25,13 @@
           <mat-list>
             <mat-list-item>TOTAL</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>{{relatorio.despesa | currency}}</mat-list-item>
+            <mat-list-item>{{relatorio.despesa | currency: 'BRL':true}}</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>{{relatorio.receita | currency}}</mat-list-item>
+            <mat-list-item>{{relatorio.receita | currency: 'BRL':true}}</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>{{relatorio.lucro | currency}}</mat-list-item>
+            <mat-list-item>{{relatorio.lucro | currency: 'BRL':true}}</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>{{relatorio.prejuizo | currency}}</mat-list-item>
+            <mat-list-item>{{relatorio.prejuizo | currency: 'BRL':true}}</mat-list-item>
           </mat-list>
         </th>
       </table>
@@ -67,12 +67,12 @@
           <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
         </ng-container>
         <ng-container matColumnDef="quantidadeTotal">
-          <th mat-header-cell *matHeaderCellDef>QTD PEDIDOS</th>
+          <th mat-header-cell *matHeaderCellDef>QTD VENDIDA</th>
           <td mat-cell *matCellDef="let element"> {{element.quantidadeTotal}} </td>
         </ng-container>
         <ng-container matColumnDef="vendasTotal">
           <th mat-header-cell *matHeaderCellDef> TOTAL </th>
-          <td mat-cell *matCellDef="let element"> {{element.vendasTotal | currency}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.vendasTotal | currency: 'BRL':true}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

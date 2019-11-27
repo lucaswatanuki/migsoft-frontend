@@ -11,7 +11,7 @@
   </mat-form-field>
   <mat-form-field style="width: 100px;" appearance="outline">
     <mat-label>Qtd</mat-label>
-    <input [(ngModel)]="produto.qtdEstoque" formControlName="quantidade" matInput placeholder="Qtd"
+    <input type='number' min="1" [(ngModel)]="produto.qtdEstoque" formControlName="quantidade" matInput placeholder="Qtd"
       name="produto.qtdEstoque" required>
   </mat-form-field>
 </form>

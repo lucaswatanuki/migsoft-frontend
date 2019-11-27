@@ -25,10 +25,10 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { VendaComponent } from './venda/venda.component';
 import { CotacaoComponent } from './cotacao/cotacao.component';
 import { OrcamentoComponent } from './orcamento/orcamento.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { DialogueComponent } from './produto/dialogue/dialogue.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -51,7 +51,7 @@ import { ClienteDialogueComponent } from './cliente/cliente-dialogue/cliente-dia
 import { VendaDialogueComponent, ProdutoSearchDialogueComponent, ClienteSearchDialogueComponent } from './venda/venda-dialogue/venda-dialogue.component';
 import { OrcamentoProdutoSearchDialogueComponent, OrcamentoClienteSearchDialogueComponent } from './orcamento/orcamento-dialogue/orcamento-dialogue.component';
 import { ProducaoComponent } from './producao/producao.component';
-import { ProducaoDialogueComponent } from './producao/producao-dialogue/producao-dialogue.component';
+import { ProducaoDialogueComponent, ProducaoProdutoSearchDialogueComponent } from './producao/producao-dialogue/producao-dialogue.component';
 import { CotacaoDialogueComponent, CotacaoProdutoSearchDialogueComponent, CotacaoFornecedorSearchDialogueComponent } from './cotacao/cotacao-dialogue/cotacao-dialogue/cotacao-dialogue.component';
 import { VendaService } from './services/venda/venda.service';
 import { CommonModule } from '@angular/common';
@@ -59,7 +59,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { OrcamentoDialogueComponent } from './orcamento/orcamento-dialogue/orcamento-dialogue.component';
 import { AngularValidateBrLibModule } from 'angular-validate-br';
-
+import { LOCALE_ID } from '@angular/core';
+import localePtBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePtBr);
 
 @NgModule({
   declarations: [
@@ -91,7 +94,8 @@ import { AngularValidateBrLibModule } from 'angular-validate-br';
     OrcamentoProdutoSearchDialogueComponent,
     OrcamentoClienteSearchDialogueComponent,
     CotacaoProdutoSearchDialogueComponent,
-    CotacaoFornecedorSearchDialogueComponent
+    CotacaoFornecedorSearchDialogueComponent,
+    ProducaoProdutoSearchDialogueComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -128,26 +132,32 @@ import { AngularValidateBrLibModule } from 'angular-validate-br';
     AngularValidateBrLibModule
   ],
   entryComponents: [DialogueComponent,
-     FornecedorDialogueComponent,
-     PedidoDialogueComponent,
-     ClienteDialogueComponent,
-     VendaDialogueComponent,
-     ProducaoDialogueComponent,
-     CotacaoDialogueComponent,
-     ProdutoSearchDialogueComponent,
+    FornecedorDialogueComponent,
+    PedidoDialogueComponent,
+    ClienteDialogueComponent,
+    VendaDialogueComponent,
+    ProducaoDialogueComponent,
+    CotacaoDialogueComponent,
+    ProdutoSearchDialogueComponent,
     OrcamentoProdutoSearchDialogueComponent,
     OrcamentoClienteSearchDialogueComponent,
-     ClienteSearchDialogueComponent,
+    ClienteSearchDialogueComponent,
     OrcamentoDialogueComponent,
     CotacaoProdutoSearchDialogueComponent,
-    CotacaoFornecedorSearchDialogueComponent
-      ],
+    CotacaoFornecedorSearchDialogueComponent,
+    ProducaoProdutoSearchDialogueComponent
+  ],
   providers: [AuthGuardService,
     httpInterceptorProviders,
     ProdutoService, FornecedorService,
     RelatorioService, CotacaoService,
     PedidoService,
-    VendaService],
+    VendaService,
+    {
+      provide: LOCALE_ID,
+      useValue: "pt-BR"
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

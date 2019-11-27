@@ -14,16 +14,16 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content" *ngIf="card.title=='Lucro'">
-          <div style="font-size: xxx-large; color: green;">{{relatorio.lucro | currency}}</div>
+          <div style="font-size: xxx-large; color: green;">{{relatorio.lucro | currency: 'BRL':true}}</div>
         </mat-card-content>
         <mat-card-content class="dashboard-card-content" *ngIf="card.title=='Prejuízo'">
-          <div style="font-size: xxx-large; color: red;">{{relatorio.prejuizo | currency}}</div>
+          <div style="font-size: xxx-large; color: red;">{{relatorio.prejuizo | currency: 'BRL':true}}</div>
         </mat-card-content>
         <mat-card-content class="dashboard-card-content" *ngIf="card.title=='Vendas'">
-          <div style="font-size: xxx-large;">{{relatorio.receita | currency}}</div>
+          <div style="font-size: xxx-large;">{{relatorio.receita | currency: 'BRL':true}}</div>
         </mat-card-content>
         <mat-card-content class="dashboard-card-content" *ngIf="card.title=='Pedidos'">
-          <div style="font-size: xxx-large;">{{relatorio.despesa | currency}}</div>
+          <div style="font-size: xxx-large;">{{relatorio.despesa | currency: 'BRL':true}}</div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

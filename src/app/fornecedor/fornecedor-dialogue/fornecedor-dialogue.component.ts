@@ -31,11 +31,11 @@ export class FornecedorDialogueComponent implements OnInit {
       nomeFantasia: new FormControl('', [Validators.required]),
       nome: new FormControl('', [Validators.required]),
       cnpj: new FormControl('', [Validators.required, this.validaBR.cnpj]),
-      telefone: new FormControl('', [Validators.required, Validators.maxLength(18)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       cpf: new FormControl('', [Validators.required, this.validaBR.cpf, Validators.maxLength(14)]),
       contatoTelefone: new FormControl('', [Validators.required, Validators.maxLength(11)]),
-      endereco: new FormControl('', [Validators.required])
+      endereco: new FormControl('', [Validators.required]),
+      atividade: new FormControl('', [Validators.required])
     });
 
     if (this.data.element) {

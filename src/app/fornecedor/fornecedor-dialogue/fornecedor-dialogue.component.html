@@ -25,13 +25,14 @@
             <input [(ngModel)]="fornecedor.endereco" matInput placeholder="Endereço" formControlName="endereco">
           </mat-form-field>
         </div>
-      </form>
-        <div >
-          <mat-radio-group aria-label="atividade" [(ngModel)]="fornecedor.atividade">
+
+        <div>
+          <mat-radio-group aria-label="atividade" [(ngModel)]="fornecedor.atividade" formControlName="atividade">
             <mat-radio-button value="Ativo" style="margin-right: 10px;">Ativo</mat-radio-button>
             <mat-radio-button value="Inativo" >Inativo</mat-radio-button>
           </mat-radio-group>
         </div>
+      </form>
       </div>
   </mat-tab>
 
@@ -54,7 +55,7 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Telefone</mat-label>
-        <input type="tel" [(ngModel)]="fornecedor.telefone" matInput placeholder="Telefone" formControlName="contatoTelefone"
+        <input type="text" [(ngModel)]="fornecedor.telefone" matInput placeholder="Telefone" formControlName="contatoTelefone"
           required>
       </mat-form-field>
     </div>

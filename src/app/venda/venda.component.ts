@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { VendaDialogueComponent } from './venda-dialogue/venda-dialogue.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -21,7 +22,7 @@ export class VendaComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private vendaService: VendaService, public dialog: MatDialog) { }
+  constructor(private vendaService: VendaService, public dialog: MatDialog, private toast: ToastrService) { }
 
   ngOnInit() {
     this.getVendas();
@@ -47,6 +48,7 @@ export class VendaComponent implements OnInit {
     console.log(this.venda);
     this.vendaService.cancelarVenda(venda).subscribe(
       data => {
+        this.toast.success('Venda cancelada com sucesso');
         this.getVendas();
       });
   }

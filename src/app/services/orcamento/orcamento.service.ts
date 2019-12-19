@@ -23,8 +23,8 @@ export class OrcamentoService {
     return this.http.post<any>(this.url, orcamento);
   }
 
-  update(orcamento: Orcamento): Observable<any> {
-    return this.http.put<Orcamento>(this.url + orcamento.id, orcamento);
+  delete(orcamento: Orcamento): Observable<any> {
+    return this.http.delete<Orcamento>(this.url + orcamento.id);
   }
 
 }

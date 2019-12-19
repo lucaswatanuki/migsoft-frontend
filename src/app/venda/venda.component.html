@@ -58,7 +58,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button mat-raised-button color="warn" (click)="cancelar(element)" >
+        <button mat-raised-button color="warn" (click)="cancelar(element)" [disabled]="element.status=='Cancelado'">
           Cancelar
         </button>
       </td>

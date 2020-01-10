@@ -1,6 +1,6 @@
 <div class="card-head">
-    <h2>Relatórios</h2>
-    <mat-divider></mat-divider>
+  <h2>Relatórios</h2>
+  <mat-divider></mat-divider>
 </div>
 <br>
 <mat-tab-group>
@@ -41,23 +41,24 @@
     <br>
     <div>
       <mat-form-field style="margin-right: 20px;" appearance="outline">
-          <mat-label>Início</mat-label>
+        <mat-label>Início</mat-label>
         <input [(ngModel)]="request.dataInicial" matInput [matDatepicker]="dataInicial" placeholder="Início">
         <mat-datepicker-toggle matSuffix [for]="dataInicial"></mat-datepicker-toggle>
         <mat-datepicker #dataInicial></mat-datepicker>
       </mat-form-field>
       <mat-form-field style="margin-right: 20px;" appearance="outline">
-          <mat-label>Fim</mat-label>
+        <mat-label>Fim</mat-label>
         <input [(ngModel)]="request.dataFinal" matInput [matDatepicker]="dataFinal" placeholder="Fim">
         <mat-datepicker-toggle matSuffix [for]="dataFinal"></mat-datepicker-toggle>
         <mat-datepicker #dataFinal></mat-datepicker>
       </mat-form-field>
-        <mat-radio-group aria-label="status" [(ngModel)]="request.status" style="margin-right: 20px;">
-          Status:
-          <mat-radio-button value="OK" style="margin-right: 10px; margin-left: 10px;">Aprovado</mat-radio-button>
-          <mat-radio-button value="Cancelado">Cancelado</mat-radio-button>
-        </mat-radio-group>
-      <button mat-raised-button color="primary" (click)="extrair(request)"> Gerar Relatório </button>
+      <mat-radio-group aria-label="status" [(ngModel)]="request.status" style="margin-right: 20px;">
+        Status:
+        <mat-radio-button value="OK" style="margin-right: 10px; margin-left: 10px;">Aprovado</mat-radio-button>
+        <mat-radio-button value="Cancelado">Cancelado</mat-radio-button>
+      </mat-radio-group>
+      <button mat-raised-button color="primary" (click)="extrair(request)"
+        [disabled]="!request.status && !request.dataInicial && !request.dataFinal"> Gerar Relatório </button>
     </div>
     <br>
     <div>

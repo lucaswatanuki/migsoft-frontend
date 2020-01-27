@@ -63,7 +63,7 @@ export class OrcamentoDialogueComponent implements OnInit {
     this.orcamento.produto = this.formularioOrcamento.get('produto').value;
     this.orcamento.cliente = this.formularioOrcamento.get('cliente').value;
     this.orcamento.quantidade = this.formularioOrcamento.get('quantidade').value;
-    this.orcamentoService.adicionarOrcamentos(this.orcamento).subscribe(
+    this.orcamentoService.adicionar(this.orcamento).subscribe(
       data => {
         this.showSuccess();
         this.dialogRef.close();
@@ -71,6 +71,18 @@ export class OrcamentoDialogueComponent implements OnInit {
       error => {
         this.showFail();
       });
+  }
+
+  update(orcamento: Orcamento) {
+    this.orcamentoService.update(orcamento).subscribe(
+      data => {
+        this.toastr.success('Orçamento atualizado');
+        this.dialogRef.close();
+      },
+      error => {
+        this.toastr.error('Erro ao atualizar orçamento', 'Erro');
+      }
+    )
   }
 
   openDialogProduto(): void {

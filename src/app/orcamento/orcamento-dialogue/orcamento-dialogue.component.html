@@ -41,5 +41,5 @@
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancelar</button>
     <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
-    <button mat-raised-button color="primary"  *ngIf="data.element"> Atualizar </button>
+    <button mat-raised-button color="primary" (click)="update(orcamento)" *ngIf="data.element"> Atualizar </button>
 </div>

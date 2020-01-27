@@ -15,15 +15,15 @@ export class OrcamentoService {
     return this.http.get<Orcamento[]>(this.url + 'all');
   }
 
-  updateOrcamentos(orcamento: Orcamento): Observable<any> {
+  update(orcamento: Orcamento): Observable<any> {
     return this.http.put<any>(this.url + orcamento.id, orcamento);
   }
 
-  adicionarOrcamentos(orcamento: Orcamento): Observable<any> {
+  adicionar(orcamento: Orcamento): Observable<any> {
     return this.http.post<any>(this.url, orcamento);
   }
 
-  delete(orcamento: Orcamento): Observable<any> {
+  delete(orcamento: Orcamento) {
     return this.http.delete<Orcamento>(this.url + orcamento.id);
   }
 

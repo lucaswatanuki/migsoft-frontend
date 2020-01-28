@@ -77,7 +77,6 @@ export class CotacaoDialogueComponent implements OnInit {
         this.showFail();
       }
     );
-
   }
 
 

@@ -42,6 +42,10 @@ export class OrcamentoDialogueComponent implements OnInit {
       cliente: ['', Validators.required],
       quantidade: ['', Validators.required]
     })
+
+    if(this.data.element) {
+      this.orcamento = this.data.element;
+    }
   }
 
   onNoClick(): void {

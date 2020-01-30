@@ -13,14 +13,14 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-   getListaProdutos(): Observable<any> {
+   getProdutos(): Observable<any> {
     return this.http.get<Produto[]>(this.url + 'all');
   }
 
   findProdutoByNome(nome: String): Observable<any> {
     return this.http.get<Produto>(this.url + nome);
   }
-  adicionarProduto(produto: Produto): Observable<any> {
+  save(produto: Produto): Observable<any> {
     return this.http.post<any>(this.url, produto);
   }
 

@@ -33,7 +33,7 @@ export class OrcamentoComponent implements OnInit {
   }
 
   public getOrcamentos() {
-    this.orcamentoService.getListaOrcamentos().subscribe(
+    this.orcamentoService.getOrcamentos().subscribe(
       data => {
         this.orcamentoList = new MatTableDataSource(data);
         this.orcamentoList.paginator = this.paginator;

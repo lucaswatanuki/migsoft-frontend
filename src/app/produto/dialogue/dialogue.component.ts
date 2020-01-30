@@ -47,7 +47,7 @@ export class DialogueComponent implements OnInit {
   }
 
   adicionar() {
-    this.produtoService.adicionarProduto(this.produto).subscribe(data => {
+    this.produtoService.save(this.produto).subscribe(data => {
       this.showSuccess('Produto cadastrado com sucesso!');
       this.dialogRef.close();
     },

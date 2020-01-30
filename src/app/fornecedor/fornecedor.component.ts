@@ -48,7 +48,7 @@ export class FornecedorComponent implements OnInit {
   }
 
   public getFornecedor(): void {
-    this.fornecedorService.getListaFornecedor().subscribe(
+    this.fornecedorService.getFornecedores().subscribe(
       data => {
         this.fornecedorList = new MatTableDataSource(data);
         this.fornecedorList.paginator = this.paginator;

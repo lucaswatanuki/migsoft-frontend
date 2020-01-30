@@ -13,18 +13,17 @@ export class FornecedorService {
 
   constructor(private http: HttpClient) { }
 
-  getListaFornecedor(): Observable<any> {
+  getFornecedores(): Observable<any> {
     return this.http.get<Fornecedor[]>(this.url + 'all');
   }
 
-  getListaFornecedoresAtivos(): Observable<any> {
+  getFornecedoresAtivos(): Observable<any> {
     return this.http.get<Fornecedor[]>(this.url + 'all/active');
   }
 
-  adicionarFornecedor(fornecedor: Fornecedor): Observable<any> {
+  save(fornecedor: Fornecedor): Observable<any> {
     return this.http.post<any>(this.url, fornecedor);
   }
-
 
   update(fornecedor: Fornecedor): Observable<any> {
     return this.http.put<Fornecedor>(this.url + fornecedor.id, fornecedor);

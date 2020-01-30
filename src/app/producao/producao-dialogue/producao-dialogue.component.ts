@@ -56,7 +56,7 @@ export class ProducaoDialogueComponent implements OnInit {
   }
 
   adicionar() {
-    this.producaoService.adicionarFormula(this.formula).subscribe(data => {
+    this.producaoService.save(this.formula).subscribe(data => {
       this.showSuccess('Formula de produto adicionada!');
       this.dialogRef.close();
     },
@@ -132,7 +132,7 @@ export class ProducaoProdutoSearchDialogueComponent {
   }
 
   public getProdutos(): void {
-    this.produtoService.getListaProdutos().subscribe(
+    this.produtoService.getProdutos().subscribe(
       data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;

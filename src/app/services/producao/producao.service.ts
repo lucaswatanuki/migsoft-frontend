@@ -13,11 +13,11 @@ export class ProducaoService {
 
   constructor(private http: HttpClient) { }
 
-  getListaFormulas(): Observable<any> {
+  getFormulas(): Observable<any> {
     return this.http.get<Formula[]>(this.url + 'all');
   }
 
-  adicionarFormula(formula: Formula): Observable<any> {
+  save(formula: Formula): Observable<any> {
     return this.http.post<any>(this.url, formula);
   }
 

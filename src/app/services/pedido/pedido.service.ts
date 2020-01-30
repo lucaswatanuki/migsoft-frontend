@@ -15,11 +15,11 @@ export class PedidoService {
 
   constructor(private http: HttpClient) { }
 
-  getListaPedidos(): Observable<any> {
+  getPedidos(): Observable<any> {
     return this.http.get<Pedido[]>(this.url + 'all');
   }
 
-  adicionarPedido(pedido: Pedido): Observable<any> {
+  save(pedido: Pedido): Observable<any> {
     return this.http.post<any>(this.url, pedido);
   }
 

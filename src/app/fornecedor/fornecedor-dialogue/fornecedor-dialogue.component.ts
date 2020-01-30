@@ -57,7 +57,7 @@ export class FornecedorDialogueComponent implements OnInit {
   }
 
   adicionar() {
-    this.fornecedorService.adicionarFornecedor(this.fornecedor).subscribe(data => {
+    this.fornecedorService.save(this.fornecedor).subscribe(data => {
       this.showSuccess('Fornecedor cadastrado com sucesso!');
       this.dialogRef.close();
     },

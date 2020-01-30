@@ -14,15 +14,12 @@ export class VendaService {
 
   constructor(private http: HttpClient) { }
 
-   getListaVendas(): Observable<any> {
+   getVendas(): Observable<any> {
     return this.http.get<Venda[]>(this.url + 'all');
   }
 
-  updateVenda(venda: Venda): Observable<any> {
-    return this.http.put<any>(this.url + venda.id, venda);
-  }
 
-  adicionarVenda(venda: Venda): Observable<any> {
+  save(venda: Venda): Observable<any> {
     return this.http.post<any>(this.url, venda);
   }
 
@@ -30,7 +27,7 @@ export class VendaService {
     return this.http.put<Venda>(this.url + venda.id, venda);
   }
 
-  cancelarVenda(venda: Venda): Observable<any> {
+  cancel(venda: Venda): Observable<any> {
     return this.http.put<Venda>(this.url + 'status/' + venda.id, venda);
   }
 

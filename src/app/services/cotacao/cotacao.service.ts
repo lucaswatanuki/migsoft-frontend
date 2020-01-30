@@ -13,15 +13,15 @@ export class CotacaoService {
 
   constructor(private http: HttpClient) { }
 
-  getListaCotacao(): Observable<any> {
+  getCotacao(): Observable<any> {
     return this.http.get<Cotacao[]>(this.url + 'all');
   }
 
-  getListaCotacaoApproved(): Observable<any> {
+  getApproved(): Observable<any> {
     return this.http.get<Cotacao[]>(this.url + 'all/approved');
   }
 
-  adicionarCotacao(cotacao: Cotacao): Observable<any> {
+  save(cotacao: Cotacao): Observable<any> {
     return this.http.post<any>(this.url, cotacao);
   }
 

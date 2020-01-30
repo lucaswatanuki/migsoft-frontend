@@ -35,7 +35,7 @@ export class PedidoComponent implements OnInit {
 
   public getPedidos() {
     console.log();
-    this.pedidoService.getListaPedidos().subscribe(
+    this.pedidoService.getPedidos().subscribe(
       data => {
         this.pedidoList = new MatTableDataSource(data);
         this.pedidoList.paginator = this.paginator;

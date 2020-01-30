@@ -59,7 +59,7 @@ export class PedidoDialogueComponent implements OnInit {
 
   adicionar() {
     console.log(this.pedido);
-    this.pedidoService.adicionarPedido(this.pedido).subscribe(
+    this.pedidoService.save(this.pedido).subscribe(
       data => {
         this.showSuccess('Pedido adicionado com sucesso!');
         this.dialogRef.close();
@@ -85,7 +85,7 @@ export class PedidoDialogueComponent implements OnInit {
   }
 
   getCotacao() {
-    this.cotacaoService.getListaCotacaoApproved().subscribe(
+    this.cotacaoService.getApproved().subscribe(
       data => {
         data.forEach(element => {
           this.cotacaoList.push(element);

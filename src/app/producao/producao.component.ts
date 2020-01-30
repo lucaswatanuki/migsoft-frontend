@@ -33,7 +33,7 @@ export class ProducaoComponent implements OnInit {
 
   public getFormulas() {
     console.log();
-    this.producaoService.getListaFormulas().subscribe(
+    this.producaoService.getFormulas().subscribe(
       data => {
         this.formulaList = new MatTableDataSource(data);
         this.formulaList.paginator = this.paginator;

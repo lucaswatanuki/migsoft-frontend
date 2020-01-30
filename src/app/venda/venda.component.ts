@@ -34,7 +34,7 @@ export class VendaComponent implements OnInit {
 
   public getVendas() {
     console.log();
-    this.vendaService.getListaVendas().subscribe(
+    this.vendaService.getVendas().subscribe(
       data => {
         this.vendaList = new MatTableDataSource(data);
         this.vendaList.paginator = this.paginator;
@@ -46,7 +46,7 @@ export class VendaComponent implements OnInit {
 
   cancelar(venda: Venda) {
     console.log(this.venda);
-    this.vendaService.cancelarVenda(venda).subscribe(
+    this.vendaService.cancel(venda).subscribe(
       data => {
         this.toast.success('Venda cancelada com sucesso');
         this.getVendas();

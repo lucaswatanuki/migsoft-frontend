@@ -37,7 +37,7 @@ export class CotacaoComponent implements OnInit {
 
   public getCotacao() {
     console.log();
-    this.cotacaoService.getListaCotacao().subscribe(
+    this.cotacaoService.getCotacao().subscribe(
       data => {
         this.cotacaoList = new MatTableDataSource(data);
         this.cotacaoList.paginator = this.paginator;

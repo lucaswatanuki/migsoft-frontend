@@ -64,7 +64,7 @@ export class VendaDialogueComponent implements OnInit {
 
   adicionar() {
     console.log(this.produto);
-    this.vendaService.adicionarVenda(this.venda).subscribe(
+    this.vendaService.save(this.venda).subscribe(
       data => {
         this.showSuccess();
         this.dialogRef.close();
@@ -80,7 +80,7 @@ export class VendaDialogueComponent implements OnInit {
     this.venda.produto = this.formularioVenda.get('produto').value;
     this.venda.cliente = this.formularioVenda.get('cliente').value;
     this.venda.quantidade = this.formularioVenda.get('quantidade').value;
-    this.vendaService.updateVenda(this.venda).subscribe(
+    this.vendaService.update(this.venda).subscribe(
       data => {
         this.showSuccess();
         this.dialogRef.close();
@@ -159,7 +159,7 @@ export class ProdutoSearchDialogueComponent {
   }
 
   public getProdutos(): void {
-    this.produtoService.getListaProdutos().subscribe(
+    this.produtoService.getProdutos().subscribe(
       data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
@@ -214,7 +214,7 @@ export class ClienteSearchDialogueComponent {
   }
 
   public getCliente(): void {
-    this.clienteService.getListaCliente().subscribe(
+    this.clienteService.getClientes().subscribe(
       data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;

@@ -69,7 +69,7 @@ export class CotacaoDialogueComponent implements OnInit {
 
   adicionar() {
     console.log(this.cotacao);
-    this.cotacaoService.adicionarCotacao(this.cotacao).subscribe(data => {
+    this.cotacaoService.save(this.cotacao).subscribe(data => {
       this.showSuccess('Cotação adicionada com sucesso');
       this.dialogRef.close();
     },
@@ -93,7 +93,7 @@ export class CotacaoDialogueComponent implements OnInit {
   }
 
   loadFornecedores() {
-    this.fornecedorService.getListaFornecedoresAtivos().subscribe(
+    this.fornecedorService.getFornecedoresAtivos().subscribe(
       data => {
         data.forEach(element => {
           this.fornecedorList.push(element);
@@ -170,7 +170,7 @@ export class CotacaoProdutoSearchDialogueComponent {
   }
 
   public getProdutos(): void {
-    this.produtoService.getListaProdutos().subscribe(
+    this.produtoService.getProdutos().subscribe(
       data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
@@ -225,7 +225,7 @@ export class CotacaoFornecedorSearchDialogueComponent {
   }
 
   public getFornecedor(): void {
-    this.fornecedorService.getListaFornecedor().subscribe(
+    this.fornecedorService.getFornecedores().subscribe(
       data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;

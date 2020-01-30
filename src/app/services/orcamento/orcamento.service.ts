@@ -11,7 +11,7 @@ export class OrcamentoService {
   private url = environment.api + 'api/orcamento/';
   constructor(private http: HttpClient) { }
 
-  getListaOrcamentos(): Observable<any> {
+  getOrcamentos(): Observable<any> {
     return this.http.get<Orcamento[]>(this.url + 'all');
   }
 
@@ -19,7 +19,7 @@ export class OrcamentoService {
     return this.http.put<any>(this.url + orcamento.id, orcamento);
   }
 
-  adicionar(orcamento: Orcamento): Observable<any> {
+  save(orcamento: Orcamento): Observable<any> {
     return this.http.post<any>(this.url, orcamento);
   }
 

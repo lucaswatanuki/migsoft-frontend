@@ -43,7 +43,7 @@ export class ClienteComponent implements OnInit {
 
   adicionar(form: FormGroupDirective) {
     console.log(this.cliente);
-    this.clienteService.adicionarCliente(this.cliente).subscribe( data => {
+    this.clienteService.save(this.cliente).subscribe( data => {
       this.toast.success('Cliente Adicionado com sucesso!');
       this.form.resetForm();
       this.getCliente();
@@ -72,7 +72,7 @@ export class ClienteComponent implements OnInit {
   }
 
   public getCliente(): void {
-    this.clienteService.getListaCliente().subscribe(
+    this.clienteService.getClientes().subscribe(
       data => {
         this.clienteList = new MatTableDataSource(data);
         this.clienteList.paginator = this.paginator;

@@ -1,4 +1,4 @@
-import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthGuardService } from './core/auth/auth-guard.service';
 import { RouterModule } from '@angular/router';
 import { PedidoService } from './services/pedido/pedido.service';
 import { CotacaoService } from './services/cotacao/cotacao.service';
@@ -10,7 +10,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { httpInterceptorProviders } from './auth/auth-interceptor';
+import { httpInterceptorProviders } from './core/auth/auth-interceptor';
 import { MatSliderModule } from '@angular/material/slider';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';

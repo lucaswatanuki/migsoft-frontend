@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit, Injectable } from '@angular/core';
 
-import { TokenStorageService } from '../auth/token-storage.service';
+import { TokenStorageService } from '../core/auth/token-storage.service';
 import { Router } from '@angular/router';
 
 

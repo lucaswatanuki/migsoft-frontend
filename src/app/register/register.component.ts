@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { SignUpInfo } from './../auth/signup-info';
-import { AuthService } from './../auth/auth.service';
+import { SignUpInfo } from '../core/auth/signup-info';
+import { AuthService } from '../core/auth/auth.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, FormGroupDirective } from '@angular/forms';
 

@@ -1,4 +1,4 @@
-import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthGuardService } from './core/auth/auth-guard.service';
 import { ProducaoComponent } from './producao/producao.component';
 import { CotacaoComponent } from './cotacao/cotacao.component';
 import { OrcamentoComponent } from './orcamento/orcamento.component';

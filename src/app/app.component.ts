@@ -2,7 +2,7 @@ import { environment } from './../environments/environment';
 import { Router } from '@angular/router';
 import { map, shareReplay } from 'rxjs/operators';
 import { Component, Input } from '@angular/core';
-import { TokenStorageService } from './auth/token-storage.service';
+import { TokenStorageService } from './core/auth/token-storage.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 
